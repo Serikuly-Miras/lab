@@ -6,8 +6,10 @@ metadata:
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
 spec:
+  tls:
+    secretName: tls-secret
   rules:
-    - host: argocd.lab.com
+    - host: argocd.lab.s-miras.com
       http:
         paths:
           - path: /
