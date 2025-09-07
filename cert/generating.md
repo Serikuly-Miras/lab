@@ -24,7 +24,8 @@ sudo certbot certonly \
   --server https://acme-v02.api.letsencrypt.org/directory \
   --agree-tos \
   -d <your-domain.com> \
-  -d "*.your-domain.com"
+  -d *.<your-domain.com> \
+  -d *.lab.<your-domain.com>
 ```
 
 ## DNS Configuration
