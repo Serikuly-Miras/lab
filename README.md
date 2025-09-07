@@ -24,7 +24,3 @@ Personal lab environment for experimenting with data engineering tools and GitOp
 - [ ] Postgres 17 backup automation to S3
 - [ ] Automated etcd backups and disaster recovery procedures
 - [ ] CI/CD pipelines for automated testing / task processing
-
-## Access
-
-All services accessible via `*.lab.s-miras.com` through Tailscale network with Let's Encrypt SSL certificates.
