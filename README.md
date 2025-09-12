@@ -13,7 +13,7 @@ Personal lab environment for experimenting with data engineering tools and GitOp
 - [ ] **Grafana + Prometheus**: Monitoring and observability stack
 - [ ] **SeaweedFS**: Distributed object storage with S3 compatibility
 - [ ] **Argo Workflows**: Kubernetes-native workflow engine
-- [ ] **Data Lake**: Delta Lake or DuckDB implementation
+- [ ] **Data Lake**: Delta Lake or DuckLake implementation
 - [ ] **ETL Pipeline**: Data processing with Polars/Pandas/DuckDB over SeaweedFS S3
 
 ### Future Improvements
