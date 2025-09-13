@@ -20,7 +20,7 @@ spec:
       targetRevision: 4.0.393
       helm:
         valueFiles:
-          - $lab/seaweedfs/values.yaml
+          - $lab/infra/seaweedfs/values.yaml
     - repoURL: https://github.com/Serikuly-Miras/lab.git
       ref: lab
       targetRevision: HEAD
