@@ -2,27 +2,33 @@ master:
   enabled: true
   replicas: 1
   affinity: ""
-  volumeSizeLimitMB: 8096
 
 volume:
   enabled: true
   replicas: 1
   affinity: ""
 
+  dataDirs:
+    - name: data1
+      type: "persistentVolumeClaim"
+      size: "100Gi"
+      storageClass: "local-path"
+      maxVolumes: 0 # If set to zero, the limit will be auto configured
+
 filer:
   enabled: true
   replicas: 1
-  storage: 40Gi
+  storage: 10Gi
   storageClass: null
+  affinity: ""
 
   data:
     type: "persistentVolumeClaim"
     hostPathPrefix: /mnt/data
-    claimName: seaweedfs-pvc
-    size: "40Gi"
+    claimName: seaweedfs-filer-pvc
+    size: "10Gi"
     storageClass: "local-path"
 
-  affinity: ""
   s3:
     enabled: true
     enableAuth: true
