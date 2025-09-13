@@ -24,7 +24,4 @@ prometheus:
     additionalScrapeConfigs:
       - job_name: postgres
         static_configs:
-          - targets:
-              [
-                "prometheus-postgres-exporter.prometheus-postgres-exporter.svc.cluster.local:80",
-              ]
+          - targets: ["lab.prometheus-postgres-exporter.svc.cluster.local:80"]
