@@ -2,6 +2,7 @@ apiVersion: secrets.hashicorp.com/v1beta1
 kind: VaultAuth
 metadata:
   name: vault-auth
+  namespace: lab
 spec:
   vaultConnectionRef: vault-connection
   method: kubernetes
