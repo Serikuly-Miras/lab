@@ -9,4 +9,4 @@ spec:
   mount: vso
   kubernetes:
     role: vso-role
-    serviceAccount: default
+    serviceAccount: vault-auth

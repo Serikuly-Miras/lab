@@ -26,4 +26,4 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: vault-auth
-    namespace: default
+    namespace: lab
