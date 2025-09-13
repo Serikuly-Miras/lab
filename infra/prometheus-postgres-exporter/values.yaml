@@ -1,4 +1,4 @@
 config:
   datasourceSecret:
-    key: postgres-exporter-connection-string
-    name: connection-string
+    name: postgres-exporter-connection-string
+    key: connection-string
