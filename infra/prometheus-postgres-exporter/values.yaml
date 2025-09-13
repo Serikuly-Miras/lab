@@ -1,18 +1,4 @@
 config:
-  datasource:
-    host: 192.168.10.4
-    port: "5432"
-    userSecret:
-      name: "postgres-exporter-connection-string"
-      key: "username"
-    passwordSecret:
-      name: "postgres-exporter-connection-string"
-      key: "password"
-    sslmode: disable
-    user: ""
-    userFile: ""
-    password: ""
-    passwordFile: ""
-    pgpassfile: ""
-    database: ""
-    extraParams: ""
+  datasourceSecret:
+    name: postgres-exporter-connection-string
+    key: connection-string
