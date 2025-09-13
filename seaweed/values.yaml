@@ -1,0 +1,35 @@
+master:
+  enabled: true
+  replicas: 1
+  affinity: ""
+  volumeSizeLimitMB: 8096
+
+volume:
+  enabled: true
+  replicas: 1
+  affinity: ""
+
+filer:
+  enabled: true
+  replicas: 1
+  storage: 40Gi
+  storageClass: null
+
+  data:
+    type: "persistentVolumeClaim"
+    hostPathPrefix: /mnt/data
+    claimName: seaweedfs-pvc
+    size: "40Gi"
+    storageClass: "local-path"
+
+  affinity: ""
+  s3:
+    enabled: true
+    enableAuth: true
+    existingConfigSecret: "sw-s3-auth-secret"
+
+s3:
+  enabled: true
+  replicas: 1
+  enableAuth: true
+  existingConfigSecret: "sw-s3-auth-secret"

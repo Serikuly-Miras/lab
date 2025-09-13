@@ -9,7 +9,7 @@ Personal lab environment for experimenting with data engineering tools and GitOp
 - [x] **Ubuntu + k3s**: Simple Kubernetes environment
 - [x] **Postgres**: Database for upcoming projects
 - [x] **ArgoCD**: GitOps continuous deployment
-- [x] **Vault**: Secret and certificate management
+- [x] **Vault + Vault secrets operator**: Secret and certificate management
 - [ ] **Grafana + Prometheus**: Monitoring and observability stack
 - [ ] **SeaweedFS**: Distributed object storage with S3 compatibility
 - [ ] **Argo Workflows**: Kubernetes-native workflow engine

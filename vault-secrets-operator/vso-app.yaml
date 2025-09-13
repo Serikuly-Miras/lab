@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: vault
+  name: vault-secrets-operator
   namespace: argocd
 spec:
   project: default
@@ -14,13 +14,7 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=false
-      - ServerSideApply=true
   sources:
     - repoURL: https://helm.releases.hashicorp.com
-      chart: vault
-      targetRevision: 0.30.1
-  ignoreDifferences:
-    - group: apps
-      kind: StatefulSet
-      jsonPointers:
-        - /spec/volumeClaimTemplates
+      chart: vault-secrets-operator
+      targetRevision: 0.10.0
