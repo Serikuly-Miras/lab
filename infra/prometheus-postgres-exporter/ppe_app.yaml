@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: prometheus-postgres-exporter
+  namespace: argocd
+spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: lab
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=false
+  sources:
+    - repoURL: https://prometheus-community.github.io/helm-charts
+      chart: prometheus-postgres-exporter
+      targetRevision: 7.1.1
+      helm:
+        valueFiles:
+          - $lab/infra/prometheus-postgres-exporter/values.yaml
+    - repoURL: https://github.com/Serikuly-Miras/lab.git
+      ref: lab
+      targetRevision: HEAD

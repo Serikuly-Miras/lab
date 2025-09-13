@@ -1,0 +1,30 @@
+grafana:
+  persistence:
+    enabled: true
+    type: sts
+    storageClassName: "local-path"
+    accessModes:
+      - ReadWriteOnce
+    size: 10Gi
+    finalizers:
+      - kubernetes.io/pvc-protection
+prometheus:
+  enabled: true
+  prometheusSpec:
+    enableOTLPReceiver: true
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: "local-path"
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 10Gi
+    retention: 60d
+    additionalScrapeConfigs:
+      - job_name: postgres
+        static_configs:
+          - targets:
+              [
+                "prometheus-postgres-exporter.prometheus-postgres-exporter.svc.cluster.local:80",
+              ]
