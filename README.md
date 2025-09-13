@@ -10,8 +10,8 @@ Personal lab environment for experimenting with data engineering tools and GitOp
 - [x] **Postgres**: Database for upcoming projects
 - [x] **ArgoCD**: GitOps continuous deployment
 - [x] **Vault + Vault secrets operator**: Secret and certificate management
-- [ ] **Grafana + Prometheus**: Monitoring and observability stack
-- [ ] **SeaweedFS**: Distributed object storage with S3 compatibility
+- [x] **Grafana + Prometheus**: Monitoring and observability stack
+- [x] **SeaweedFS**: Distributed object storage with S3 compatibility
 - [ ] **Argo Workflows**: Kubernetes-native workflow engine
 - [ ] **Data Lake**: Delta Lake or DuckLake implementation
 - [ ] **ETL Pipeline**: Data processing with Polars/Pandas/DuckDB over SeaweedFS S3
