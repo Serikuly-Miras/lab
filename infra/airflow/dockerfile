@@ -1,0 +1,12 @@
+FROM apache/airflow:slim-3.0.6-python3.12
+
+USER airflow
+
+RUN pip install --no-cache-dir "apache-airflow==${AIRFLOW_VERSION}" \
+    lxml \
+    openpyxl \
+    seaborn \
+    apache-airflow-providers-telegram \
+    polars \
+    toml \ 
+    s3fs 
