@@ -23,11 +23,11 @@ triggerer:
 logs:
   persistence:
     enabled: true
-    size: 15Gi
-    storageClassName: local-path
-    accessMode: ReadWriteOnce
+    existingClaim: airflow-logs-pvc
 postgresql:
   enabled: false
+pgbouncer:
+  enabled: true
 config:
   core:
     xcom_backend: airflow.providers.common.io.xcom.backend.XComObjectStorageBackend
