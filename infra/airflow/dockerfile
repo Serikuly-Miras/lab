@@ -1,20 +1,12 @@
-FROM apache/airflow:slim-3.0.6-python3.12
+FROM apache/airflow:3.0.2
 
 USER airflow
 
 RUN pip install --no-cache-dir "apache-airflow==${AIRFLOW_VERSION}" \
     lxml \
-    openpyxl \
     seaborn \
-    polars \
+    openpyxl \
     toml \ 
     s3fs \
     pandas \
-    pyarrow \
-    sqlalchemy \
-    statsd \
-    psycopg2-binary \
-    asyncpg \
-    apache-airflow-providers-postgres \
-    apache-airflow-providers-common-sql \
-    apache-airflow-providers-amazon 
+    polars 
