@@ -1,6 +1,7 @@
 .DS_Store
 ignored
 notebooks/1brc/data
+dags/exp
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

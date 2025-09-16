@@ -1,21 +1,26 @@
 from airflow.decorators import dag, task
+import pandas as pd
 
 
 @dag(
     dag_id="test_dag",
-    start_date=None,
-    schedule=None,
-    catchup=False,
+    max_active_tasks=1,
     max_active_runs=1,
     tags=["example"],
-    default_args={},
 )
 def test_dag():
     @task
-    def test() -> None:
-        print("testing dag")
+    def pass_xcom() -> pd.DataFrame:
+        df = pd.DataFrame(data={"a": [i for i in range(50)]})
+        print(df.head())
+        return df
 
-    test()
+    @task
+    def recieve_xcom(data: pd.DataFrame):
+        print(data.head())
+
+    df = pass_xcom()
+    recieve_xcom(df)
 
 
 test_dag()
