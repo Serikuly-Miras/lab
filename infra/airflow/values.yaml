@@ -19,7 +19,6 @@ triggerer:
   persistence:
     enabled: true
     size: 25Gi
-    accessMode: ReadWriteOnce
 logs:
   persistence:
     enabled: true
