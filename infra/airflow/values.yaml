@@ -2,6 +2,9 @@ defaultAirflowRepository: serikulymiras/airflow
 defaultAirflowTag: "36"
 fernetKeySecretName: airflow-vault-secret
 webserverSecretKeySecretName: airflow-vault-secret
+images:
+    airflow:
+        pullPolicy: Always
 executor: KubernetesExecutor
 data:
   metadataSecretName: airflow-vault-secret

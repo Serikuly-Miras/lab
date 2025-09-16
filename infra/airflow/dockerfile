@@ -6,7 +6,15 @@ RUN pip install --no-cache-dir "apache-airflow==${AIRFLOW_VERSION}" \
     lxml \
     openpyxl \
     seaborn \
-    apache-airflow-providers-telegram \
     polars \
     toml \ 
-    s3fs 
+    s3fs \
+    pandas \
+    pyarrow \
+    sqlalchemy \
+    statsd \
+    psycopg2-binary \
+    asyncpg \
+    apache-airflow-providers-postgres \
+    apache-airflow-providers-common-sql \
+    apache-airflow-providers-amazon 
