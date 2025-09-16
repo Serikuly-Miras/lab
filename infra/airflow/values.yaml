@@ -19,11 +19,13 @@ triggerer:
   persistence:
     enabled: true
     size: 25Gi
+    accessMode: ReadWriteOnce
 logs:
   persistence:
     enabled: true
     size: 15Gi
     storageClassName: local-path
+    accessMode: ReadWriteOnce
 postgresql:
   enabled: false
 config:
