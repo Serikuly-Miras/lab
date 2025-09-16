@@ -19,6 +19,7 @@ triggerer:
   persistence:
     enabled: true
     size: 25Gi
+  usePgbouncer: true
 logs:
   persistence:
     enabled: true
@@ -27,6 +28,7 @@ postgresql:
   enabled: false
 pgbouncer:
   enabled: true
+  metadataPoolSize: 5
 config:
   core:
     xcom_backend: airflow.providers.common.io.xcom.backend.XComObjectStorageBackend
