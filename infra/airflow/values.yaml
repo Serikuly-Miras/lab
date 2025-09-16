@@ -24,6 +24,7 @@ postgresql:
 config:
   core:
     xcom_backend: airflow.providers.common.io.xcom.backend.XComObjectStorageBackend
+    hostname_callable: airflow.utils.net.get_host_ip_address
   common.io:
     xcom_objectstorage_path: s3://seaweedfs@airflow/xcoms
     xcom_objectstorage_threshold: "0"
