@@ -12,7 +12,7 @@ Personal lab environment for experimenting with data engineering tools and GitOp
 - [x] **Vault + Vault secrets operator**: Secret and certificate management
 - [x] **Grafana + Prometheus**: Monitoring and observability stack
 - [x] **SeaweedFS**: Distributed object storage with S3 compatibility
-- [ ] **Airflow**: Workflow orchestration
+- [x] **Airflow**: Workflow orchestration
 - [ ] **Argo Workflows**: Kubernetes-native workflow engine
 - [ ] **Data Lake**: Delta Lake or DuckLake implementation
 - [ ] **Harbor**: Self-hosted container registry
