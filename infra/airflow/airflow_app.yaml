@@ -21,6 +21,9 @@ spec:
       helm:
         valueFiles:
           - $lab/infra/airflow/values.yaml
+          - $lab/infra/airflow/ingress.yaml
+          - $lab/infra/airflow/logs_pvc.yaml
+          - $lab/infra/airflow/secret.yaml
     - repoURL: https://github.com/Serikuly-Miras/lab.git
       ref: lab
       targetRevision: HEAD
