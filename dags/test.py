@@ -21,13 +21,14 @@ def test_dag():
         print(data.describe())
 
     @task
-    def pass_polars_df_in_xcom() -> pl.DataFrame:
+    def pass_polars_df_in_xcom() -> str:
         df = pl.DataFrame(data={"a": [i for i in range(50)]})
         print(df.describe())
-        return df
+        return df.to_json()
 
     @task
-    def recieve_polars_df_xcom(data: pl.DataFrame):
+    def recieve_polars_df_xcom(data_json: str):
+        data = pl.read_json(data_json)
         print(data.describe())
 
     pd_df = pass_pandas_df_in_xcom()
