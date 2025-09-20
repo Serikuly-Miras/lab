@@ -22,6 +22,7 @@ spec:
       helm:
         valueFiles:
           - $lab/infra/kube-prometheus-stack/values.yaml
+          - $lab/infra/kube-prometheus-stack/ingress.yaml
     - repoURL: https://github.com/Serikuly-Miras/lab.git
       ref: lab
       targetRevision: HEAD

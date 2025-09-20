@@ -21,6 +21,8 @@ spec:
       helm:
         valueFiles:
           - $lab/infra/seaweedfs/values.yaml
+          - $lab/infra/seaweedfs/ingress.yaml
+          - $lab/infra/seaweedfs/secret.yaml
     - repoURL: https://github.com/Serikuly-Miras/lab.git
       ref: lab
       targetRevision: HEAD
