@@ -24,7 +24,7 @@ def test_dag():
     def pass_polars_df_in_xcom() -> str:
         df = pl.DataFrame(data={"a": [i for i in range(50)]})
         print(df.describe())
-        return df.to_json()
+        return df.write_json()
 
     @task
     def recieve_polars_df_xcom(data_json: str):
