@@ -3,9 +3,9 @@ defaultAirflowTag: "32"
 fernetKeySecretName: airflow-vault-secret
 webserverSecretKeySecretName: airflow-vault-secret
 images:
-    airflow:
-        pullPolicy: Always
-executor: KubernetesExecutor
+  airflow:
+    pullPolicy: Always
+executor: KubernetesExecutor,CeleryExecutor
 data:
   metadataSecretName: airflow-vault-secret
 dags:
@@ -20,6 +20,12 @@ dags:
 webserver:
   defaultUser:
     enabled: false
+workers:
+  replicas: 1
+  resources:
+    limits:
+      cpu: 1000m
+      memory: 4Gi
 triggerer:
   persistence:
     enabled: true
@@ -36,6 +42,8 @@ pgbouncer:
 config:
   core:
     xcom_backend: airflow.providers.common.io.xcom.backend.XComObjectStorageBackend
+  celery:
+    worker_concurrency: 4
   common.io:
     xcom_objectstorage_path: s3://seaweedfs@airflow/xcoms
     xcom_objectstorage_threshold: "0"
