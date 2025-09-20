@@ -1,5 +1,6 @@
 from airflow.decorators import dag, task
 import pandas as pd
+import polars as pl
 
 
 @dag(
@@ -10,17 +11,32 @@ import pandas as pd
 )
 def test_dag():
     @task
-    def pass_xcom() -> pd.DataFrame:
+    def pass_pandas_df_in_xcom() -> pd.DataFrame:
         df = pd.DataFrame(data={"a": [i for i in range(50)]})
-        print(df.head())
+        print(df.describe())
         return df
 
     @task
-    def recieve_xcom(data: pd.DataFrame):
-        print(data.head())
+    def recieve_pandas_df_xcom(data: pd.DataFrame):
+        print(data.describe())
 
-    df = pass_xcom()
-    recieve_xcom(df)
+    @task
+    def pass_polars_df_in_xcom() -> pl.DataFrame:
+        df = pl.DataFrame(data={"a": [i for i in range(50)]})
+        print(df.describe())
+        return df
+
+    @task
+    def recieve_polars_df_xcom(data: pl.DataFrame):
+        print(data.describe())
+
+    pd_df = pass_pandas_df_in_xcom()
+    recieve_pandas_df_xcom(pd_df)
+
+    pl_df = pass_polars_df_in_xcom()
+    recieve_polars_df_xcom(pl_df)
+
+    pd_df >> pl_df
 
 
 test_dag()
