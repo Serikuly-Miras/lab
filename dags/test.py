@@ -1,6 +1,7 @@
 from airflow.decorators import dag, task
 import pandas as pd
 import polars as pl
+import io
 
 
 @dag(
@@ -28,7 +29,7 @@ def test_dag():
 
     @task
     def recieve_polars_df_xcom(data_json: str):
-        data = pl.read_json(data_json)
+        data = pl.read_json(io.StringIO(data_json))
         print(data.describe())
 
     pd_df = pass_pandas_df_in_xcom()
