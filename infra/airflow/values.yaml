@@ -25,7 +25,7 @@ workers:
   resources:
     limits:
       cpu: 2000m
-      memory: 6Gi
+      memory: 16Gi
 triggerer:
   persistence:
     enabled: true
