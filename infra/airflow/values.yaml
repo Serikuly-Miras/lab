@@ -24,8 +24,8 @@ workers:
   replicas: 1
   resources:
     limits:
-      cpu: 1000m
-      memory: 4Gi
+      cpu: 2000m
+      memory: 6Gi
 triggerer:
   persistence:
     enabled: true
@@ -42,6 +42,7 @@ pgbouncer:
 config:
   core:
     xcom_backend: airflow.providers.common.io.xcom.backend.XComObjectStorageBackend
+    executor: KubernetesExecutor,CeleryExecutor
   celery:
     worker_concurrency: 4
   common.io:

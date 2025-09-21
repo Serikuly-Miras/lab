@@ -10,38 +10,42 @@ import polars as pl
     tags=["1brc"],
 )
 def test_dag():
-    @task(executor="CeleryExecutor")
+    @task(executor="KubernetesExecutor")
     def process_1brc() -> None:
         conn = BaseHook.get_connection("s3")
         extras = conn.extra_dejson
         bucket = "base"
         source = f"s3://{bucket}/1brc/measurements.parquet"
 
-        with pl.Config(verbose=True):
-            print("Processing 1BRC data from S3 ...")
-            result = (
-                pl.scan_parquet(
-                    source,
-                    storage_options={
-                        "aws_endpoint_url": extras.get("endpoint_url"),
-                        "aws_access_key_id": conn.login,
-                        "aws_secret_access_key": conn.password,
-                    },
-                    low_memory=True,
+        try:
+            with pl.Config(verbose=True):
+                print("Processing 1BRC data from S3 ...")
+                result = (
+                    pl.scan_parquet(
+                        source,
+                        storage_options={
+                            "aws_endpoint_url": extras.get("endpoint_url"),
+                            "aws_access_key_id": conn.login,
+                            "aws_secret_access_key": conn.password,
+                        },
+                        low_memory=True,
+                    )
+                    .group_by("station")
+                    .agg(
+                        [
+                            pl.col("temperature").min().alias("min"),
+                            pl.col("temperature").mean().round(2).alias("mean"),  # noqa
+                            pl.col("temperature").max().alias("max"),
+                        ]
+                    )
+                    .sort("station")
+                    .collect()
                 )
-                .group_by("station")
-                .agg(
-                    [
-                        pl.col("temperature").min().alias("min"),
-                        pl.col("temperature").mean().round(2).alias("mean"),
-                        pl.col("temperature").max().alias("max"),
-                    ]
-                )
-                .sort("station")
-                .collect()
-            )
-            print("... data processing complete.")
-        print(result)
+                print("... data processing complete.")
+            print(result)
+        except Exception as e:
+            print(f"Error processing 1BRC data: {e}")
+            raise
 
     process_1brc()
 
