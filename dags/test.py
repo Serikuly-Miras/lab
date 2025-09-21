@@ -9,8 +9,6 @@ import io
     max_active_tasks=1,
     max_active_runs=1,
     tags=["example"],
-    # Celery and Kubernetes available
-    default_args={"executor": "CeleryExecutor"},
 )
 def test_dag():
     @task

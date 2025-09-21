@@ -5,7 +5,7 @@ webserverSecretKeySecretName: airflow-vault-secret
 images:
   airflow:
     pullPolicy: Always
-executor: KubernetesExecutor,CeleryExecutor
+executor: KubernetesExecutor
 data:
   metadataSecretName: airflow-vault-secret
 dags:
@@ -42,7 +42,6 @@ pgbouncer:
 config:
   core:
     xcom_backend: airflow.providers.common.io.xcom.backend.XComObjectStorageBackend
-    executor: KubernetesExecutor,CeleryExecutor
   celery:
     worker_concurrency: 4
   common.io:
