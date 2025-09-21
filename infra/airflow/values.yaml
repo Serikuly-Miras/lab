@@ -24,8 +24,8 @@ workers:
   replicas: 1
   resources:
     limits:
-      cpu: 2000m
-      memory: 16Gi
+      cpu: 1000m
+      memory: 8Gi
 triggerer:
   persistence:
     enabled: true
