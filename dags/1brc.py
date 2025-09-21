@@ -20,6 +20,7 @@ def test_dag():
         try:
             with pl.Config(verbose=True):
                 print("Processing 1BRC data from S3 ...")
+                pl.Config.set_streaming_chunk_size(1_000_000)
                 result = (
                     pl.scan_parquet(
                         source,
@@ -39,7 +40,7 @@ def test_dag():
                         ]
                     )
                     .sort("station")
-                    .collect()
+                    .collect(engine="streaming")
                 )
                 print("... data processing complete.")
             print(result)
