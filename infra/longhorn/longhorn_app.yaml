@@ -19,3 +19,7 @@ spec:
         values: |
           preUpgradeChecker:
             jobEnabled: false
+    - repoURL: https://github.com/Serikuly-Miras/lab.git
+      ref: lab
+      targetRevision: HEAD
+      path: infra/vault/ingress
