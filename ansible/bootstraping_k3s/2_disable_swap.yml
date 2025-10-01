@@ -1,0 +1,9 @@
+- name: Disable swap
+  hosts: k3s_cluster
+  become: true
+  tasks:
+    - name: Turn swap off
+      ansible.builtin.command: swapoff -a
+
+    - name: Disable swap
+      ansible.builtin.command: sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
