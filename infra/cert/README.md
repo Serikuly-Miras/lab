@@ -41,3 +41,14 @@ Certificates will be saved to:
 ```
 
 **Note:** Replace `<your-email@example.com>` and `<your-domain.com>` with your actual email and domain.
+
+## Creating Kubernetes Secret
+
+When bootstrapping create secret manually, then offload that tasks to vault secret provider.
+
+```bash
+kubectl create secret generic tls-secret \
+  --from-file=ca.crt=/chain.pem \
+  --from-file=tls.key=/privkey.pem \
+  --from-file=tls.crt=/cert.pem -n <namespace>
+```
