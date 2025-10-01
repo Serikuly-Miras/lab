@@ -16,6 +16,8 @@ spec:
       repoURL: https://charts.longhorn.io/
       targetRevision: v1.10.0
       helm:
+        valueFiles:
+          - $lab/infra/longhorn/storage_class_patch.yaml
         values: |
           preUpgradeChecker:
             jobEnabled: false
