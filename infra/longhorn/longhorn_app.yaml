@@ -16,12 +16,15 @@ spec:
       repoURL: https://charts.longhorn.io/
       targetRevision: v1.10.0
       helm:
-        valueFiles:
-          - $lab/infra/longhorn/storage_class_patch.yaml
         values: |
           preUpgradeChecker:
             jobEnabled: false
+        valueFiles:
+          - $lab/infra/longhorn/values.yaml
+    - repoURL: https://github.com/Serikuly-Miras/lab.git
+      ref: ingress
+      targetRevision: HEAD
+      path: infra/longhorn/ingress
     - repoURL: https://github.com/Serikuly-Miras/lab.git
       ref: lab
       targetRevision: HEAD
-      path: infra/longhorn/ingress
