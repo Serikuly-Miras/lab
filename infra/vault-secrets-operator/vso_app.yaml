@@ -15,14 +15,6 @@ spec:
     - repoURL: https://helm.releases.hashicorp.com
       chart: vault-secrets-operator
       targetRevision: 0.10.0
-      helm:
-        valueFiles:
-          - $lab/infra/vault-secrets-operator/sa.yaml
-          - $lab/infra/vault-secrets-operator/vc.yaml
-          - $lab/infra/vault-secrets-operator/va.yaml
-    - repoURL: https://github.com/Serikuly-Miras/lab.git
-      ref: lab
-      targetRevision: HEAD
     - repoURL: https://github.com/Serikuly-Miras/lab.git
       ref: custom-resources
       targetRevision: HEAD
