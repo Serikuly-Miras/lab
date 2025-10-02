@@ -36,3 +36,21 @@ kubectl create secret generic tls-secret \
 
 kubectl apply -f ingress.yaml -n argocd
 ```
+
+## Set up VSO (vault secrets operator) for ArgoCD to access TLS certs from vault
+
+1. Enable kv-v2 secrets engine in vault
+2. Enable and configure kubernetes auth method in vault
+3. Create a policy that grants access to the certificate path
+4. Add argocd role to authorize using kubernetes auth method
+5. Apply resources needed -
+
+```bash
+kubectl apply -f argoc/custom-resources/
+```
+
+6. Verify secret syncing
+
+```bash
+kubectl describe vaultstaticsecret <secret-name> -n <namespace>
+```
