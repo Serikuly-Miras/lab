@@ -1,16 +1,16 @@
 apiVersion: secrets.hashicorp.com/v1beta1
 kind: VaultStaticSecret
 metadata:
-  name: airflow-static-secret
-  namespace: airflow
+  name: kube-prometheus-stack-tls-cert
+  namespace: kube-prometheus-stack
   annotations:
     argocd.argoproj.io/sync-wave: "-1"
 spec:
   vaultAuthRef: vault-auth
   mount: kvv2
   type: kv-v2
-  path: airflow
+  path: cert
   destination:
     create: true
-    name: airflow-vault-secret
-  refreshAfter: 10s
+    name: vss-tls-cert
+  refreshAfter: 30s

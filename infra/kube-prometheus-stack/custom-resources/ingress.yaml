@@ -2,12 +2,12 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: grafana-ingress
-  namespace: lab
+  namespace: kube-prometheus-stack
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
 spec:
   tls:
-    - secretName: tls-secret
+    - secretName: vss-tls-cert
   rules:
     - host: grafana.lab.s-miras.com
       http:
@@ -24,12 +24,12 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: prometheus-ingress
-  namespace: lab
+  namespace: kube-prometheus-stack
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
 spec:
   tls:
-    - secretName: tls-secret
+    - secretName: vss-tls-cert
   rules:
     - host: prometheus.lab.s-miras.com
       http:
