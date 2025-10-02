@@ -5,7 +5,7 @@ webserverSecretKeySecretName: airflow-vault-secret
 images:
   airflow:
     pullPolicy: Always
-executor: KubernetesExecutor
+executor: CeleryExecutor
 data:
   metadataSecretName: airflow-vault-secret
 dags:
@@ -18,7 +18,7 @@ dags:
     depth: 4
     subPath: "dags"
   persistence:
-    enabled: true
+    enabled: false
     size: 1Gi
     storageClassName: longhorn
 webserver:
