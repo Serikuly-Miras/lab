@@ -12,7 +12,6 @@ volume:
     - name: data1
       type: "persistentVolumeClaim"
       size: "100Gi"
-      storageClass: "local-path"
       maxVolumes: 0 # If set to zero, the limit will be auto configured
 
 filer:
@@ -27,7 +26,6 @@ filer:
     hostPathPrefix: /mnt/data
     claimName: seaweedfs-filer-pvc
     size: "10Gi"
-    storageClass: "local-path"
 
   s3:
     enabled: true

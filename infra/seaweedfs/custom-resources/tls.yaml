@@ -1,8 +1,8 @@
 apiVersion: secrets.hashicorp.com/v1beta1
 kind: VaultStaticSecret
 metadata:
-  name: longhorn-system-tls-cert
-  namespace: longhorn-system
+  name: seaweedfs-tls-cert
+  namespace: seaweedfs
   annotations:
     argocd.argoproj.io/sync-wave: "-1"
 spec:

@@ -2,12 +2,12 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: seaweed-filer-ingress
-  namespace: lab
+  namespace: seaweedfs
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
 spec:
   tls:
-    - secretName: tls-secret
+    - secretName: vss-tls-secret
   rules:
     - host: swfs-filer.lab.s-miras.com
       http:
@@ -24,12 +24,12 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: seaweed-s3-ingress
-  namespace: lab
+  namespace: seaweedfs
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
 spec:
   tls:
-    - secretName: tls-secret
+    - secretName: vss-tls-secret
   rules:
     - host: swfs-s3.lab.s-miras.com
       http:

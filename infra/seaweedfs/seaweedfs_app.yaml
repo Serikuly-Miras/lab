@@ -7,11 +7,8 @@ spec:
   project: default
   destination:
     server: https://kubernetes.default.svc
-    namespace: lab
+    namespace: seaweedfs
   syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
     syncOptions:
       - CreateNamespace=false
   sources:
@@ -21,8 +18,9 @@ spec:
       helm:
         valueFiles:
           - $lab/infra/seaweedfs/values.yaml
-          - $lab/infra/seaweedfs/ingress.yaml
-          - $lab/infra/seaweedfs/secret.yaml
     - repoURL: https://github.com/Serikuly-Miras/lab.git
       ref: lab
       targetRevision: HEAD
+    - repoURL: https://github.com/Serikuly-Miras/lab.git
+      targetRevision: HEAD
+      path: infra/seaweedfs/custom-resources
