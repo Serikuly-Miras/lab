@@ -7,11 +7,8 @@ spec:
   project: default
   destination:
     server: https://kubernetes.default.svc
-    namespace: lab
+    namespace: airflow
   syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
     syncOptions:
       - CreateNamespace=false
   sources:
@@ -21,9 +18,9 @@ spec:
       helm:
         valueFiles:
           - $lab/infra/airflow/values.yaml
-          - $lab/infra/airflow/ingress.yaml
-          - $lab/infra/airflow/logs_pvc.yaml
-          - $lab/infra/airflow/secret.yaml
     - repoURL: https://github.com/Serikuly-Miras/lab.git
       ref: lab
       targetRevision: HEAD
+    - repoURL: https://github.com/Serikuly-Miras/lab.git
+      targetRevision: HEAD
+      path: infra/airflow/custom-resources

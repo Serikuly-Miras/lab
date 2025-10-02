@@ -33,7 +33,7 @@ triggerer:
 logs:
   persistence:
     enabled: true
-    existingClaim: airflow-logs-pvc
+    size: 15Gi
 postgresql:
   enabled: false
 pgbouncer:

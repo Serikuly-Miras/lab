@@ -7,14 +7,11 @@ spec:
   project: default
   destination:
     server: https://kubernetes.default.svc
-    namespace: lab
+    namespace: kube-prometheus-stack
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
-    syncOptions:
-      - CreateNamespace=false
-      - ServerSideApply=true
   sources:
     - repoURL: https://prometheus-community.github.io/helm-charts
       chart: kube-prometheus-stack
@@ -22,7 +19,9 @@ spec:
       helm:
         valueFiles:
           - $lab/infra/kube-prometheus-stack/values.yaml
-          - $lab/infra/kube-prometheus-stack/ingress.yaml
     - repoURL: https://github.com/Serikuly-Miras/lab.git
       ref: lab
       targetRevision: HEAD
+    - repoURL: https://github.com/Serikuly-Miras/lab.git
+      targetRevision: HEAD
+      path: infra/kube-prometheus-stack/custom-resources
