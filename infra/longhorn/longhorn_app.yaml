@@ -22,9 +22,11 @@ spec:
         valueFiles:
           - $lab/infra/longhorn/values.yaml
     - repoURL: https://github.com/Serikuly-Miras/lab.git
-      ref: ingress
       targetRevision: HEAD
       path: infra/longhorn/ingress
+    - repoURL: https://github.com/Serikuly-Miras/lab.git
+      targetRevision: HEAD
+      path: infra/longhorn/custom-resources
     - repoURL: https://github.com/Serikuly-Miras/lab.git
       ref: lab
       targetRevision: HEAD
