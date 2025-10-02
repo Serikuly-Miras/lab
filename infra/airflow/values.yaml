@@ -17,22 +17,37 @@ dags:
     ref: main
     depth: 4
     subPath: "dags"
+  persistence:
+    enabled: false
+    size: 1Gi
+    storageClassName: longhorn
 webserver:
   defaultUser:
     enabled: false
 workers:
   replicas: 1
+  persistence:
+    enabled: true
+    size: 50Gi
+    storageClassName: longhorn
   resources:
     limits:
       cpu: 1000m
       memory: 8Gi
+redis:
+  persistence:
+    enabled: true
+    size: 1Gi
+    storageClassName: longhorn
 triggerer:
   persistence:
     enabled: true
+    storageClassName: longhorn
     size: 25Gi
 logs:
   persistence:
     enabled: true
+    storageClassName: longhorn
     size: 15Gi
 postgresql:
   enabled: false
