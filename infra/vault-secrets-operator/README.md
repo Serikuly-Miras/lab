@@ -29,7 +29,7 @@ EOF
 ~ vault auth enable -path=vso kubernetes
 ```
 
-### Apply add files (sa, va, vc) and everything should work
+### Apply files (sa, va, vc) and everything should work
 
 ### Create secret and see events to debug if it isnt syncing properly
 
