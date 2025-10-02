@@ -2,7 +2,8 @@
 
 ## Purpose
 
-Generate SSL certificates for lab environment usage, enabling secure HTTPS connections for services like ArgoCD (argocd.lab.s-miras.com) when mapping domains to local infrastructure instead of VPS hosting.
+Generate SSL certificates for lab environment usage from a trusted CA fo ease of use locally.
+Requires having a domain and access to its DNS settings.
 
 ## Prerequisites
 
