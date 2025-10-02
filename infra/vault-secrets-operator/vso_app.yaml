@@ -24,6 +24,6 @@ spec:
       ref: lab
       targetRevision: HEAD
     - repoURL: https://github.com/Serikuly-Miras/lab.git
-      ref: lab
+      ref: custom-resources
       targetRevision: HEAD
       path: infra/vault-secrets-operator/custom-resources
