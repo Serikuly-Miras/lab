@@ -14,7 +14,7 @@ def test_dag():
     def process_1brc() -> None:
         conn = BaseHook.get_connection("s3")
         extras = conn.extra_dejson
-        bucket = "base"
+        bucket = "data-raw"
         source = f"s3://{bucket}/1brc/measurements.parquet"
 
         try:
