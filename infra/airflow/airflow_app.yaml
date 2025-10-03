@@ -24,3 +24,16 @@ spec:
     - repoURL: https://github.com/Serikuly-Miras/lab.git
       targetRevision: HEAD
       path: infra/airflow/custom-resources
+  ignoreDifferences:
+    - group: ""
+      kind: Secret
+      name: airflow-api-secret-key
+      namespace: airflow
+      jsonPointers:
+        - /data
+    - group: ""
+      kind: Secret
+      name: airflow-jwt-secret
+      namespace: airflow
+      jsonPointers:
+        - /data
