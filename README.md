@@ -1,14 +1,15 @@
 # Kubernetes Lab Environment
 
-Personal lab environment for experimenting with data engineering tools and GitOps workflows.
+Personal lab environment for experimenting with data engineering / devops tools.
 
 ## Roadmap
 
 ### Deployments
 
-- [x] **Ubuntu + k3s**: Simple Kubernetes environment
-- [x] **Postgres**: Database for upcoming projects
+- [x] **Proxmox + k3s (1 master / 2 workers)**: Simple Kubernetes environment
+- [x] **Postgres 18**: Database for upcoming projects
 - [x] **ArgoCD**: GitOps continuous deployment
+- [x] **Longhorn**: Distributed block storage
 - [x] **Vault + Vault secrets operator**: Secret and certificate management
 - [x] **Grafana + Prometheus**: Monitoring and observability stack
 - [x] **SeaweedFS**: Distributed object storage with S3 compatibility
@@ -21,12 +22,12 @@ Personal lab environment for experimenting with data engineering tools and GitOp
 
 ### Future Improvements
 
-- [ ] Integrate Vault as certificate provider (replace manual k8s secrets)
+- [x] Integrate Vault as certificate provider (replace manual k8s secrets)
 - [ ] Enhanced monitoring and observability
 - [ ] Headscale migration (replace Tailscale)
-- [ ] Postgres 17 backup automation to S3
+- [ ] Postgres backup automation to S3
+- [ ] Postgres read replicas
 - [ ] Automated etcd backups and disaster recovery procedures
-- [ ] CI/CD pipelines for automated testing / task processing
 
 ### Some intresting topics to explore
 
