@@ -28,7 +28,7 @@ def test_dag():
                         "aws_access_key_id": conn.login,
                         "aws_secret_access_key": conn.password,
                     },
-                    n_rows=100_000_000,  # 1 / 10 of the data
+                    n_rows=1_000_000_000,
                     low_memory=True,
                 )
                 .group_by("station")
