@@ -10,7 +10,7 @@ import polars as pl
     tags=["1brc"],
 )
 def test_dag():
-    @task(executor="KubernetesExecutor")
+    @task(executor="CeleryExecutor")
     def process_1brc() -> None:
         conn = BaseHook.get_connection("s3")
         extras = conn.extra_dejson
