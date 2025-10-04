@@ -17,6 +17,7 @@ dags:
     ref: main
     depth: 4
     subPath: "dags"
+    period: 30s
   persistence:
     enabled: false
     size: 1Gi
