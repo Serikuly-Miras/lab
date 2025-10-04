@@ -1,0 +1,37 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: vault-auth
+  namespace: jupyterhub
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: vault-auth
+  namespace: jupyterhub
+  annotations:
+    kubernetes.io/service-account.name: vault-auth
+type: kubernetes.io/service-account-token
+---
+apiVersion: secrets.hashicorp.com/v1beta1
+kind: VaultAuth
+metadata:
+  name: vault-auth
+  namespace: jupyterhub
+spec:
+  vaultConnectionRef: vault-connection
+  method: kubernetes
+  mount: vso
+  kubernetes:
+    role: jupyterhub-vso-role
+    serviceAccount: vault-auth
+---
+apiVersion: secrets.hashicorp.com/v1beta1
+kind: VaultConnection
+metadata:
+  namespace: jupyterhub
+  name: vault-connection
+spec:
+  address: http://vault.vault.svc.cluster.local:8200
+  skipTLSVerify: true

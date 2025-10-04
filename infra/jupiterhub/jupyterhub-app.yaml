@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: jupyterhub
+  namespace: argocd
+spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: jupyterhub
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=false
+  sources:
+    - chart: jupyterhub
+      repoURL: https://jupyterhub.github.io/helm-chart/
+      targetRevision: 4.2.0
+      helm:
+        valueFiles:
+          - $lab/infra/jupyterhub/values.yaml
+    - repoURL: https://github.com/Serikuly-Miras/lab.git
+      ref: lab
+      targetRevision: HEAD
+    - repoURL: https://github.com/Serikuly-Miras/lab.git
+      path: infra/jupyterhub/custom-resources
+      targetRevision: HEAD
