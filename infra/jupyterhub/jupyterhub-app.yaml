@@ -24,3 +24,22 @@ spec:
     - repoURL: https://github.com/Serikuly-Miras/lab.git
       path: infra/jupyterhub/custom-resources
       targetRevision: HEAD
+  ignoreDifferences:
+    - group: ""
+      kind: Secret
+      name: hub
+      namespace: jupyterhub
+      jsonPointers:
+        - /data
+    - group: apps
+      kind: Deployment
+      name: hub
+      namespace: jupyterhub
+      jsonPointers:
+        - /spec/template/metadata/annotations
+    - group: apps
+      kind: Deployment
+      name: proxy
+      namespace: jupyterhub
+      jsonPointers:
+        - /spec/template/metadata/annotations
