@@ -3,3 +3,19 @@ proxy:
     type: ClusterIP
   https:
     enabled: false
+singleuser:
+  image:
+    name: serikuly/jupyterhub
+    tag: custom
+  storage:
+    capacity: 50Gi
+  lifecycleHooks:
+    postStart:
+      exec:
+        command:
+          [
+            "gitpuller",
+            "https://github.com/Serikuly-Miras/lab",
+            "main",
+            "notebooks",
+          ]
