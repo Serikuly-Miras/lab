@@ -1,1 +1,5 @@
-# empty
+proxy:
+  service:
+    type: ClusterIP
+  https:
+    enabled: false
