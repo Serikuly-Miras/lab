@@ -5,7 +5,7 @@ proxy:
     enabled: false
 singleuser:
   image:
-    name: serikuly/jupyterhub
+    name: serikulymiras/jupyterhub
     tag: custom
   storage:
     capacity: 50Gi
