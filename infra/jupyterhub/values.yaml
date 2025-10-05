@@ -15,7 +15,7 @@ singleuser:
         command:
           [
             "gitpuller",
-            "https://github.com/Serikuly-Miras/lab/notebooks",
+            "https://github.com/Serikuly-Miras/lab/tree/main/notebooks",
             "main",
             "notebooks",
           ]
