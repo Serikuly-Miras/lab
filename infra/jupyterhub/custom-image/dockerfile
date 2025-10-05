@@ -1,4 +1,4 @@
-FROM jupyter/base-notebook:x86_64-ubuntu-22.04
+FROM jupyter/datascience-notebook:x86_64-ubuntu-22.04
 
 RUN pip install --no-cache-dir \
     nbgitpuller \
