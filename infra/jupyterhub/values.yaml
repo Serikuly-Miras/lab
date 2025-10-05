@@ -6,7 +6,7 @@ proxy:
 singleuser:
   image:
     name: serikulymiras/jupyterhub
-    tag: custom
+    tag: custom-datascience
   storage:
     capacity: 50Gi
   lifecycleHooks:
