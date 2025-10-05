@@ -16,4 +16,5 @@ singleuser:
           - "sh"
           - "-c"
           - |
+            rm -rf notebooks
             curl -L https://github.com/Serikuly-Miras/lab/archive/main.tar.gz | tar xz --strip=1 lab-main/notebooks
