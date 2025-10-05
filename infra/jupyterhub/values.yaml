@@ -9,13 +9,13 @@ singleuser:
     tag: custom
   storage:
     capacity: 50Gi
-  lifecycleHooks:
-    postStart:
-      exec:
-        command:
-          [
-            "gitpuller",
-            "https://github.com/Serikuly-Miras/lab",
-            "main",
-            "notebooks",
-          ]
+  # lifecycleHooks:
+  #   postStart:
+  #     exec:
+  #       command:
+  #         [
+  #           "gitpuller",
+  #           "https://github.com/Serikuly-Miras/lab",
+  #           "main",
+  #           "notebooks",
+  #         ]
