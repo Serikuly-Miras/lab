@@ -9,12 +9,12 @@ hub:
       admin_users:
         - admin
       allowed_users:
+        - admin
         - user
     JupyterHub:
       authenticator_class: firstuseauthenticator.FirstUseAuthenticator
     FirstUseAuthenticator:
-      create_users: true
-
+      create_users: false
 singleuser:
   image:
     name: serikulymiras/jupyterhub
