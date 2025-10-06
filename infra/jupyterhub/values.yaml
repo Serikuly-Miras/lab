@@ -18,7 +18,7 @@ hub:
 singleuser:
   image:
     name: serikulymiras/jupyterhub
-    tag: custom-datascience
+    tag: custom-datascience-v2
   cpu:
     limit: 1
     guarantee: 1
