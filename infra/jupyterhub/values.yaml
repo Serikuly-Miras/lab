@@ -24,3 +24,13 @@ singleuser:
           - |
             rm -rf notebooks
             curl -L https://github.com/Serikuly-Miras/lab/archive/main.tar.gz | tar xz --strip=1 lab-main/notebooks
+  networkPolicy:
+    enabled: true
+    egress:
+      - to:
+          - namespaceSelector:
+              matchLabels:
+                name: seaweedfs
+        ports:
+          - protocol: TCP
+            port: 8333
