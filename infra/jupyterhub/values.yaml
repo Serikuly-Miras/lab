@@ -7,6 +7,12 @@ singleuser:
   image:
     name: serikulymiras/jupyterhub
     tag: custom-datascience
+  cpu:
+    limit: 1
+    guarantee: 1
+  memory:
+    limit: 4G
+    guarantee: 4G
   storage:
     capacity: 50Gi
   lifecycleHooks:
