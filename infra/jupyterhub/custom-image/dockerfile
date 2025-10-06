@@ -18,4 +18,6 @@ RUN pip install --no-cache-dir \
     autopep8 \
     yapf \
     flake8 \
-    pylint
+    pylint \
+    jupyterhub-firstuseauthenticator \
+    dotenv
