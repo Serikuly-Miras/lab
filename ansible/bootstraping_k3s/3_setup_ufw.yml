@@ -53,22 +53,6 @@
       loop: "{{ groups['k3s_cluster'] }}"
       when: inventory_hostname != item
 
-    - name: Allow HTTP (80) for Traefik Ingress
-      community.general.ufw:
-        rule: allow
-        port: 80
-        proto: tcp
-      when:
-        - inventory_hostname in groups['server']
-
-    - name: Allow HTTPS (443) for Traefik Ingress
-      community.general.ufw:
-        rule: allow
-        port: 443
-        proto: tcp
-      when:
-        - inventory_hostname in groups['server']
-
     - name: Enable ufw
       ansible.builtin.ufw:
         state: enabled
