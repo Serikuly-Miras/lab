@@ -1,0 +1,31 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: db-ingress
+  namespace: db
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+spec:
+  tls:
+    - secretName: vss-tls-cert
+  rules:
+    - host: db-ro.lab.s-miras.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: db-ro
+                port:
+                  number: 5432
+    - host: db-rw.lab.s-miras.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: db-rw
+                port:
+                  number: 5432

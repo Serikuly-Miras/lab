@@ -3,6 +3,7 @@ ignored
 notebooks/data
 dags/exp
 ansible/**/vault.yml
+benchmarks
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

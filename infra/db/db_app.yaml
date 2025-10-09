@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: db
+  namespace: argocd
+spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: db
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=false
+  sources:
+    - repoURL: https://github.com/Serikuly-Miras/lab.git
+      targetRevision: HEAD
+      path: infra/airflow/custom-resources
