@@ -16,7 +16,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: db-ro
+                name: db-pooler-ro
                 port:
                   number: 5432
     - host: db-rw.lab.s-miras.com
@@ -26,6 +26,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: db-rw
+                name: db-pooler-rw
                 port:
                   number: 5432
