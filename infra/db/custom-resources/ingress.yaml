@@ -1,31 +1,27 @@
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+apiVersion: v1
+kind: Service
 metadata:
-  name: db-ingress
+  name: db-pooler-rw-tcp
   namespace: db
-  annotations:
-    traefik.ingress.kubernetes.io/router.entrypoints: websecure
 spec:
-  tls:
-    - secretName: vss-tls-cert
-  rules:
-    - host: db-ro.lab.s-miras.com
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: db-pooler-ro
-                port:
-                  number: 5432
-    - host: db-rw.lab.s-miras.com
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: db-pooler-rw
-                port:
-                  number: 5432
+  type: LoadBalancer
+  ports:
+    - port: 5432
+      targetPort: 5432
+      protocol: TCP
+  selector:
+    cnpg.io/poolerName: db-pooler-rw
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: db-pooler-ro-tcp
+  namespace: db
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 5433
+      targetPort: 5432
+      protocol: TCP
+  selector:
+    cnpg.io/poolerName: db-pooler-ro
