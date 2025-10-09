@@ -14,4 +14,4 @@ spec:
   sources:
     - repoURL: https://github.com/Serikuly-Miras/lab.git
       targetRevision: HEAD
-      path: infra/airflow/custom-resources
+      path: infra/db/custom-resources
