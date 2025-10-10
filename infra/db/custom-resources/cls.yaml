@@ -12,5 +12,6 @@ spec:
         ensure: present
         passwordSecret:
           name: db-airflow-password
+          key: password
         login: true
         superuser: false
