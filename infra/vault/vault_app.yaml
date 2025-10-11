@@ -12,6 +12,9 @@ spec:
     syncOptions:
       - CreateNamespace=false
       - ServerSideApply=true
+    automated:
+      prune: true
+      selfHeal: true
   sources:
     - repoURL: https://helm.releases.hashicorp.com
       chart: vault
