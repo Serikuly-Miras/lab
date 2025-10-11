@@ -11,6 +11,10 @@ spec:
   syncPolicy:
     syncOptions:
       - CreateNamespace=false
+      - ServerSideApply=true
+    automated:
+      prune: true
+      selfHeal: true
   sources:
     - repoURL: https://airflow.apache.org/
       chart: airflow
