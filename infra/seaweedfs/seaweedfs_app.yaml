@@ -28,3 +28,8 @@ spec:
     - repoURL: https://github.com/Serikuly-Miras/lab.git
       targetRevision: HEAD
       path: infra/seaweedfs/custom-resources
+  ignoreDifferences:
+    - group: apps
+      kind: StatefulSet
+      jsonPointers:
+        - /spec/volumeClaimTemplates
