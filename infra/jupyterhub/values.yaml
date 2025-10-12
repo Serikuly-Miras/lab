@@ -36,9 +36,8 @@ singleuser:
           - |
             rm -rf notebooks
             mkdir -p notebooks/temp
-            mkdir -p notebooks/synced
             curl -L https://github.com/Serikuly-Miras/lab/archive/main.tar.gz | tar xz -C notebooks/temp
-            mv notebooks/temp/lab-main/notebooks/synced notebooks/synced
+            mv notebooks/temp/lab-main/notebooks/synced notebooks/
             rm -rf notebooks/temp
   networkPolicy:
     enabled: true
