@@ -23,8 +23,8 @@ singleuser:
     limit: 1
     guarantee: 1
   memory:
-    limit: 4G
-    guarantee: 4G
+    limit: 8G
+    guarantee: 8G
   storage:
     capacity: 50Gi
   lifecycleHooks:
@@ -34,10 +34,12 @@ singleuser:
           - "sh"
           - "-c"
           - |
-            mkdir -p notebooks
-            rm -rf notebooks/sync
-            mkdir -p notebooks/sync
-            curl -L https://github.com/Serikuly-Miras/lab/archive/main.tar.gz | tar xz --strip=1 -C notebooks/sync lab-main/notebooks
+            rm -rf notebooks
+            mkdir -p notebooks/temp
+            mkdir -p notebooks/synced
+            curl -L https://github.com/Serikuly-Miras/lab/archive/main.tar.gz | tar xz -C notebooks/temp
+            mv notebooks/temp/lab-main/notebooks/synced notebooks/synced
+            rm -rf notebooks/temp
   networkPolicy:
     enabled: true
     egressAllowRules:
