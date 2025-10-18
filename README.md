@@ -37,3 +37,26 @@ Personal lab environment for experimenting with data engineering / devops tools.
   - [ ] Use airflow to orchestrate processing
   - [ ] Use argo workflows to orchestrate processing
   - [ ] Run and collect benchmarks with visualization
+
+### Commit message format
+
+`<type>(<scope>): <description>`
+
+#### `<type>`:
+
+- **feat**: A new feature
+- **fix**: A bug fix
+- **docs**: Documentation-only changes
+- **style**: Changes that do not affect the meaning of the code (e.g., white-space, formatting)
+- **refactor/update**: A code change that neither fixes a bug nor adds a feature
+- **perf**: A code change that improves performance
+- **test**: Adding or correcting tests
+- **chore**: Changes to the build process or auxiliary tools and libraries (e.g., documentation generation)
+
+#### `<scope>`:
+
+- **infra**: Changes related to infrastructure setup or configuration
+- **db**: Changes related to database schema, queries, or optimizations
+- **notebooks**: Changes related to Jupyter notebooks or data analysis scripts
+- **ci/cd**: Changes related to continuous integration and deployment pipelines
+- **docs**: Changes related to documentation files
