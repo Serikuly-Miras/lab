@@ -40,7 +40,7 @@ prometheus:
       - job_name: "hetzner-vps-node-exporter"
         scrape_interval: 5s
         static_configs:
-          - targets: ["hz:9100"] # tailscale hostname
+          - targets: ["100.73.83.7:9100"] # tailscale IP
       - job_name: "pg-master-node-exporter"
         scrape_interval: 5s
         static_configs:
