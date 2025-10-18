@@ -13,30 +13,36 @@ Personal lab environment for experimenting with data engineering / devops tools.
 - [x] **Vault + Vault secrets operator**: Secret and certificate management
 - [x] **Grafana + Prometheus**: Monitoring and observability stack
 - [x] **SeaweedFS**: Distributed object storage with S3 compatibility
-- [x] **Airflow**: Workflow orchestration
+- [x] **Airflow 3**: Workflow orchestration
+- [x] **GitLab + container registry**: Self-hosted git and container registry
+- [x] **Data Lake**: Delta Lake or DuckLake implementation
 - [ ] **Argo Workflows**: Kubernetes-native workflow engine
-- [ ] **Data Lake**: Delta Lake or DuckLake implementation
-- [ ] **Harbor**: Self-hosted container registry
 - [ ] **ETL Pipeline**: Data processing with Polars/Pandas/DuckDB over SeaweedFS S3
-- [ ] **TodoApp**: Sample application for testing deployments/harbor/vault etc.
+- [ ] **TodoApp**: Sample application for testing deployments/container registry/vault etc.
 
-### Future Improvements
+### Future Improvements (no order)
 
 - [x] Integrate Vault as certificate provider (replace manual k8s secrets)
-- [ ] Enhanced monitoring and observability
+- [ ] Enhanced monitoring and observability (setup Grafana dashboards)
 - [ ] Headscale migration (replace Tailscale)
 - [ ] Postgres backup automation to S3
 - [ ] Postgres read replicas
 - [ ] Automated etcd backups and disaster recovery procedures
+- [ ] Migrate to Talos linux for improved security and manageability
 
-### Some intresting topics to explore
+### Some interesting topics to explore
 
 - [ ] 1brc. billion rows challenge
-  - [x] Load txt and parquet files into S3 (see notebooks)
-  - [ ] Load into delta lake or duck lake
-  - [ ] Use airflow to orchestrate processing
-  - [ ] Use argo workflows to orchestrate processing
-  - [ ] Run and collect benchmarks with visualization
+
+  - [ ] Load data into Postgres and DuckDB
+  - [ ] Compare query performance between Postgres and DuckDB
+  - [ ] Add simple viz of query/required space per solution
+
+- [ ] Backblaze hard drive data analysis
+
+  - [x] Load data into Postgres and DuckDB (see notebooks)
+  - [ ] Compare query performance between Postgres and DuckDB
+  - [ ] Visualize trends and patterns in hard drive performance and failures
 
 ### Commit message format
 
