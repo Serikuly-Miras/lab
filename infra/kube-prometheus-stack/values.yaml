@@ -33,10 +33,6 @@ prometheus:
         scrape_interval: 5s
         static_configs:
           - targets: ["192.168.10.20:9100"]
-      - job_name: "gitlab-node-exporter"
-        scrape_interval: 5s
-        static_configs:
-          - targets: ["192.168.10.51:9100"]
       - job_name: "hetzner-vps-node-exporter"
         scrape_interval: 5s
         static_configs:
