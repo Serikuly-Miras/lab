@@ -20,11 +20,11 @@ singleuser:
     name: serikulymiras/jupyterhub
     tag: custom-datascience-v2
   cpu:
-    limit: 1
-    guarantee: 1
+    limit: 2
+    guarantee: 2
   memory:
-    limit: 8G
-    guarantee: 8G
+    limit: 4G
+    guarantee: 4G
   storage:
     capacity: 50Gi
   lifecycleHooks:
