@@ -19,8 +19,8 @@ prometheus:
           accessModes: ["ReadWriteOnce"]
           resources:
             requests:
-              storage: 10Gi
-    retention: 60d
+              storage: 20Gi
+    retention: 30d
     additionalScrapeConfigs:
       - job_name: postgres
         scrape_interval: 5s
