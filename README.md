@@ -16,32 +16,20 @@ Personal lab environment for experimenting with data engineering / devops tools.
 - [x] **Airflow 3**: Workflow orchestration
 - [x] **GitLab + container registry**: Self-hosted git and container registry
 - [x] **Data Lake**: Delta Lake or DuckLake implementation
+- [ ] **ClickHouse**: Columnar database for analytics
 - [ ] **Argo Workflows**: Kubernetes-native workflow engine
-- [ ] **ETL Pipeline**: Data processing with Polars/Pandas/DuckDB over SeaweedFS S3
-- [ ] **TodoApp**: Sample application for testing deployments/container registry/vault etc.
 
-### Future Improvements (no order)
+### Future Improvements
 
 - [x] Integrate Vault as certificate provider (replace manual k8s secrets)
-- [ ] Enhanced monitoring and observability (setup Grafana dashboards)
-- [ ] Headscale migration (replace Tailscale)
-- [ ] Postgres backup automation to S3
 - [ ] Postgres read replicas
-- [ ] Automated etcd backups and disaster recovery procedures
 - [ ] Migrate to Talos linux for improved security and manageability
 
 ### Some interesting topics to explore
 
-- [ ] 1brc. billion rows challenge
-
-  - [ ] Load data into Postgres and DuckDB
-  - [ ] Compare query performance between Postgres and DuckDB
-  - [ ] Add simple viz of query/required space per solution
-
 - [ ] Backblaze hard drive data analysis
-
-  - [x] Load data into Postgres and DuckDB (see notebooks)
-  - [ ] Compare query performance between Postgres and DuckDB
+  - [x] Load slice of data into Postgres and DuckDB (see notebooks)
+  - [ ] Compare query performance between Postgres, DuckDB and ClickHouse
   - [ ] Visualize trends and patterns in hard drive performance and failures
 
 ### Commit message format
@@ -52,7 +40,6 @@ Personal lab environment for experimenting with data engineering / devops tools.
 
 - **feat**: A new feature
 - **fix**: A bug fix
-- **docs**: Documentation-only changes
 - **style**: Changes that do not affect the meaning of the code (e.g., white-space, formatting)
 - **refactor/update**: A code change that neither fixes a bug nor adds a feature
 - **perf**: A code change that improves performance
@@ -66,3 +53,36 @@ Personal lab environment for experimenting with data engineering / devops tools.
 - **notebooks**: Changes related to Jupyter notebooks or data analysis scripts
 - **ci/cd**: Changes related to continuous integration and deployment pipelines
 - **docs**: Changes related to documentation files
+
+### Schema
+
+<div style="background-color: white; width: 400px; margin: auto; padding: 10px;">
+  <div style="text-align: center; border: 1px solid black; margin: auto;">
+      <div style="border-bottom: 1px solid black; padding: 10px;">
+        <div style="color: black; font-weight: bold;">Proxmox VE 9</div>
+        <div style="color: black; font-weight: bold;">Ryzen 6600H, 48GB RAM</div>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 10px;">
+          <!-- K3S Single Node -->
+          <div style="border: 1px solid black; padding: 10px; background-color: black; color: white; text-align: center;">
+              <div>K3S Single Node</div>
+              <div style="font-size: 0.9em; color: gray;">CPU: 3, RAM: 16GB</div>
+          </div>
+          <!-- ClickHouse Node -->
+          <div style="border: 1px solid black; padding: 10px; background-color: black; color: white; text-align: center;">
+              <div>ClickHouse Node</div>
+              <div style="font-size: 0.9em; color: gray;">CPU: 1, RAM: 4GB</div>
+          </div>
+          <!-- Postgres Master -->
+          <div style="border: 1px solid black; padding: 10px; background-color: black; color: white; text-align: center;">
+              <div>Postgres Master</div>
+              <div style="font-size: 0.9em; color: gray;">CPU: 1, RAM: 4GB</div>
+          </div>
+          <!-- Postgres Replica -->
+          <div style="border: 1px solid black; padding: 10px; background-color: black; color: white; text-align: center;">
+              <div>Postgres Replica</div>
+              <div style="font-size: 0.9em; color: gray;">CPU: 1, RAM: 4GB</div>
+          </div>
+      </div>
+  </div>
+</div>
