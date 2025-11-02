@@ -1,2 +1,6 @@
 persistence:
   defaultClassReplicaCount: 1
+defaultBackupStore:
+  backupTarget: "s3://longhorn-backups@seaweedfs-s3.seaweedfs:8333"
+  backupTargetCredentialSecret: longhorn-backup-target
+  pollInterval: 300
