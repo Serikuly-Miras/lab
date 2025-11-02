@@ -1,7 +1,7 @@
 apiVersion: secrets.hashicorp.com/v1beta1
 kind: VaultStaticSecret
 metadata:
-  name: longhorn-system-tls-cert
+  name: longhorn-system-backup-target-cert
   namespace: longhorn-system
   annotations:
     argocd.argoproj.io/sync-wave: "-1"
