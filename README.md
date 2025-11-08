@@ -52,3 +52,26 @@ Personal lab environment for experimenting with data engineering / devops tools.
 - **notebooks**: Changes related to Jupyter notebooks or data analysis scripts
 - **ci/cd**: Changes related to continuous integration and deployment pipelines
 - **docs**: Changes related to documentation files
+
+## Infra
+
+AMD Ryzen 6600H Proxmox VE 9.0 Host / 6 Physical CPU Cores / 12 Virtual CPU Cores / 48GB RAM
+├── k3s single node
+│   ├── CPU: 6 vCPU (3 CPU limit)
+│   ├── Memory: 16GB
+│   └── Storage: 100GB
+│    
+├── pg read/write master node
+│   ├── CPU: 2 vCPU (1 CPU limit)
+│   ├── Memory: 4GB
+│   └── Storage: 100GB
+│
+├── pg read only replica node
+│   ├── CPU: 2 vCPU (1 CPU limit)
+│   ├── Memory: 4GB
+│   └── Storage: 100GB
+│
+└── clickhouse node
+    ├── CPU: 2 vCPU (1 CPU limit)
+    ├── Memory: 4GB
+    └── Storage: 100GB
