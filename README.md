@@ -32,6 +32,41 @@ Personal lab environment for experimenting with data engineering / devops tools.
   - [ ] Compare query performance between Postgres, DuckDB and ClickHouse
   - [ ] Visualize trends and patterns in hard drive performance and failures
 
+## Infra
+
+```
+AMD Ryzen 6600H Proxmox VE 9.0 Host / 6 Physical CPU Cores / 12 Virtual CPU Cores / 48GB RAM
+│
+├── K3S single node kubernetes cluster
+│   ├── CPU: 6 vCPU (3 CPU limit)
+│   ├── Memory: 16GB
+│   ├── Storage: 100GB
+│   │
+│   └── ArgoCD app of apps
+│       ├── Longhorn
+│       ├── HashiCorp Vault
+│       ├── HashiCorp Vault Secrets Operator
+│       ├── Kube Prometheus Stack
+│       ├── Postgres Prometheus Exporter
+│       ├── SeaweedFS
+│       └── JupyterHub
+│
+├── Postgres 18 read/write master node
+│   ├── CPU: 2 vCPU (1 CPU limit)
+│   ├── Memory: 4GB
+│   └── Storage: 100GB
+│
+├── Postgres 18 read-only replica node
+│   ├── CPU: 2 vCPU (1 CPU limit)
+│   ├── Memory: 4GB
+│   └── Storage: 100GB
+│
+└── ClickHouse 25.10.1.3832 node
+    ├── CPU: 2 vCPU (1 CPU limit)
+    ├── Memory: 4GB
+    └── Storage: 100GB
+```
+
 ### Commit message format
 
 `<type>(<scope>): <description>`
@@ -52,29 +87,3 @@ Personal lab environment for experimenting with data engineering / devops tools.
 - **notebooks**: Changes related to Jupyter notebooks or data analysis scripts
 - **ci/cd**: Changes related to continuous integration and deployment pipelines
 - **docs**: Changes related to documentation files
-
-## Infra
-
-```
-AMD Ryzen 6600H Proxmox VE 9.0 Host / 6 Physical CPU Cores / 12 Virtual CPU Cores / 48GB RAM
-│
-├── k3s single node
-│   ├── CPU: 6 vCPU (3 CPU limit)
-│   ├── Memory: 16GB
-│   └── Storage: 100GB
-│    
-├── pg read/write master node
-│   ├── CPU: 2 vCPU (1 CPU limit)
-│   ├── Memory: 4GB
-│   └── Storage: 100GB
-│
-├── pg read only replica node
-│   ├── CPU: 2 vCPU (1 CPU limit)
-│   ├── Memory: 4GB
-│   └── Storage: 100GB
-│
-└── clickhouse node
-    ├── CPU: 2 vCPU (1 CPU limit)
-    ├── Memory: 4GB
-    └── Storage: 100GB
-```
