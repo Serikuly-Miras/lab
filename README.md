@@ -55,7 +55,9 @@ Personal lab environment for experimenting with data engineering / devops tools.
 
 ## Infra
 
+```
 AMD Ryzen 6600H Proxmox VE 9.0 Host / 6 Physical CPU Cores / 12 Virtual CPU Cores / 48GB RAM
+│
 ├── k3s single node
 │   ├── CPU: 6 vCPU (3 CPU limit)
 │   ├── Memory: 16GB
@@ -75,3 +77,4 @@ AMD Ryzen 6600H Proxmox VE 9.0 Host / 6 Physical CPU Cores / 12 Virtual CPU Core
     ├── CPU: 2 vCPU (1 CPU limit)
     ├── Memory: 4GB
     └── Storage: 100GB
+```
