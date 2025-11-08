@@ -16,13 +16,13 @@ Personal lab environment for experimenting with data engineering / devops tools.
 - [x] **Airflow 3**: Workflow orchestration
 - [x] **GitLab + container registry**: Self-hosted git and container registry
 - [x] **Data Lake**: Delta Lake or DuckLake implementation
-- [ ] **ClickHouse**: Columnar database for analytics
+- [x] **ClickHouse**: Columnar database for analytics
 - [ ] **Argo Workflows**: Kubernetes-native workflow engine
 
 ### Future Improvements
 
 - [x] Integrate Vault as certificate provider (replace manual k8s secrets)
-- [ ] Postgres read replicas
+- [x] Postgres read replicas
 - [ ] Migrate to Talos linux for improved security and manageability
 
 ### Some interesting topics to explore
