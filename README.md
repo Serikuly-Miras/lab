@@ -66,24 +66,3 @@ AMD Ryzen 6600H Proxmox VE 9.0 Host / 6 Physical CPU Cores / 12 Virtual CPU Core
     ├── Memory: 4GB
     └── Storage: 100GB
 ```
-
-### Commit message format
-
-`<type>(<scope>): <description>`
-
-#### `<type>`:
-
-- **feat**: A new feature
-- **fix**: A bug fix
-- **style**: Changes that do not affect the meaning of the code (e.g., white-space, formatting)
-- **refactor/update**: A code change that neither fixes a bug nor adds a feature
-- **test**: Adding or correcting tests
-- **chore**: Changes to the build process or auxiliary tools and libraries (e.g., documentation generation)
-
-#### `<scope>`:
-
-- **infra**: Changes related to infrastructure setup or configuration
-- **db**: Changes related to database schema, queries, or optimizations
-- **notebooks**: Changes related to Jupyter notebooks or data analysis scripts
-- **ci/cd**: Changes related to continuous integration and deployment pipelines
-- **docs**: Changes related to documentation files
