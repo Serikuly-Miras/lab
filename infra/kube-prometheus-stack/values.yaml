@@ -20,7 +20,7 @@ prometheus:
           resources:
             requests:
               storage: 20Gi
-    retention: 30d
+    retention: 7d
     additionalScrapeConfigs:
       - job_name: postgres
         scrape_interval: 5s
