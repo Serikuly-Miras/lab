@@ -21,7 +21,8 @@ Right now in a process of migrating from k3s to Talos linux and from separate vm
 - [ ] **Cloud Native PostgreSQL**
 - [ ] **SeaweedFS**
 - [ ] **Airflow**
-- [ ] **Duck Lake**
+- [ ] **DuckLake**
+- [ ] **DeltaLake**
 - [ ] **ClickHouse**
 - [ ] **JupyterHub**
 - [ ] **OpenMetadata**
