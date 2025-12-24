@@ -28,3 +28,12 @@ spec:
     # - repoURL: https://github.com/Serikuly-Miras/lab.git
     #   targetRevision: HEAD
     #   path: infra/kube-prometheus-stack/custom-resources
+  ignoreDifferences:
+    - group: apps
+      kind: StatefulSet
+      jsonPointers:
+        - /spec/template/metadata/annotations/checksum~1secret
+    - group: ""
+      kind: Secret
+      jsonPointers:
+        - /data
