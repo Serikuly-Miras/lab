@@ -21,3 +21,7 @@ prometheus:
             requests:
               storage: 20Gi
     retention: 7d
+crds:
+  enabled: true
+  upgradeJob:
+    enabled: true
