@@ -21,25 +21,3 @@ prometheus:
             requests:
               storage: 20Gi
     retention: 7d
-    additionalScrapeConfigs:
-      - job_name: postgres
-        scrape_interval: 5s
-        static_configs:
-          - targets:
-              [
-                "prometheus-postgres-exporter.prometheus-postgres-exporter.svc.cluster.local:80",
-              ]
-      - job_name: "node-exporters"
-        scrape_interval: 5s
-        static_configs:
-          - targets: [
-                "192.168.10.20:9100",
-                "192.168.10.41:9100",
-                "192.168.10.42:9100",
-                "192.168.10.45:9100",
-                "100.73.83.7:9100", # hetzner vps tailscale IP
-              ]
-      - job_name: "home-station-exporter"
-        scrape_interval: 5s
-        static_configs:
-          - targets: ["192.168.10.13:80"] # esp32 / co2 temp pressure humidity

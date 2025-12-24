@@ -25,6 +25,6 @@ spec:
     - repoURL: https://github.com/Serikuly-Miras/lab.git
       ref: lab
       targetRevision: HEAD
-    - repoURL: https://github.com/Serikuly-Miras/lab.git
-      targetRevision: HEAD
-      path: infra/kube-prometheus-stack/custom-resources
+    # - repoURL: https://github.com/Serikuly-Miras/lab.git
+    #   targetRevision: HEAD
+    #   path: infra/kube-prometheus-stack/custom-resources
