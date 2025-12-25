@@ -19,6 +19,12 @@ spec:
     - repoURL: https://pkgs.tailscale.com/helmcharts
       chart: tailscale-operator
       targetRevision: 1.92.4
+      helm:
+        values: |
+          apiServerProxyConfig:
+            allowImpersonation: "true"
+            mode: "true"
+
 #
 # tailscale requires client_id and client_secret for oauth
 # those can be prepopulated (todo remplace with vault provider later)
