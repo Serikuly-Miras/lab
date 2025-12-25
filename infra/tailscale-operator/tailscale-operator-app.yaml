@@ -22,7 +22,7 @@ spec:
       helm:
         values: |
           apiServerProxyConfig:
-            allowImpersonation: "true"
+            allowImpersonation: "false"
             mode: "true"
 
 #
