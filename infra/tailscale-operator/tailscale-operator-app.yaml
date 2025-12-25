@@ -19,3 +19,13 @@ spec:
     - repoURL: https://pkgs.tailscale.com/helmcharts
       chart: tailscale-operator
       targetRevision: 1.92.4
+#
+# tailscale requires client_id and client_secret for oauth
+# those can be prepopulated (todo remplace with vault provider later)
+# no need to change helm values file as the operator read them by default from operator-oauth
+#
+# kubectl create secret generic operator-oauth \
+#                   --namespace tailscale \
+#                   --from-literal=client_id='xxx' \
+#                   --from-literal=client_secret='xxx'
+#
