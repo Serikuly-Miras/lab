@@ -53,3 +53,7 @@ kubectl create secret generic tls-secret \
   --from-file=tls.key=/privkey.pem \
   --from-file=tls.crt=/cert.pem -n <namespace>
 ```
+
+# Auto certificate provisioning/renewal with Tailscale Magic DNS and Traefik
+
+## Nothing here for now
