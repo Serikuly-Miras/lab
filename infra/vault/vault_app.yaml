@@ -19,10 +19,6 @@ spec:
     - repoURL: https://helm.releases.hashicorp.com
       chart: vault
       targetRevision: 0.31.0
-    # - repoURL: https://github.com/Serikuly-Miras/lab.git
-    #   ref: lab
-    #   targetRevision: HEAD
-    #   path: infra/vault/ingress
   ignoreDifferences:
     - group: apps
       kind: StatefulSet
