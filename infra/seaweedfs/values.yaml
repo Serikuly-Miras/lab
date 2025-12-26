@@ -23,7 +23,6 @@ filer:
 
   data:
     type: "persistentVolumeClaim"
-    hostPathPrefix: /mnt/data
     claimName: seaweedfs-filer-pvc
     size: "10Gi"
 
