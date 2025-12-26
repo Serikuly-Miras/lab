@@ -21,19 +21,19 @@ spec:
       targetRevision: 1.24.1
       helm:
         values: |
-        replicas: 1
-        tempo:
-          updateStrategy: RollingUpdate
-          memBallastSizeMbs: 1024
-          multitenancyEnabled: false
-          reportingEnabled: false
-          retention: 168h # week retention
-        persistence:
-          enabled: true
-          storageClassName: longhorn
-          accessModes:
-            - ReadWriteOnce
-          size: 10Gi
+          replicas: 1
+          tempo:
+            updateStrategy: RollingUpdate
+            memBallastSizeMbs: 1024
+            multitenancyEnabled: false
+            reportingEnabled: false
+            retention: 168h # week retention
+          persistence:
+            enabled: true
+            storageClassName: longhorn
+            accessModes:
+              - ReadWriteOnce
+            size: 10Gi
   ignoreDifferences:
     - group: apps
       kind: StatefulSet
