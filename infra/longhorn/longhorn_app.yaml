@@ -28,3 +28,5 @@ spec:
     - repoURL: https://github.com/Serikuly-Miras/lab.git
       ref: lab
       targetRevision: HEAD
+    - repoURL: https://github.com/Serikuly-Miras/lab.git
+      path: infra/longhorn/custom-resources
