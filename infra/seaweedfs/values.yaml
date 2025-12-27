@@ -31,8 +31,13 @@ filer:
 
   data:
     type: "persistentVolumeClaim"
-    claimName: seaweedfs-filer-pvc
     size: "10Gi"
+    storageClass: "longhorn"
+
+  logs:
+    type: "persistentVolumeClaim"
+    size: "10Gi"
+    storageClass: "longhorn"
 
   s3:
     enabled: true
@@ -44,3 +49,8 @@ s3:
   replicas: 1
   enableAuth: true
   existingConfigSecret: "sw-s3-auth-secret"
+
+  logs:
+    type: "persistentVolumeClaim"
+    size: "10Gi"
+    storageClass: "longhorn"
