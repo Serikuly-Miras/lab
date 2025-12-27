@@ -2,6 +2,15 @@ master:
   enabled: true
   replicas: 1
   affinity: ""
+  data:
+    type: "persistentVolumeClaim"
+    size: "10Gi"
+    storageClass: "longhorn"
+
+  logs:
+    type: "persistentVolumeClaim"
+    size: "10Gi"
+    storageClass: "longhorn"
 
 volume:
   enabled: true
@@ -18,8 +27,7 @@ filer:
   enabled: true
   replicas: 1
   storage: 10Gi
-  storageClass: null
-  affinity: ""
+  storageClass: "longhorn"
 
   data:
     type: "persistentVolumeClaim"
