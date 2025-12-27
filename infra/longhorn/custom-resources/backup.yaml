@@ -9,8 +9,14 @@ spec:
   vaultAuthRef: vault-auth
   mount: kvv2
   type: kv-v2
-  path: longhorn-backup-target
+  path: longhorn
   destination:
     create: true
     name: longhorn-backup-target
+    transformation:
+      excludeRaw: true
+      includes:
+        - AWS_ACCESS_KEY_ID
+        - AWS_SECRET_ACCESS_KEY
+        - AWS_ENDPOINTS
   refreshAfter: 30s

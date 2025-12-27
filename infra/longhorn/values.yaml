@@ -1,6 +1,6 @@
 persistence:
   defaultClassReplicaCount: 1
-# defaultBackupStore:
-#   backupTarget: "s3://longhorn-backups@us-east-1/" # url passed in secret
-#   backupTargetCredentialSecret: longhorn-backup-target
-#   pollInterval: 300
+defaultBackupStore:
+  backupTarget: "s3://longhorn-backups@us-east-1/" # url passed in secret
+  backupTargetCredentialSecret: longhorn-backup-target
+  pollInterval: 300
