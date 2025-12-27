@@ -4,12 +4,12 @@ master:
   affinity: ""
   data:
     type: "persistentVolumeClaim"
-    size: "10Gi"
+    size: "5Gi"
     storageClass: "longhorn"
 
   logs:
     type: "persistentVolumeClaim"
-    size: "10Gi"
+    size: "5Gi"
     storageClass: "longhorn"
 
 volume:
@@ -26,17 +26,17 @@ volume:
 filer:
   enabled: true
   replicas: 1
-  storage: 10Gi
+  storage: 5Gi
   storageClass: "longhorn"
 
   data:
     type: "persistentVolumeClaim"
-    size: "10Gi"
+    size: "5Gi"
     storageClass: "longhorn"
 
   logs:
     type: "persistentVolumeClaim"
-    size: "10Gi"
+    size: "5Gi"
     storageClass: "longhorn"
 
   s3:
@@ -52,5 +52,5 @@ s3:
 
   logs:
     type: "persistentVolumeClaim"
-    size: "10Gi"
+    size: "5Gi"
     storageClass: "longhorn"
