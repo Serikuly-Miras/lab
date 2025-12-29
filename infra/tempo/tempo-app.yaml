@@ -30,7 +30,7 @@ spec:
             retention: 168h # week retention
           persistence:
             enabled: true
-            storageClassName: longhorn
+            storageClassName: custom-longhorn-slower-sc
             accessModes:
               - ReadWriteOnce
             size: 10Gi
