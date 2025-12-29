@@ -29,7 +29,6 @@ spec:
             websecure:
               tls:
                 enabled: true
-                certResolver: cloudflare
             web:
               redirections:
                 entryPoint:
