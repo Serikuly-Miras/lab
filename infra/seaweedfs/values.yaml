@@ -5,12 +5,12 @@ master:
   data:
     type: "persistentVolumeClaim"
     size: "5Gi"
-    storageClass: "longhorn"
+    storageClass: "custom-longhorn-slower-sc"
 
   logs:
     type: "persistentVolumeClaim"
     size: "5Gi"
-    storageClass: "longhorn"
+    storageClass: "custom-longhorn-slower-sc"
 
 volume:
   enabled: true
@@ -27,17 +27,17 @@ filer:
   enabled: true
   replicas: 1
   storage: 5Gi
-  storageClass: "longhorn"
+  storageClass: "custom-longhorn-slower-sc"
 
   data:
     type: "persistentVolumeClaim"
     size: "5Gi"
-    storageClass: "longhorn"
+    storageClass: "custom-longhorn-slower-sc"
 
   logs:
     type: "persistentVolumeClaim"
     size: "5Gi"
-    storageClass: "longhorn"
+    storageClass: "custom-longhorn-slower-sc"
 
   s3:
     enabled: true
@@ -53,4 +53,4 @@ s3:
   logs:
     type: "persistentVolumeClaim"
     size: "5Gi"
-    storageClass: "longhorn"
+    storageClass: "custom-longhorn-slower-sc"
