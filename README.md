@@ -29,24 +29,24 @@ AMD Ryzen 5 6600H / Proxmox VE 9.1.4
 
 ### Infrastructure & Platform
 
-- [*] **Talos Linux** - Immutable Kubernetes OS
-- [*] **ArgoCD** - GitOps continuous deployment
-- [*] **Longhorn** - Distributed block storage
-- [*] **Vault + External Secrets Operator** - Secret management
+- [x] **Talos Linux** - Immutable Kubernetes OS
+- [x] **ArgoCD** - GitOps continuous deployment
+- [x] **Longhorn** - Distributed block storage
+- [x] **Vault + External Secrets Operator** - Secret management
 
 ### Observability (LGTM Stack)
 
 - [ ] **Loki** - Log aggregation
-- [*] **Grafana** - Visualization and dashboards
-- [*] **Tempo** - Distributed tracing
-- [*] **Mimir/Prometheus** - Metrics storage and querying
+- [x] **Grafana** - Visualization and dashboards
+- [x] **Tempo** - Distributed tracing
+- [x] **Mimir/Prometheus** - Metrics storage and querying
 - [ ] **Alloy** - Telemetry collection
 
 ### Data Platform
 
 - [ ] **Cloud Native PostgreSQL (CNPG)** - PostgreSQL
 - [ ] **ClickHouse** - OLAP database
-- [*] **SeaweedFS** - Object storage / S3
+- [x] **SeaweedFS** - Object storage / S3
 - [ ] **Apache Airflow** - Workflow orchestration
 - [ ] **Apache Iceberg/Delta Lake** - Data lakehouse formats
 - [ ] **Trino** - Distributed SQL query engine
