@@ -1,43 +1,52 @@
 # Kubernetes Lab Environment
 
-Personal lab environment for experimenting with data engineering and DevOps tools.
-
-Currently migrating from k3s to Talos Linux and from separate VMs running PostgreSQL and ClickHouse to running everything in Kubernetes.
+Home lab environment for experimenting with data engineering and DevOps tools.
 
 ## Architecture Overview
 
 ```
-AMD Ryzen 5 6600H / Proxmox VE 9.1.2
+AMD Ryzen 5 6600H / Proxmox VE 9.1.4
 ├── 6 Physical CPU Cores / 12 Virtual CPU Cores
-├── 48GB RAM
+├── 48GB DDR5 5600 RAM
+├── 1TB Fast NVMe SSD / 1TB Slower NVMe SSD
 │
-└── Talos Linux Cluster ( in progress... )
-    ├── Control Plane Nodes (1x)
-    └── Worker Nodes (1x)
+├─── Talos 1.12.0 Cluster
+│    ├── Control Plane Nodes (1x)
+│    │   └── 2 CPU (1 CPU limit) / 8GB RAM / 100GB SSD
+│    │
+│    └── Worker Nodes (3x)
+│        ├─── 4 CPU (3 CPU limit) / 12GB RAM / 350GB SSD
+│        ├─── 4 CPU (3 CPU limit) / 12GB RAM / 350GB SSD
+│        └─── 2 CPU /  4GB RAM / 600GB SSD (slower ssd primarily for s3 storage)
+│
+└─── Modded Minecraft Server
+     └─── 2 CPU /  4GB RAM / 600GB SSD (slower ssd primarily for s3 storage)
+
+*note: will move minecraft in cluster some time later
 ```
 
 ## Roadmap
 
 ### Infrastructure & Platform
 
-- [ ] **Talos Linux** - Immutable Kubernetes OS
-- [ ] **ArgoCD** - GitOps continuous deployment
-- [ ] **Longhorn** - Distributed block storage
-- [ ] **Vault + External Secrets Operator** - Secret management
+- [*] **Talos Linux** - Immutable Kubernetes OS
+- [*] **ArgoCD** - GitOps continuous deployment
+- [*] **Longhorn** - Distributed block storage
+- [*] **Vault + External Secrets Operator** - Secret management
 
 ### Observability (LGTM Stack)
 
 - [ ] **Loki** - Log aggregation
-- [ ] **Grafana** - Visualization and dashboards
-- [ ] **Tempo** - Distributed tracing
-- [ ] **Mimir/Prometheus** - Metrics storage and querying
+- [*] **Grafana** - Visualization and dashboards
+- [*] **Tempo** - Distributed tracing
+- [*] **Mimir/Prometheus** - Metrics storage and querying
 - [ ] **Alloy** - Telemetry collection
 
 ### Data Platform
 
 - [ ] **Cloud Native PostgreSQL (CNPG)** - PostgreSQL
 - [ ] **ClickHouse** - OLAP database
-- [ ] **SeaweedFS** - Object storage / S3
+- [*] **SeaweedFS** - Object storage / S3
 - [ ] **Apache Airflow** - Workflow orchestration
 - [ ] **Apache Iceberg/Delta Lake** - Data lakehouse formats
 - [ ] **Trino** - Distributed SQL query engine
@@ -58,7 +67,8 @@ AMD Ryzen 5 6600H / Proxmox VE 9.1.2
 ```
 lab/
 ├── dags/             # Airflow DAGs
-├── infra/            # Talos configs, Helm charts, ArgoCD apps
 ├── docs/             # Documentation
-└── notebooks/        # Jupyter notebooks
+├── infra/            # Talos configs, Helm charts, ArgoCD apps
+├── notebooks/        # Jupyter notebooks
+└── talos/            # Talos Linux configs
 ```
