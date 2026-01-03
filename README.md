@@ -8,16 +8,16 @@ Home lab environment for experimenting with data engineering and DevOps tools.
 AMD Ryzen 5 6600H / Proxmox VE 9.1.4
 ├── 6 Physical CPU Cores / 12 Virtual CPU Cores
 ├── 48GB DDR5 5600 RAM
-├── 1TB Fast NVMe SSD / 1TB Slower NVMe SSD
+├── 1TB Fast NVMe SSD (SSD1) / 1TB Slower NVMe SSD (SSD2)
 │
 └─── Talos 1.12.0 Cluster
      ├── Control Plane Nodes (1x)
      │   └── 2 CPU (1 CPU limit) / 8GB RAM / 100GB SSD
      │
      └── Worker Nodes (3x)
-         ├─── 4 CPU / 16GB RAM / 350GB SSD
-         ├─── 4 CPU / 12GB RAM / 350GB SSD
-         └─── 2 CPU /  8GB RAM / 600GB SSD (slower ssd primarily for s3 storage)
+         ├─── 4 CPU / 16GB RAM / 350GB SSD1
+         ├─── 4 CPU / 12GB RAM / 350GB SSD1
+         └─── 2 CPU /  8GB RAM / 600GB SSD2
 
 *note: will move minecraft in cluster some time later
 ```
