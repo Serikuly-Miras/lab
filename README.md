@@ -10,17 +10,14 @@ AMD Ryzen 5 6600H / Proxmox VE 9.1.4
 ├── 48GB DDR5 5600 RAM
 ├── 1TB Fast NVMe SSD / 1TB Slower NVMe SSD
 │
-├─── Talos 1.12.0 Cluster
-│    ├── Control Plane Nodes (1x)
-│    │   └── 2 CPU (1 CPU limit) / 8GB RAM / 100GB SSD
-│    │
-│    └── Worker Nodes (3x)
-│        ├─── 4 CPU (3 CPU limit) / 12GB RAM / 350GB SSD
-│        ├─── 4 CPU (3 CPU limit) / 12GB RAM / 350GB SSD
-│        └─── 2 CPU /  4GB RAM / 600GB SSD (slower ssd primarily for s3 storage)
-│
-└─── Modded Minecraft Server
-     └─── 2 CPU /  4GB RAM / 600GB SSD (slower ssd primarily for s3 storage)
+└─── Talos 1.12.0 Cluster
+     ├── Control Plane Nodes (1x)
+     │   └── 2 CPU (1 CPU limit) / 8GB RAM / 100GB SSD
+     │
+     └── Worker Nodes (3x)
+         ├─── 4 CPU / 16GB RAM / 350GB SSD
+         ├─── 4 CPU / 12GB RAM / 350GB SSD
+         └─── 2 CPU /  8GB RAM / 600GB SSD (slower ssd primarily for s3 storage)
 
 *note: will move minecraft in cluster some time later
 ```
