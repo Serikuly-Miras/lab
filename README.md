@@ -12,7 +12,7 @@ AMD Ryzen 5 6600H / Proxmox VE 9.1.4
 │
 └─── Talos 1.12.0 Cluster
      ├── Control Plane Nodes (1x)
-     │   └── 2 CPU (1 CPU limit) / 8GB RAM / 100GB SSD
+     │   └── 2 CPU (1 CPU limit) / 8GB RAM / 100GB SSD1
      │
      └── Worker Nodes (3x)
          ├─── 4 CPU / 16GB RAM / 350GB SSD1
