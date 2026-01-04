@@ -7,14 +7,11 @@ spec:
   gatewayClassName: traefik
   listeners:
     - name: websecure
-      hostname: "*.aardvark-symmetric.ts.net"
+      hostname: "traefik-traefik.aardvark-symmetric.ts.net"
       port: 443
       protocol: HTTPS
       tls:
         mode: Terminate
-        certificateRefs:
-          - kind: Secret
-            name: traefik-tls-cert
     - name: web
       port: 80
       protocol: HTTP

@@ -9,7 +9,7 @@ spec:
       namespace: traefik
       kind: Gateway
   hostnames:
-    - "grafana.aardvark-symmetric.ts.net"
+    - "traefik-traefik.aardvark-symmetric.ts.net"
   rules:
     - matches:
         - path:
