@@ -11,8 +11,14 @@ spec:
   tls:
     - hosts:
         - grafana.aardvark-symmetric.ts.net
-  defaultBackend:
-    service:
-      name: kube-prometheus-stack-grafana
-      port:
-        number: 3000
+  rules:
+    - host: grafana.aardvark-symmetric.ts.net
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: kube-prometheus-stack-grafana
+                port:
+                  number: 3000
