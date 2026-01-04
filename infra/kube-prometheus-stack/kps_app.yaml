@@ -25,6 +25,9 @@ spec:
     - repoURL: https://github.com/Serikuly-Miras/lab.git
       ref: lab
       targetRevision: HEAD
+    - repoURL: https://github.com/Serikuly-Miras/lab.git
+      path: infra/kube-prometheus-stack/custom-resources
+      targetRevision: HEAD
   ignoreDifferences:
     - group: apps
       kind: StatefulSet

@@ -1,0 +1,37 @@
+globalArguments:
+  - "--global.sendanonymoususage=false"
+  - "--global.checknewversion=false"
+
+ports:
+  websecure:
+    tls:
+      enabled: true
+  web:
+    redirections:
+      entryPoint:
+        to: websecure
+        scheme: https
+        permanent: true
+
+persistence:
+  enabled: true
+  size: 1Gi
+  storageClass: longhorn
+
+certificatesResolvers:
+  myresolver:
+    tailscale: {}
+
+service:
+  enabled: true
+  type: LoadBalancer
+  annotations:
+    tailscale.com/expose: "true"
+  spec:
+    loadBalancerClass: tailscale
+
+logs:
+  general:
+    level: DEBUG
+  access:
+    enabled: false

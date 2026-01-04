@@ -20,41 +20,11 @@ spec:
       chart: traefik
       targetRevision: 38.0.1
       helm:
-        values: |
-          globalArguments:
-            - "--global.sendanonymoususage=false"
-            - "--global.checknewversion=false"
-
-          ports:
-            websecure:
-              tls:
-                enabled: true
-            web:
-              redirections:
-                entryPoint:
-                  to: websecure
-                  scheme: https
-                  permanent: true
-
-          persistence:
-            enabled: true
-            size: 1Gi
-            storageClass: longhorn
-
-          certificatesResolvers:
-            myresolver:
-              tailscale: {}
-
-          service:
-            enabled: true
-            type: LoadBalancer
-            annotations:
-              tailscale.com/expose: "true"
-            spec:
-              loadBalancerClass: tailscale
-
-          logs:
-            general:
-              level: DEBUG
-            access:
-              enabled: false
+        valueFiles:
+          - $lab/infra/traefik/values.yaml
+    - repoURL: https://github.com/Serikuly-Miras/lab.git
+      ref: lab
+      targetRevision: HEAD
+    - repoURL: https://github.com/Serikuly-Miras/lab.git
+      path: infra/traefik/custom-resources
+      targetRevision: HEAD
