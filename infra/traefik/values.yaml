@@ -24,10 +24,9 @@ gateway:
       protocol: HTTPS
       port: 8443
       hostname: "*.lab.s-miras.com"
-      tls:
-        mode: Terminate
-        certificateRefs:
-          - name: tls-vss
+      mode: Terminate
+      certificateRefs:
+        - name: tls-vss
 
 service:
   enabled: true
