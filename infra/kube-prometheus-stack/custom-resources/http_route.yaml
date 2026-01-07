@@ -10,8 +10,6 @@ spec:
       port: 443
       protocol: HTTPS
       hostname: "grafana.lab.s-miras.com"
-      tls:
-        mode: Terminate
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
