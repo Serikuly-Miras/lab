@@ -23,3 +23,4 @@ spec:
           name: kube-prometheus-stack-grafana
           namespace: kube-prometheus-stack
           port: 80
+          weight: 1
