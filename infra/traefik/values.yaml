@@ -3,9 +3,6 @@ global:
   sendAnonymousUsage: false
 
 ports:
-  websecure:
-    tls:
-      enabled: true
   web:
     redirections:
       entryPoint:
@@ -23,11 +20,12 @@ gateway:
   enabled: true
   namespacePolicy: All
   listeners:
-    websecure:
-      hostname: "*.lab.s-miras.com"
-      port: 443
+    - name: https
       protocol: HTTPS
+      port: 443
+      hostname: "*.lab.s-miras.com"
       tls:
+        mode: Terminate
         certificateRefs:
           - name: tls-vss
             namespace: traefik
