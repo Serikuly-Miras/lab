@@ -10,7 +10,7 @@ spec:
       kind: Gateway
       name: traefik-gateway
       namespace: traefik
-      port: 8443
+      port: websecure
   hostnames:
     - "grafana.lab.s-miras.com"
   rules:
