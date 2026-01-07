@@ -13,6 +13,9 @@ ports:
         scheme: https
         permanent: true
 
+providers:
+  kubernetesGateway: {}
+
 persistence:
   enabled: true
   size: 1Gi
