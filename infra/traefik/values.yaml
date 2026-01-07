@@ -18,10 +18,6 @@ persistence:
   size: 1Gi
   storageClass: longhorn
 
-certificatesResolvers:
-  myresolver:
-    tailscale: {}
-
 service:
   enabled: true
   type: LoadBalancer
