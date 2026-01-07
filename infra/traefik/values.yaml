@@ -1,6 +1,6 @@
-globalArguments:
-  - "--global.sendanonymoususage=false"
-  - "--global.checknewversion=false"
+global:
+  checkNewVersion: false
+  sendAnonymousUsage: false
 
 ports:
   websecure:
@@ -20,7 +20,18 @@ providers:
     enabled: true
 
 gateway:
+  enabled: true
   namespacePolicy: All
+  listeners:
+    websecure:
+      hostname: "*.lab.s-miras.com"
+      port: 443
+      protocol: HTTPS
+      tls:
+        certificateRefs:
+          - name: tls-vss
+            namespace: traefik
+            kind: Secret
 
 service:
   enabled: true
