@@ -25,10 +25,8 @@ gateway:
       port: 8443
       hostname: "*.lab.s-miras.com"
       tls:
-        mode: Terminate
         certificateRefs:
           - name: tls-vss
-            namespace: traefik
             kind: Secret
 
 service:
