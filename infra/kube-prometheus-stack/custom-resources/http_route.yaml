@@ -6,7 +6,9 @@ metadata:
 
 spec:
   parentRefs:
-    - name: traefik-gateway
+    - group: gateway.networking.k8s.io
+      kind: Gateway
+      name: traefik-gateway
       namespace: traefik
   hostnames:
     - "grafana.lab.s-miras.com"
@@ -16,6 +18,8 @@ spec:
             type: PathPrefix
             value: "/"
       backendRefs:
-        - name: kube-prometheus-stack-grafana
+        - group: ""
+          kind: Service
+          name: kube-prometheus-stack-grafana
           namespace: kube-prometheus-stack
           port: 80
