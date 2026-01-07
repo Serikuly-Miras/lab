@@ -27,6 +27,8 @@ gateway:
       mode: Terminate
       certificateRefs:
         - name: tls-vss
+          group: ""
+          kind: Secret
 
 service:
   enabled: true
