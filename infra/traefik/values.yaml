@@ -18,14 +18,14 @@ providers:
 
 gateway:
   enabled: true
-  namespacePolicy: All
   listeners:
     websecure:
       protocol: HTTPS
       port: 8443
       hostname: "*.lab.s-miras.com"
       mode: Terminate
-      namespacePolicy: All
+      namespacePolicy:
+        from: All
       certificateRefs:
         - name: tls-vss
           group: ""
