@@ -28,6 +28,8 @@ gateway:
         certificateRefs:
           - name: tls-vss
             kind: Secret
+            namespace: traefik
+            group: ""
 
 service:
   enabled: true
