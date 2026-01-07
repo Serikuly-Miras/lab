@@ -22,7 +22,7 @@ gateway:
   listeners:
     websecure:
       protocol: HTTPS
-      port: 443
+      port: 8443
       hostname: "*.lab.s-miras.com"
       tls:
         mode: Terminate
