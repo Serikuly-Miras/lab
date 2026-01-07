@@ -14,7 +14,13 @@ ports:
         permanent: true
 
 providers:
-  kubernetesGateway: {}
+  kubernetesIngress:
+    enabled: false
+  kubernetesGateway:
+    enabled: true
+
+gateway:
+  namespacePolicy: All
 
 service:
   enabled: true
