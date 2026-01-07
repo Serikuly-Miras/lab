@@ -20,7 +20,7 @@ gateway:
   enabled: true
   namespacePolicy: All
   listeners:
-    - name: https
+    websecure:
       protocol: HTTPS
       port: 443
       hostname: "*.lab.s-miras.com"
@@ -29,7 +29,6 @@ gateway:
         certificateRefs:
           - name: tls-vss
             namespace: traefik
-            kind: Secret
 
 service:
   enabled: true
