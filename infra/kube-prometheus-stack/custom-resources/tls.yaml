@@ -1,0 +1,16 @@
+apiVersion: secrets.hashicorp.com/v1beta1
+kind: VaultStaticSecret
+metadata:
+  name: grafana-tls-cert
+  namespace: kube-prometheus-stack
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+spec:
+  vaultAuthRef: vault-auth
+  mount: kvv2
+  type: kv-v2
+  path: cert
+  destination:
+    create: true
+    name: tls-vss
+  refreshAfter: 30s
