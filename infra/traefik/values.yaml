@@ -16,11 +16,6 @@ ports:
 providers:
   kubernetesGateway: {}
 
-persistence:
-  enabled: true
-  size: 1Gi
-  storageClass: longhorn
-
 service:
   enabled: true
   type: LoadBalancer
