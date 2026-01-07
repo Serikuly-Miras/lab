@@ -29,6 +29,7 @@ gateway:
         certificateRefs:
           - name: tls-vss
             namespace: traefik
+            kind: Secret
 
 service:
   enabled: true
