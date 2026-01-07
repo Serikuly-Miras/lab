@@ -27,7 +27,5 @@ service:
     loadBalancerClass: tailscale
 
 logs:
-  general:
-    level: DEBUG
   access:
     enabled: false
