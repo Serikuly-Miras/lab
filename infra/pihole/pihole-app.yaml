@@ -31,3 +31,6 @@ spec:
             enabled: true
             existingSecret: "pihole-admin-secret"
             passwordKey: "password"
+    - repoURL: https://github.com/Serikuly-Miras/lab.git
+      targetRevision: HEAD
+      path: infra/pihole/custom-resources
