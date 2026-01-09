@@ -19,3 +19,15 @@ spec:
     - repoURL: https://mojo2600.github.io/pihole-kubernetes/
       chart: pihole
       targetRevision: 2.35.0
+      helm:
+        values: |
+          persistentVolumeClaim:
+            enabled: true
+            accessModes:
+              - ReadWriteOnce
+            size: "1Gi"
+          adminPassword: {}
+          admin:
+            enabled: true
+            existingSecret: "pihole-admin-secret"
+            passwordKey: "password"
