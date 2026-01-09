@@ -31,6 +31,12 @@ spec:
             enabled: true
             existingSecret: "pihole-admin-secret"
             passwordKey: "password"
+          serviceDns:
+            type: LoadBalancer
+            loadBalancerClass: tailscale
+            annotations:
+              tailscale.com/expose: "true"
+              tailscale.com/hostname: "pihole-dns"
     - repoURL: https://github.com/Serikuly-Miras/lab.git
       targetRevision: HEAD
       path: infra/pihole/custom-resources
