@@ -28,7 +28,7 @@ spec:
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: grafana-route
+  name: alertmanager-route
   namespace: kube-prometheus-stack
 
 spec:
@@ -55,7 +55,7 @@ spec:
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: grafana-route
+  name: prometheus-route
   namespace: kube-prometheus-stack
 
 spec:
