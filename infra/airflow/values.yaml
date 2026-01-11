@@ -26,7 +26,7 @@ webserver:
   defaultUser:
     enabled: false
 workers:
-  replicas: 0
+  replicas: 1
   persistence:
     enabled: true
     size: 50Gi
@@ -41,7 +41,7 @@ redis:
     size: 1Gi
     storageClassName: longhorn
 triggerer:
-  replicas: 0
+  replicas: 1
   persistence:
     enabled: true
     storageClassName: longhorn

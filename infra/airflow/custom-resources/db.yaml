@@ -1,0 +1,16 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: airflow-cnpg-db
+  namespace: airflow
+spec:
+  instances: 1
+  storage:
+    size: 20Gi
+
+  bootstrap:
+    initdb:
+      database: airflow
+      owner: airflow
+      secret:
+        name: airflow-db-credentials
