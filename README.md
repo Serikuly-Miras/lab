@@ -1,25 +1,24 @@
 # Kubernetes Lab Environment
 
-Home lab environment for experimenting with data engineering and DevOps tools.
+Repo designated for managing home lab Kubernetes cluster and personal website.
 
 ## Architecture Overview
 
 ```
 AMD Ryzen 5 6600H / Proxmox VE 9.1.4
-├── 6 Physical CPU Cores / 12 Virtual CPU Cores
+├── 6 CPU / 12 vCPU
 ├── 48GB DDR5 5600 RAM
 ├── 1TB Fast NVMe SSD (SSD1) / 1TB Slower NVMe SSD (SSD2)
 │
-└─── Talos 1.12.0 Cluster
+└─── Talos 1.12.0 Cluster (K8s Rev: v1.35.0)
      ├── Control Plane Nodes (1x)
-     │   └── 2 CPU (1 CPU limit) / 8GB RAM / 100GB SSD1
+     │   └── 2 CPU / 8GB RAM / 100GB SSD1
      │
      └── Worker Nodes (3x)
          ├─── 4 CPU / 16GB RAM / 350GB SSD1
          ├─── 4 CPU / 12GB RAM / 350GB SSD1
          └─── 2 CPU /  8GB RAM / 600GB SSD2
 
-*note: will move minecraft in cluster some time later
 ```
 
 ## Roadmap
@@ -48,16 +47,11 @@ AMD Ryzen 5 6600H / Proxmox VE 9.1.4
 - [ ] **Apache Iceberg/Delta Lake** - Data lakehouse formats
 - [ ] **Trino** - Distributed SQL query engine
 - [ ] **DuckLake** - S3 + PostgreSQL backed Lakehouse
-
-### Analytics & ML
-
-- [ ] **JupyterHub** - Interactive notebooks
-- [ ] **Apache Spark** - Big data processing
 - [ ] **OpenMetadata** - Data discovery and governance
 
 ### Optional/Future
 
-- [ ] **Apache Hadoop** - Distributed storage and processing
+- [x] **Pi-Hole** - Tail'net-wide ad blocker / dns override
 
 ## Directory Structure
 
@@ -65,7 +59,8 @@ AMD Ryzen 5 6600H / Proxmox VE 9.1.4
 lab/
 ├── dags/             # Airflow DAGs
 ├── docs/             # Documentation
-├── infra/            # Talos configs, Helm charts, ArgoCD apps
+├── infra/            # Helm charts, ArgoCD apps etc.
 ├── notebooks/        # Jupyter notebooks
-└── talos/            # Talos Linux configs
+├── talos/            # Talos Linux configs
+└── web/              # s-miras.com website
 ```
