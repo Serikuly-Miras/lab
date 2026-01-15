@@ -9,5 +9,5 @@ spec:
   routes:
     - match: HostSNI(`*`)
       services:
-        - name: dwh-cnpg-db-rw
+        - name: airflow-cnpg-db-rw
           port: 5432
