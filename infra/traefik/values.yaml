@@ -12,15 +12,18 @@ ports:
   postgres-dwh:
     port: 5432
     protocol: TCP
-    expose: true
+    expose:
+      default: true
   postgres-ducklake-catalog:
     port: 5433
     protocol: TCP
-    expose: true
+    expose:
+      default: true
   postgres-airflow:
     port: 5434
     protocol: TCP
-    expose: true
+    expose:
+      default: true
 
 providers:
   kubernetesIngress:
@@ -42,21 +45,6 @@ gateway:
         - name: tls-vss
           group: ""
           kind: Secret
-    tcp-postgres-dwh:
-      protocol: TCP
-      port: 5432
-      namespacePolicy:
-        from: All
-    tcp-postgres-ducklake-catalog:
-      protocol: TCP
-      port: 5433
-      namespacePolicy:
-        from: All
-    tcp-postgres-airflow:
-      protocol: TCP
-      port: 5434
-      namespacePolicy:
-        from: All
 
 service:
   enabled: true
