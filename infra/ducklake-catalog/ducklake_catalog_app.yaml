@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ducklake-catalog
+  namespace: argocd
+spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: ducklake-catalog
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=false
+      - ServerSideApply=true
+    automated:
+      prune: true
+      selfHeal: true
+  sources:
+    - repoURL: https://github.com/Serikuly-Miras/lab.git
+      targetRevision: HEAD
+      path: infra/ducklake-catalog/custom-resources

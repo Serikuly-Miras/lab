@@ -1,0 +1,17 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: dwh-cnpg-db
+  namespace: dwh
+spec:
+  instances: 2
+  storage:
+    size: 200Gi
+    storageClass: custom-longhorn-faster-sc
+
+  bootstrap:
+    initdb:
+      database: dwh
+      owner: dwh
+      secret:
+        name: dwh-db-credentials
