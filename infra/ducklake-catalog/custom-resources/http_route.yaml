@@ -1,0 +1,20 @@
+apiVersion: gateway.networking.k8s.io/v1alpha2
+kind: TCPRoute
+metadata:
+  name: ducklake-catalog-db-route
+  namespace: ducklake-catalog
+spec:
+  parentRefs:
+    - group: gateway.networking.k8s.io
+      kind: Gateway
+      name: traefik-gateway
+      namespace: traefik
+      sectionName: tcp-postgres-ducklake-catalog
+  rules:
+    - backendRefs:
+        - group: ""
+          kind: Service
+          name: ducklake-catalog-cnpg-db-rw
+          namespace: ducklake-catalog
+          port: 5432
+          weight: 1
