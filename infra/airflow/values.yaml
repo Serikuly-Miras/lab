@@ -5,7 +5,7 @@ webserverSecretKeySecretName: airflow-vault-secret
 images:
   airflow:
     pullPolicy: Always
-executor: CeleryExecutor
+executor: KubernetesExecutor
 data:
   metadataSecretName: airflow-vault-secret
 dags:
@@ -59,8 +59,6 @@ pgbouncer:
 config:
   core:
     xcom_backend: airflow.providers.common.io.xcom.backend.XComObjectStorageBackend
-  celery:
-    worker_concurrency: 4
   common.io:
     xcom_objectstorage_path: s3://seaweedfs@airflow/xcoms
     xcom_objectstorage_threshold: "0"
