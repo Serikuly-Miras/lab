@@ -16,7 +16,6 @@ ROOT_FOLDER = "backblaze"
 @dag(
     dag_id="download_backblaze_q3_to_s3",
     tags=["s3", "backblaze", "prod", "ingestion"],
-    outlets=[backblaze_q3_asset],
 )
 def download_backblaze_q3():
     @task(outlets=[backblaze_q3_asset])
