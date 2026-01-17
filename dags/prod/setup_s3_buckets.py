@@ -1,7 +1,7 @@
 import logging
 
 from airflow.providers.amazon.aws.hooks.s3 import S3Hook
-from airflow.sdk.dag import dag, task
+from airflow.sdk import dag, task
 
 
 @dag(
