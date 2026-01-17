@@ -34,7 +34,7 @@ def download_backblaze_q3():
                     if member.is_dir():
                         continue
 
-                    fk = f"{ROOT_FOLDER}/data_Q3_2025/{member.filename}"
+                    fk = f"{ROOT_FOLDER}/{member.filename}"
 
                     # Check if file already exists in S3
                     if s3_hook.check_for_key(fk, bucket_name=DEST_BUCKET):
