@@ -3,7 +3,6 @@ kind: HTTPRoute
 metadata:
   name: grafana-route
   namespace: kube-prometheus-stack
-
 spec:
   parentRefs:
     - group: gateway.networking.k8s.io
@@ -30,7 +29,6 @@ kind: HTTPRoute
 metadata:
   name: alertmanager-route
   namespace: kube-prometheus-stack
-
 spec:
   parentRefs:
     - group: gateway.networking.k8s.io
@@ -57,7 +55,6 @@ kind: HTTPRoute
 metadata:
   name: prometheus-route
   namespace: kube-prometheus-stack
-
 spec:
   parentRefs:
     - group: gateway.networking.k8s.io
