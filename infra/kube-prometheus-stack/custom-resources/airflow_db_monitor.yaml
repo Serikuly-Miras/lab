@@ -4,9 +4,6 @@ metadata:
   name: airflow-cnpg-db
   namespace: kube-prometheus-stack
 spec:
-  namespaceSelector:
-    matchNames:
-      - airflow
   selector:
     matchLabels:
       cnpg.io/cluster: airflow-cnpg-db
