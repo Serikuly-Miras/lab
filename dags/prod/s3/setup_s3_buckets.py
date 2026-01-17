@@ -6,7 +6,7 @@ from airflow.sdk import dag, task
 
 @dag(
     dag_id="setup_s3_buckets",
-    tags=["s3", "workload"],
+    tags=["s3", "prod"],
 )
 def test_dag():
     @task
@@ -15,7 +15,7 @@ def test_dag():
 
         buckets_to_create = [
             # airflow xcoms
-            "airlfow",
+            "airflow",
             # raw s3 storage
             "data-raw",
             # ducklake
