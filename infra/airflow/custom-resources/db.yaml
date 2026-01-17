@@ -14,3 +14,15 @@ spec:
       owner: airflow
       secret:
         name: airflow-db-credentials
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: airflow-cnpg-db
+  namespace: airflow
+spec:
+  selector:
+    matchLabels:
+      cnpg.io/cluster: airflow-cnpg-db
+  podMetricsEndpoints:
+    - port: metrics
