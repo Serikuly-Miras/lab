@@ -6,7 +6,6 @@ import logging
 @dag(
     dag_id="setup_s3_buckets",
     tags=["s3", "workload"],
-    schedule_interval=None,
 )
 def test_dag():
     @task
