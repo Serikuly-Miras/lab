@@ -15,7 +15,7 @@ def test_dag():
 
         buckets_to_create = [
             # airflow xcoms
-            "xcoms",
+            "airlfow",
             # raw s3 storage
             "data-raw",
             # ducklake
