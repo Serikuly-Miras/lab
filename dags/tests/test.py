@@ -6,9 +6,7 @@ import io
 
 @dag(
     dag_id="test_dag",
-    max_active_tasks=1,
-    max_active_runs=1,
-    tags=["example"],
+    tags=["test"],
 )
 def test_dag():
     @task
