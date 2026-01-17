@@ -1,6 +1,7 @@
-from airflow.decorators import dag, task
-from airflow.providers.amazon.aws.hooks.s3 import S3Hook
 import logging
+
+from airflow.providers.amazon.aws.hooks.s3 import S3Hook
+from airflow.sdk.dag import dag, task
 
 
 @dag(
@@ -10,12 +11,11 @@ import logging
 def test_dag():
     @task
     def create_buckets() -> None:
-        """Create S3 buckets using Airflow S3 connection"""
         s3_hook = S3Hook(aws_conn_id="s3")
 
         buckets_to_create = [
-            # airflow
-            "airflow",
+            # airflow xcoms
+            "xcoms",
             # raw s3 storage
             "data-raw",
             # ducklake
@@ -37,10 +37,33 @@ def test_dag():
 
     @task
     def setup_airflow_lifetime_policy() -> None:
-        pass
+        s3_hook = S3Hook(aws_conn_id="s3")
 
-    create_buckets()
-    setup_airflow_lifetime_policy()
+        lifecycle_policy = {
+            "Rules": [
+                {
+                    "ID": "DeleteAfter3Days",
+                    "Status": "Enabled",
+                    "Filter": {"Prefix": ""},
+                    "Expiration": {"Days": 3},
+                }
+            ]
+        }
+
+        try:
+            s3_client = s3_hook.get_conn()
+            s3_client.put_bucket_lifecycle_configuration(
+                Bucket="xcoms", LifecycleConfiguration=lifecycle_policy
+            )
+            logging.info("Applied lifecycle policy to xcoms bucket")
+        except Exception as e:
+            logging.error(f"Failed to apply lifecycle policy: {str(e)}")
+            raise
+
+    buckets = create_buckets()
+    lifecycle = setup_airflow_lifetime_policy()
+
+    buckets >> lifecycle
 
 
 test_dag()

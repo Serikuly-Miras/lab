@@ -1,7 +1,8 @@
-from airflow.decorators import dag, task
+import io
+
 import pandas as pd
 import polars as pl
-import io
+from airflow.decorators import dag, task
 
 
 @dag(
