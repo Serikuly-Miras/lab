@@ -9,5 +9,8 @@ spec:
   selector:
     matchLabels:
       cnpg.io/cluster: airflow-cnpg-db
+  namespaceSelector:
+    matchNames:
+      - airflow
   podMetricsEndpoints:
     - port: metrics
