@@ -22,14 +22,20 @@ spec:
         ensure: present
         login: false
         superuser: false
+        connectionLimit: -1
+        inherit: true
       - name: role-rw
         ensure: present
         login: false
         superuser: false
+        connectionLimit: -1
+        inherit: true
       - name: etl-user
         ensure: present
         login: true
         superuser: false
+        connectionLimit: -1
+        inherit: true
         inRoles:
           - role-rw
         passwordSecret:
