@@ -15,3 +15,22 @@ spec:
       owner: dwh
       secret:
         name: dwh-db-credentials
+
+  managed:
+    roles:
+      - name: role-ro
+        ensure: present
+        login: false
+        superuser: false
+      - name: role-rw
+        ensure: present
+        login: false
+        superuser: false
+      - name: etl-user
+        ensure: present
+        login: true
+        superuser: false
+        inRoles:
+          - role-rw
+        passwordSecret:
+          name: dwh-db-etl-credentials
