@@ -20,10 +20,16 @@ spec:
     roles:
       - name: role-ro
         ensure: absent
+        connectionLimit: -1
+        inherit: true
       - name: role-rw
         ensure: absent
+        connectionLimit: -1
+        inherit: true
       - name: etl-user
         ensure: absent
+        connectionLimit: -1
+        inherit: true
       - name: readonly
         ensure: present
         login: false
