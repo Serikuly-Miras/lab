@@ -18,27 +18,27 @@ spec:
 
   managed:
     roles:
-      - name: role-ro
+      - name: readonly
         ensure: present
         login: false
         superuser: false
         connectionLimit: -1
         inherit: true
-      - name: role-rw
+      - name: readwrite
         ensure: present
         login: false
         superuser: false
         connectionLimit: -1
         inherit: true
         inRoles:
-          - role-ro
-      - name: etl-user
+          - readonly
+      - name: etl_user
         ensure: present
         login: true
         superuser: false
         connectionLimit: -1
         inherit: true
         inRoles:
-          - role-rw
+          - readwrite
         passwordSecret:
           name: dwh-db-etl-credentials
