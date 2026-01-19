@@ -21,36 +21,38 @@ def test_dag():
             """
                 CREATE SECRET (
                     TYPE postgres,
-                    HOST '{host}',
-                    PORT {port},
-                    DATABASE {db},
-                    USER '{user}',
-                    PASSWORD '{password}'
+                    HOST ?,
+                    PORT ?,
+                    DATABASE ?,
+                    USER ?,
+                    PASSWORD ?
                 );
-            """.format(
-                host=ducklake_catalog.host,
-                port=ducklake_catalog.port,
-                user=ducklake_catalog.login,
-                password=ducklake_catalog.password,
-                db=ducklake_catalog.schema,
-            )
+            """,
+            [
+                ducklake_catalog.host,
+                ducklake_catalog.port,
+                ducklake_catalog.schema,
+                ducklake_catalog.login,
+                ducklake_catalog.password,
+            ],
         )
 
         con.execute(
             """
                 CREATE OR REPLACE SECRET secret (
                     TYPE s3,
-                    ENDPOINT '{endpoint}',
-                    KEY_ID '{key_id}',
-                    SECRET '{secret}',
+                    ENDPOINT ?,
+                    KEY_ID ?,
+                    SECRET ?,
                     URL_STYLE 'path',
                     USE_SSL 'false'
                 );
-            """.format(
-                endpoint="seaweedfs-s3.seaweedfs:8333",
-                key_id=ducklake_s3.login,
-                secret=ducklake_s3.password,
-            )
+            """,
+            [
+                "seaweedfs-s3.seaweedfs:8333",
+                ducklake_s3.login,
+                ducklake_s3.password,
+            ],
         )
 
         print(
