@@ -10,10 +10,9 @@ from airflow.sdk.bases.hook import BaseHook
 def test_dag():
     @task
     def read_some() -> None:
-        df = pl.read_database_uri(
-            query="SELECT 1 as test;",
-            uri=BaseHook.get_connection("dwh").get_uri(),
-        )
+        c = BaseHook.get_connection("dwh")
+        uri = f"postgresql://{c.login}:{c.password}@{c.host}:{c.port}/{c.schema}"  # noqa
+        df = pl.read_database_uri(query="SELECT 1 as test;", uri=uri)
         print(df)
 
     read_some()
