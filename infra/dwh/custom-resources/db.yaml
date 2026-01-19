@@ -18,6 +18,12 @@ spec:
 
   managed:
     roles:
+      - name: role-ro
+        ensure: absent
+      - name: role-rw
+        ensure: absent
+      - name: etl-user
+        ensure: absent
       - name: readonly
         ensure: present
         login: false
