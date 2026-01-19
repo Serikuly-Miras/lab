@@ -55,14 +55,45 @@ def test_dag():
             ],
         )
 
-        print(
-            con.execute(
-                """
+        count = con.execute(
+            """
                 SELECT count(*)
                 FROM 's3://data-raw/backblaze/data_Q3_2025/2025-07-01.csv';
             """
-            ).fetchall()
+        ).fetchall()
+        print(count)
+
+        con.execute(
+            """
+                ATTACH 'ducklake:postgres:dbname={ducklake_catalog}
+                    host={host}' AS my_ducklake (DATA_PATH 's3://ducklake/');
+                USE my_ducklake;
+            """.format(
+                ducklake_catalog=ducklake_catalog.schema,
+                host=ducklake_catalog.host,
+            )
         )
+
+        con.execute(
+            """
+                DROP TABLE IF EXISTS nl_train_stations;
+            """
+        ).fetchall()
+
+        con.execute(
+            """
+                CREATE TABLE nl_train_stations AS
+                FROM 'https://blobs.duckdb.org/nl_stations.csv';
+            """
+        ).fetchall()
+
+        count = con.execute(
+            """
+            SELECT count(*)
+            FROM nl_train_stations
+            """
+        ).fetchall()
+        print(count)
 
     read_some()
 
