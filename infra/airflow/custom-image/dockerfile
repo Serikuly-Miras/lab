@@ -2,7 +2,9 @@ FROM apache/airflow:3.1.6
 
 USER airflow
 
+# Set the Airflow version and install additional packages
 RUN pip install --no-cache-dir "apache-airflow==${AIRFLOW_VERSION}" \
+    'apache-airflow[otel]' \
     lxml \
     seaborn \
     openpyxl \
@@ -10,4 +12,11 @@ RUN pip install --no-cache-dir "apache-airflow==${AIRFLOW_VERSION}" \
     s3fs \
     pandas \
     polars \
-    'apache-airflow[otel]'
+    duckdb \ 
+    connectorx \
+    adbc_driver_postgresql \
+    psycopg2-binary \
+    clickhouse-connect
+
+# Pre-install DuckDB extensions for DuckLake support to avoid runtime downloads 
+RUN python -c "import duckdb; con = duckdb.connect(); con.execute('INSTALL ducklake'); con.execute('INSTALL postgres'); con.close()"
