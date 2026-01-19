@@ -1,6 +1,6 @@
 import polars as pl
-from airflow.decorators import dag, task
-from airflow.hooks.base import BaseHook
+from airflow.sdk import dag, task
+from airflow.sdk.bases.hook import BaseHook
 
 
 @dag(
