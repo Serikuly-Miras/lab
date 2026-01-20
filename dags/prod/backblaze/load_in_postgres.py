@@ -3,7 +3,7 @@ from airflow.providers.amazon.aws.hooks.s3 import S3Hook
 
 
 backblaze_q3_asset = Asset("s3://data-raw/backblaze/data_Q3_2025/")
-postgres_dwh_asset = Asset("postgres://dwh/backblaze_hard_drives")
+postgres_dwh_asset = Asset("postgres://dwh-cnpg-db-rw.dwh:5432/dwh/bronze/backblaze")  # noqa
 
 
 @dag(
