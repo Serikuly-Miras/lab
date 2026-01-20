@@ -1,0 +1,8 @@
+# This file was automatically generated
+name: dwh
+type: postgres
+options:
+  database: dwh
+  host: dwh.lab.s-miras.com
+  port: 5432
+  schema: bronze

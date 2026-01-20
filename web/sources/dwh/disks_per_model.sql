@@ -1,0 +1,1 @@
+select model, count(1) from bronze.backblaze where date = '2025-09-30' group by model;
