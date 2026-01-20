@@ -19,6 +19,7 @@ def load_backblaze_q3_to_postgres():
             prefix="backblaze/data_Q3_2025/",
         )
 
+    @task
     def print_s3_stats(s3_objects):
         print(f"Found {len(s3_objects)} files in S3.")
         print("Files:", s3_objects)
