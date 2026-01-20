@@ -22,7 +22,7 @@ def test_dag():
         sql="SELECT 1 as test;",
     )
 
-    read_some_using_polars
+    read_some_using_polars()
     read_some_using_operator
 
 
