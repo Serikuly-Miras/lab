@@ -8,7 +8,7 @@ postgres_dwh_asset = Asset("postgres://dwh/backblaze_hard_drives")
 
 @dag(
     dag_id="load_backblaze_q3_to_postgres",
-    tags=["s3", "backblaze", "prod", "ingestion"],
+    tags=["s3", "backblaze", "prod", "load", "postgres"],
 )
 def load_backblaze_q3_to_postgres():
     @task(inlets=[backblaze_q3_asset])
