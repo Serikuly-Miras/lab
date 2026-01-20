@@ -56,6 +56,7 @@ def load_backblaze_q3_to_postgres():
         cols.append(pl.col("date").cast(pl.Date))
 
         # 19 mins without unlogged
+        # 15 mins with unlogged
         try:
             for i, obj in enumerate(s3_objects):
                 print(f"Processing {i + 1}/{len(s3_objects)}: {obj}")
