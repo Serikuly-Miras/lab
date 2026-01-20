@@ -40,16 +40,35 @@ def load_backblaze_q3_to_postgres():
             "aws_secret_access_key": s3_conn.password,
         }
 
+        # read a little bit to infer and correct schema
+        df = pl.scan_csv(
+            f"s3://data-raw/{s3_objects[0]}",
+            storage_options=storage_options,
+            n_rows=100,
+        ).collect()
+
+        cols = [
+            pl.col(col).cast(pl.Int64)
+            for col in df.columns
+            if col.startswith("smart_")  # noqa
+        ]
+        cols.append(pl.col("date").cast(pl.Date))
+
         for i, obj in enumerate(s3_objects):
             print(f"Processing {i + 1}/{len(s3_objects)}: {obj}")
-            pl.scan_csv(
-                f"s3://data-raw/{obj}",
-                storage_options=storage_options,
-            ).collect().write_database(
-                connection=pg_uri,
-                table_name="bronze.backblaze",
-                if_table_exists="replace" if i == 0 else "append",
-                engine="adbc",
+            (
+                pl.scan_csv(
+                    f"s3://data-raw/{obj}",
+                    storage_options=storage_options,
+                )
+                .with_columns(cols)
+                .collect()
+                .write_database(
+                    connection=pg_uri,
+                    table_name="bronze.backblaze",
+                    if_table_exists="replace" if i == 0 else "append",
+                    engine="adbc",
+                )
             )
 
     s3_objects = list_s3_files()
