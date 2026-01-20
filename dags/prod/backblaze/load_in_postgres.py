@@ -55,25 +55,28 @@ def load_backblaze_q3_to_postgres():
         ]
         cols.append(pl.col("date").cast(pl.Date))
 
-        for i, obj in enumerate(s3_objects):
-            print(f"Processing {i + 1}/{len(s3_objects)}: {obj}")
-            (
-                pl.scan_csv(
-                    f"s3://data-raw/{obj}",
-                    storage_options=storage_options,
+        # 19 mins without unlogged
+        try:
+            for i, obj in enumerate(s3_objects):
+                print(f"Processing {i + 1}/{len(s3_objects)}: {obj}")
+                (
+                    pl.scan_csv(
+                        f"s3://data-raw/{obj}",
+                        storage_options=storage_options,
+                    )
+                    .with_columns(cols)
+                    .collect()
+                    .write_database(
+                        connection=pg_uri,
+                        table_name="bronze.backblaze",
+                        if_table_exists="replace" if i == 0 else "append",
+                        engine="adbc",
+                    )
                 )
-                .with_columns(cols)
-                .collect()
-                .write_database(
-                    connection=pg_uri,
-                    table_name="bronze.backblaze",
-                    if_table_exists="replace" if i == 0 else "append",
-                    engine="adbc",
-                )
-            )
-            if i == 0:
-                pg_hook.run("ALTER TABLE bronze.backblaze SET UNLOGGED;")
-        pg_hook.run("ALTER TABLE bronze.backblaze SET LOGGED;")
+                if i == 0:
+                    pg_hook.run("ALTER TABLE bronze.backblaze SET UNLOGGED;")
+        finally:
+            pg_hook.run("ALTER TABLE bronze.backblaze SET LOGGED;")
 
     s3_objects = list_s3_files()
     print_s3_stats(s3_objects)
