@@ -1,8 +1,8 @@
 import polars as pl
 from airflow.providers.amazon.aws.hooks.s3 import S3Hook
+from airflow.providers.postgres.hooks.postgres import PostgresHook
 from airflow.sdk import Asset, dag, task
 from airflow.sdk.bases.hook import BaseHook
-
 
 backblaze_q3_asset = Asset("s3://data-raw/backblaze/data_Q3_2025/")
 postgres_dwh_asset = Asset("postgres://dwh-cnpg-db-rw.dwh:5432/dwh/bronze/backblaze")  # noqa
@@ -31,6 +31,7 @@ def load_backblaze_q3_to_postgres():
     def load_files_to_postgres(s3_objects):
         s3_conn = BaseHook.get_connection("s3")
         pg_conn = BaseHook.get_connection("dwh")
+        pg_hook = PostgresHook(postgres_conn_id="dwh")
 
         pg_uri = f"postgresql://{pg_conn.login}:{pg_conn.password}@{pg_conn.host}:{pg_conn.port}/{pg_conn.schema}"  # noqa
 
@@ -70,6 +71,9 @@ def load_backblaze_q3_to_postgres():
                     engine="adbc",
                 )
             )
+            if i == 0:
+                pg_hook.run("ALTER TABLE bronze.backblaze SET UNLOGGED;")
+        pg_hook.run("ALTER TABLE bronze.backblaze SET LOGGED;")
 
     s3_objects = list_s3_files()
     print_s3_stats(s3_objects)
