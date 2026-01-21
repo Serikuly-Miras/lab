@@ -1,5 +1,6 @@
 import io
 import os
+import tempfile
 
 import boto3
 from airflow.providers.amazon.aws.hooks.s3 import S3Hook
@@ -53,6 +54,17 @@ def load_backblaze_q3_to_postgres():
                 sql=copy_sql,
                 filename=io.StringIO(csv_content),
             )
+
+            # Write to temporary file
+            with tempfile.NamedTemporaryFile(
+                mode="w", delete=False, suffix=".csv"
+            ) as temp_file:
+                temp_file.write(csv_content)
+                temp_file_path = temp_file.name
+                try:
+                    pg_hook.bulk_load("bronze.backblaze", temp_file_path)
+                finally:
+                    os.unlink(temp_file_path)
 
     s3_objects = list_s3_files()
     print_s3_stats(s3_objects)
