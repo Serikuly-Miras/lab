@@ -52,7 +52,29 @@ def load_backblaze_q3_to_postgres():
                 print(f"Processing {i + 1}/{len(s3_objects)}: {obj}")
                 response = s3_client.get_object(Bucket="data-raw", Key=obj)
                 csv_content = response["Body"].read().decode("utf-8")
-                df = pd.read_csv(io.StringIO(csv_content))
+
+                dtypes = {
+                    "serial_number": "string",
+                    "model": "string",
+                    "datacenter": "string",
+                    "capacity_bytes": "Int64",
+                    "failure": "Int64",
+                    "cluster_id": "Int64",
+                    "vault_id": "Int64",
+                    "pod_id": "Int64",
+                    "pod_slot_num": "Int64",
+                    "is_legacy_format": "boolean",
+                }
+
+                # Add all SMART attributes as Int64
+                for attr_num in range(1, 256):
+                    dtypes[f"smart_{attr_num}_normalized"] = "Int64"
+                    dtypes[f"smart_{attr_num}_raw"] = "Int64"
+
+                df = pd.read_csv(
+                    io.StringIO(csv_content),
+                    dtype=dtypes,
+                )
 
                 with tempfile.NamedTemporaryFile(
                     mode="w", delete=False, suffix=".csv"
