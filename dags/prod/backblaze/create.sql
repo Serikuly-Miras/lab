@@ -9,7 +9,7 @@ create table
         cluster_id int8,
         vault_id int8,
         pod_id int8,
-        pod_slot_num float8,
+        pod_slot_num int8,
         is_legacy_format bool,
         smart_1_normalized int8 null,
         smart_1_raw int8 null,
