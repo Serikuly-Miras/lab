@@ -41,23 +41,33 @@ def load_backblaze_q3_to_postgres():
             aws_secret_access_key=s3_conn.password,
         )
 
-        pg_hook.run("DROP TABLE IF EXISTS bronze.backblaze;")
-        pg_hook.run(open(os.path.dirname(__file__) + "/create.sql").read())
+        try:
+            pg_hook.run("DROP TABLE IF EXISTS bronze.backblaze;")
+            pg_hook.run(open(os.path.dirname(__file__) + "/create.sql").read())
+            pg_hook.run("ALTER TABLE bronze.backblaze SET UNLOGGED;")
 
-        for i, obj in enumerate(s3_objects):
-            print(f"Processing {i + 1}/{len(s3_objects)}: {obj}")
-            response = s3_client.get_object(Bucket="data-raw", Key=obj)
-            csv_content = response["Body"].read().decode("utf-8")
+            for i, obj in enumerate(s3_objects):
+                print(f"Processing {i + 1}/{len(s3_objects)}: {obj}")
+                response = s3_client.get_object(Bucket="data-raw", Key=obj)
+                csv_content = response["Body"].read().decode("utf-8")
 
-            with tempfile.NamedTemporaryFile(
-                mode="w", delete=False, suffix=".csv"
-            ) as temp_file:
-                temp_file.write(csv_content)
-                temp_file_path = temp_file.name
-                try:
-                    pg_hook.bulk_load("bronze.backblaze", temp_file_path)
-                finally:
-                    os.unlink(temp_file_path)
+                # remove header from first file
+                if i == 0:
+                    lines = csv_content.split("\n", 1)
+                    if len(lines) > 1:
+                        csv_content = lines[1]
+
+                with tempfile.NamedTemporaryFile(
+                    mode="w", delete=False, suffix=".csv"
+                ) as temp_file:
+                    temp_file.write(csv_content)
+                    temp_file_path = temp_file.name
+                    try:
+                        pg_hook.bulk_load("bronze.backblaze", temp_file_path)
+                    finally:
+                        os.unlink(temp_file_path)
+        finally:
+            pg_hook.run("ALTER TABLE bronze.backblaze SET LOGGED;")
 
     s3_objects = list_s3_files()
     print_s3_stats(s3_objects)
