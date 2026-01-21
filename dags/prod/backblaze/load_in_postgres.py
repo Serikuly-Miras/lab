@@ -1,5 +1,7 @@
 import os
 import tempfile
+import io
+import pandas as pd
 
 import boto3
 from airflow.providers.amazon.aws.hooks.s3 import S3Hook
@@ -50,17 +52,18 @@ def load_backblaze_q3_to_postgres():
                 print(f"Processing {i + 1}/{len(s3_objects)}: {obj}")
                 response = s3_client.get_object(Bucket="data-raw", Key=obj)
                 csv_content = response["Body"].read().decode("utf-8")
-
-                # remove header from first file
-                if i == 0:
-                    lines = csv_content.split("\n", 1)
-                    if len(lines) > 1:
-                        csv_content = lines[1]
+                df = pd.read_csv(io.StringIO(csv_content))
 
                 with tempfile.NamedTemporaryFile(
                     mode="w", delete=False, suffix=".csv"
                 ) as temp_file:
-                    temp_file.write(csv_content)
+                    temp_file.write(
+                        df.to_csv(
+                            sep="\t",
+                            index=False,
+                            header=False,
+                        )
+                    )
                     temp_file_path = temp_file.name
                     try:
                         pg_hook.bulk_load("bronze.backblaze", temp_file_path)
