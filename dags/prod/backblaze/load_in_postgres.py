@@ -64,8 +64,8 @@ def load_backblaze_q3_to_postgres():
 
         storage_options = {
             "endpoint_url": s3_conn.extra_dejson.get("endpoint_url"),
-            "aws_access_key_id": s3_conn.login,
-            "aws_secret_access_key": s3_conn.password,
+            "key": s3_conn.login,
+            "secret": s3_conn.password,
         }
 
         # Read sample to infer schema
