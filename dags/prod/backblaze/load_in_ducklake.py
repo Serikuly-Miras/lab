@@ -32,7 +32,7 @@ def load_backblaze_q3_to_ducklake():
             # Create secrets for DuckLake catalog and S3 storage
             con.execute(
                 """
-                    CREATE SECRET pg_secret (
+                    CREATE SECRET (
                         TYPE postgres,
                         HOST ?,
                         PORT ?,
@@ -52,7 +52,7 @@ def load_backblaze_q3_to_ducklake():
 
             con.execute(
                 """
-                    CREATE SECRET s3_secret (
+                    CREATE OR REPLACE SECRET secret (
                         TYPE s3,
                         ENDPOINT ?,
                         KEY_ID ?,
