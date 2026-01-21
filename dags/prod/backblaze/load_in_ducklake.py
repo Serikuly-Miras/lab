@@ -95,5 +95,7 @@ def load_backblaze_q3_to_ducklake():
         ).fetchall()
         print(f"Total records loaded into DuckLake: {result}")
 
+    load_files_to_ducklake()
+
 
 load_backblaze_q3_to_ducklake()
