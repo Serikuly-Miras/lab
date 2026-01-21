@@ -1,4 +1,3 @@
-import io
 import os
 import tempfile
 
@@ -49,13 +48,7 @@ def load_backblaze_q3_to_postgres():
             print(f"Processing {i + 1}/{len(s3_objects)}: {obj}")
             response = s3_client.get_object(Bucket="data-raw", Key=obj)
             csv_content = response["Body"].read().decode("utf-8")
-            copy_sql = "COPY bronze.backblaze FROM STDIN WITH CSV"
-            pg_hook.copy_expert(
-                sql=copy_sql,
-                filename=io.StringIO(csv_content),
-            )
 
-            # Write to temporary file
             with tempfile.NamedTemporaryFile(
                 mode="w", delete=False, suffix=".csv"
             ) as temp_file:
