@@ -27,11 +27,6 @@ def load_backblaze_q3_to_postgres():
             prefix="backblaze/data_Q3_2025/",
         )
 
-    @task
-    def print_s3_stats(s3_objects):
-        print(f"Found {len(s3_objects)} files in S3.")
-        print("Files:", s3_objects)
-
     @task(outlets=[postgres_dwh_asset])
     def load_files_to_postgres(s3_objects):
         s3_conn = BaseHook.get_connection("s3")
@@ -77,7 +72,6 @@ def load_backblaze_q3_to_postgres():
             )
 
     s3_objects = list_s3_files()
-    print_s3_stats(s3_objects)
     load_files_to_postgres(s3_objects)
 
 
