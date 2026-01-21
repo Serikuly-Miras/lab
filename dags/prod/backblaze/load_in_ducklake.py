@@ -10,6 +10,13 @@ ducklake_dwh_asset = Asset("ducklake://bronze/backblaze")  # noqa
     tags=["s3", "backblaze", "prod", "load", "ducklake"],
 )
 def load_backblaze_q3_to_ducklake():
+    """
+    Data Source Attribution:
+        - Provider: Backblaze, Inc.
+        - Website: https://www.backblaze.com/
+        - Dataset: Drive Stats data
+    """
+
     @task(inlets=[backblaze_q3_asset], outlets=[ducklake_dwh_asset])
     def load_files_to_ducklake():
         import duckdb

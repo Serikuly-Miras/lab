@@ -25,6 +25,13 @@ ROOT_FOLDER = "backblaze"
     tags=["s3", "backblaze", "prod", "ingestion"],
 )
 def download_backblaze_q3():
+    """
+    Data Source Attribution:
+        - Provider: Backblaze, Inc.
+        - Website: https://www.backblaze.com/
+        - Dataset: Drive Stats data
+    """
+
     @task(outlets=[backblaze_q3_asset])
     def download_and_extract_q3_data() -> None:
         """Download Q3 2025 data from Backblaze and upload to S3"""

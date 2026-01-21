@@ -1,10 +1,3 @@
-"""
-Data Source Attribution:
-    - Provider: Backblaze, Inc.
-    - Website: https://www.backblaze.com/
-    - Dataset: Drive Stats data
-"""
-
 import polars as pl
 from airflow.providers.amazon.aws.hooks.s3 import S3Hook
 from airflow.sdk import Asset, dag, task
@@ -19,6 +12,13 @@ postgres_dwh_asset = Asset("postgres://dwh-cnpg-db-rw.dwh:5432/dwh/bronze/backbl
     tags=["s3", "backblaze", "prod", "load", "postgres"],
 )
 def load_backblaze_q3_to_postgres():
+    """
+    Data Source Attribution:
+        - Provider: Backblaze, Inc.
+        - Website: https://www.backblaze.com/
+        - Dataset: Drive Stats data
+    """
+
     @task(inlets=[backblaze_q3_asset])
     def list_s3_files():
         s3_hook = S3Hook(aws_conn_id="s3")
