@@ -19,7 +19,7 @@ ducklake_dwh_asset = Asset("ducklake://dwh-cnpg-db-rw.dwh:5432/dwh/bronze/backbl
 )
 def load_backblaze_q3_to_ducklake():
     @task(inlets=[backblaze_q3_asset], outlets=[ducklake_dwh_asset])
-    def load_files_to_ducklake(s3_objects):
+    def load_files_to_ducklake():
         con = duckdb.connect()
         con.execute("install ducklake;")
         con.execute("install postgres;")
