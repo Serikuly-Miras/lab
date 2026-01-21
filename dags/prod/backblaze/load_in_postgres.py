@@ -1,3 +1,10 @@
+"""
+Data Source Attribution:
+    - Provider: Backblaze, Inc.
+    - Website: https://www.backblaze.com/
+    - Dataset: Drive Stats data
+"""
+
 import polars as pl
 from airflow.providers.amazon.aws.hooks.s3 import S3Hook
 from airflow.sdk import Asset, dag, task

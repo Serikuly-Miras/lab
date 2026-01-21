@@ -1,3 +1,10 @@
+"""
+Data Source Attribution:
+    - Provider: Backblaze, Inc.
+    - Website: https://www.backblaze.com/
+    - Dataset: Drive Stats data
+"""
+
 import io
 import logging
 import zipfile
