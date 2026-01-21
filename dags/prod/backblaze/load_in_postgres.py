@@ -51,7 +51,6 @@ def load_backblaze_q3_to_postgres():
             pg_hook.bulk_load(
                 table="bronze.backblaze",
                 tmp_file=io.StringIO(csv_content),
-                delimiter="\t",
             )
 
     s3_objects = list_s3_files()
