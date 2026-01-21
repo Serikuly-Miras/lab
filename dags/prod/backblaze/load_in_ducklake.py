@@ -1,15 +1,8 @@
-"""
-Data Source Attribution:
-    - Provider: Backblaze, Inc.
-    - Website: https://www.backblaze.com/
-    - Dataset: Drive Stats data
-"""
-
 from airflow.sdk import Asset, dag, task
 from airflow.sdk.bases.hook import BaseHook
 
 backblaze_q3_asset = Asset("s3://data-raw/backblaze/data_Q3_2025/")
-ducklake_dwh_asset = Asset("ducklake://dwh-cnpg-db-rw.dwh:5432/dwh/bronze/backblaze")  # noqa
+ducklake_dwh_asset = Asset("ducklake://bronze/backblaze")  # noqa
 
 
 @dag(
@@ -71,11 +64,12 @@ def load_backblaze_q3_to_ducklake():
             # Attach DuckLake catalog
             con.execute(
                 """
-                    ATTACH 'ducklake:postgres:dbname={ducklake_catalog}
-                        host={host}' AS my_ducklake (DATA_PATH 's3://ducklake/');
+                    ATTACH
+                        'ducklake:postgres:dbname={ctlg} host={host}'
+                        AS my_ducklake (DATA_PATH 's3://ducklake/');
                     USE my_ducklake;
                 """.format(
-                    ducklake_catalog=ducklake_catalog.schema,
+                    ctlg=ducklake_catalog.schema,
                     host=ducklake_catalog.host,
                 )
             )
