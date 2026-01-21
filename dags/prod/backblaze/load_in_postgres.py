@@ -62,6 +62,7 @@ def load_backblaze_q3_to_postgres():
                             sep="\t",
                             index=False,
                             header=False,
+                            na_rep="\\N",
                         )
                     )
                     temp_file_path = temp_file.name
