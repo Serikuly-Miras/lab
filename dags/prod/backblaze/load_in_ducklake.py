@@ -85,7 +85,7 @@ def load_backblaze_q3_to_ducklake():
             con.execute(
                 """
                     CREATE TABLE hard_drive_data AS
-                    SELECT * FROM read_csv('s3://data-raw/Backblaze-Hard-Drive-Data/*/*.csv');
+                    SELECT * FROM read_csv('s3://data-raw/backblaze/data_Q3_2025/*.csv');
                 """  # noqa
             )
 
