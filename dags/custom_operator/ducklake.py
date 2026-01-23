@@ -50,6 +50,10 @@ class DuckLakeHook(BaseHook):
         if s3_endpoint is None:
             raise ValueError("endpoint_url not found in S3 connection extra")
 
+        # Remove http:// or https:// prefix if present
+        if s3_endpoint.startswith(("http://", "https://")):
+            s3_endpoint = s3_endpoint.split("://", 1)[1]
+
         con.execute(
             """
             CREATE OR REPLACE SECRET (
