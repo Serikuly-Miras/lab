@@ -1,4 +1,3 @@
-import logging
 from typing import Optional
 
 import duckdb
@@ -16,7 +15,6 @@ class DuckLakeHook(BaseHook):
         super().__init__()
         self.ducklake_catalog_conn_id = ducklake_catalog_conn_id
         self.ducklake_s3_conn_id = ducklake_s3_conn_id
-        self.log = logging.getLogger(__name__)
         self._connection: Optional[duckdb.DuckDBPyConnection] = None
 
     def get_connection(self) -> duckdb.DuckDBPyConnection:
