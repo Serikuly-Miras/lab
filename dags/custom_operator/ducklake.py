@@ -89,6 +89,10 @@ class DuckLakeHook(BaseHook):
     def _attach_ducklake(self, con: duckdb.DuckDBPyConnection) -> None:
         """Attach DuckLake catalog to the connection."""
         ducklake_catalog = BaseHook.get_connection(self.ducklake_catalog_conn_id)  # noqa
+        ducklake_s3 = BaseHook.get_connection(self.ducklake_s3_conn_id)
+
+        s3_extra = json.loads(ducklake_s3.extra or "{}")
+        data_path = s3_extra.get("data_path")
 
         con.execute(
             """
@@ -100,5 +104,5 @@ class DuckLakeHook(BaseHook):
                 host=ducklake_catalog.host,
                 port=ducklake_catalog.port or 5432,
             ),
-            [self.data_path],
+            [data_path],
         )
