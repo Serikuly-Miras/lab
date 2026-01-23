@@ -52,7 +52,7 @@ class DuckLakeHook(BaseHook):
 
         con.execute(
             """
-            CREATE SECRET ducklake_catalog_secret (
+            CREATE OR REPLACE SECRET (
                 TYPE postgres,
                 HOST ?,
                 PORT ?,
@@ -72,7 +72,7 @@ class DuckLakeHook(BaseHook):
 
         con.execute(
             """
-            CREATE OR REPLACE SECRET ducklake_s3_secret (
+            CREATE OR REPLACE SECRET secret (
                 TYPE s3,
                 ENDPOINT ?,
                 KEY_ID ?,
