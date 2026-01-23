@@ -47,6 +47,8 @@ class DuckLakeHook(BaseHook):
 
         s3_extra = json.loads(ducklake_s3.extra or "{}")
         s3_endpoint = s3_extra.get("endpoint_url")
+        if s3_endpoint is None:
+            raise ValueError("endpoint_url not found in S3 connection extra")
 
         con.execute(
             """
@@ -93,16 +95,18 @@ class DuckLakeHook(BaseHook):
 
         s3_extra = json.loads(ducklake_s3.extra or "{}")
         data_path = s3_extra.get("data_path")
+        if data_path is None:
+            raise ValueError("data_path not found in S3 connection extra")
 
         con.execute(
             """
             ATTACH 'ducklake:postgres:dbname={db} host={host} port={port}'
-            AS ducklake (DATA_PATH ?);
+            AS ducklake (DATA_PATH {data_path});
             USE ducklake;
             """.format(
                 db=ducklake_catalog.schema,
                 host=ducklake_catalog.host,
                 port=ducklake_catalog.port or 5432,
+                data_path=f"'{data_path}'",
             ),
-            [data_path],
         )
