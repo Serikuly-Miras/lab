@@ -11,12 +11,12 @@ data:
 dags:
   gitSync:
     enabled: true
-    repo: https://github.com/Serikuly-Miras/lab.git
+    repo: https://github.com/Serikuly-Miras/lab/tree/main/dags
     branch: main
     rev: HEAD
     ref: main
-    depth: 4
-    subPath: "dags"
+    depth: 10
+    subPath: ""
     period: 30s
   persistence:
     enabled: false
