@@ -1,3 +1,4 @@
+import json
 from typing import Optional
 
 import duckdb
@@ -44,6 +45,9 @@ class DuckLakeHook(BaseHook):
         ducklake_catalog = BaseHook.get_connection(self.ducklake_catalog_conn_id)  # noqa
         ducklake_s3 = BaseHook.get_connection(self.ducklake_s3_conn_id)
 
+        s3_extra = json.loads(ducklake_s3.extra or "{}")
+        s3_endpoint = s3_extra.get("endpoint_url")
+
         con.execute(
             """
             CREATE SECRET ducklake_catalog_secret (
@@ -76,7 +80,7 @@ class DuckLakeHook(BaseHook):
             );
             """,
             [
-                self.s3_endpoint,
+                s3_endpoint,
                 ducklake_s3.login,
                 ducklake_s3.password,
             ],
