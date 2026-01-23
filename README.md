@@ -1,6 +1,7 @@
 # Kubernetes Lab Environment
 
 Repo designated for managing home lab Kubernetes cluster and personal website.
+Still a work in progress, so if something looks weird it is probably wrong :)
 
 ## Architecture Overview
 
@@ -43,10 +44,10 @@ AMD Ryzen 5 6600H / Proxmox VE 9.1.4
 - [ ] **Cloud Native PostgreSQL (CNPG)** - PostgreSQL
 - [ ] **ClickHouse** - OLAP database
 - [x] **SeaweedFS** - Object storage / S3
-- [ ] **Apache Airflow** - Workflow orchestration
+- [x] **Apache Airflow** - Workflow orchestration
 - [ ] **Apache Iceberg/Delta Lake** - Data lakehouse formats
 - [ ] **Trino** - Distributed SQL query engine
-- [ ] **DuckLake** - S3 + PostgreSQL backed Lakehouse
+- [x] **DuckLake** - S3 + PostgreSQL backed Lakehouse
 - [ ] **OpenMetadata** - Data discovery and governance
 
 ### Optional/Future
