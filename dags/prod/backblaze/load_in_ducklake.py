@@ -1,5 +1,5 @@
 from airflow.sdk import Asset, dag, task
-from airflow.sdk.bases.hook import BaseHook
+from custom_operator.ducklake import DuckLakeHook
 
 backblaze_q3_asset = Asset("s3://data-raw/backblaze/data_Q3_2025/")
 ducklake_dwh_asset = Asset("ducklake://bronze/backblaze")  # noqa
@@ -19,68 +19,10 @@ def load_backblaze_q3_to_ducklake():
 
     @task(inlets=[backblaze_q3_asset], outlets=[ducklake_dwh_asset])
     def load_files_to_ducklake():
-        import duckdb
+        ducklake = DuckLakeHook()
+        con = ducklake.get_connection()
 
-        con = duckdb.connect()
         try:
-            con.execute("install ducklake;")
-            con.execute("install postgres;")
-
-            ducklake_catalog = BaseHook.get_connection("ducklake_catalog")
-            ducklake_s3 = BaseHook.get_connection("ducklake_s3")
-
-            # Create secrets for DuckLake catalog and S3 storage
-            con.execute(
-                """
-                    CREATE SECRET (
-                        TYPE postgres,
-                        HOST ?,
-                        PORT ?,
-                        DATABASE ?,
-                        USER ?,
-                        PASSWORD ?
-                    );
-                """,
-                [
-                    ducklake_catalog.host,
-                    ducklake_catalog.port,
-                    ducklake_catalog.schema,
-                    ducklake_catalog.login,
-                    ducklake_catalog.password,
-                ],
-            )
-
-            con.execute(
-                """
-                    CREATE OR REPLACE SECRET secret (
-                        TYPE s3,
-                        ENDPOINT ?,
-                        KEY_ID ?,
-                        SECRET ?,
-                        URL_STYLE 'path',
-                        USE_SSL 'false'
-                    );
-                """,
-                [
-                    "seaweedfs-s3.seaweedfs:8333",
-                    ducklake_s3.login,
-                    ducklake_s3.password,
-                ],
-            )
-
-            # Attach DuckLake catalog
-            con.execute(
-                """
-                    ATTACH
-                        'ducklake:postgres:dbname={ctlg} host={host}'
-                        AS my_ducklake (DATA_PATH 's3://ducklake/');
-                    USE my_ducklake;
-                """.format(
-                    ctlg=ducklake_catalog.schema,
-                    host=ducklake_catalog.host,
-                )
-            )
-
             # Load Backblaze Hard Drive Data CSV files into DuckLake
             con.execute(
                 """
