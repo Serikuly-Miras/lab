@@ -16,7 +16,8 @@ RUN pip install --no-cache-dir "apache-airflow==${AIRFLOW_VERSION}" \
     connectorx \
     adbc_driver_postgresql \
     psycopg2-binary \
-    clickhouse-connect
+    clickhouse-connect \ 
+    astronomer-cosmos
 
 # Pre-install DuckDB extensions for DuckLake support to avoid runtime downloads 
 RUN python -c "import duckdb; con = duckdb.connect(); con.execute('INSTALL ducklake'); con.execute('INSTALL postgres'); con.close()"

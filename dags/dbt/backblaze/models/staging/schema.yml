@@ -1,0 +1,39 @@
+version: 2
+
+models:
+  - name: backblaze_datacenters
+    description: "Normalized datacenter dimension table"
+    columns:
+      - name: datacenter_id
+        description: "Surrogate key for datacenter"
+        data_tests:
+          - unique
+          - not_null
+      - name: datacenter
+        description: "Datacenter name"
+        data_tests:
+          - unique
+          - not_null
+
+  - name: backblaze_disk_models
+    description: "Normalized disk model dimension table"
+    columns:
+      - name: model_id
+        description: "Surrogate key for disk model"
+        data_tests:
+          - unique
+          - not_null
+      - name: model
+        description: "Disk model name"
+        data_tests:
+          - unique
+          - not_null
+          - dbt_utils.not_empty_string
+      - name: manufacturer
+        description: "Disk manufacturer name"
+        data_tests:
+          - dbt_utils.not_empty_string
+    data_tests:
+      - dbt_utils.expression_is_true:
+          arguments:
+            expression: "manufacturer != 'Other'"
