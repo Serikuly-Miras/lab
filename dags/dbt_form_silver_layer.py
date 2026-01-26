@@ -18,6 +18,6 @@ basic_cosmos_dag = DbtDag(
         "install_deps": True,
         "full_refresh": True,
     },
-    schedule_interval="@daily",
+    schedule="@daily",
     dag_id="backblaze_cosmos_silver_layer",
 )
