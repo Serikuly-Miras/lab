@@ -6,7 +6,7 @@ profile_config = ProfileConfig(
     target_name="dev",
     profile_mapping=PostgresUserPasswordProfileMapping(
         conn_id="dwh",
-        schema="silver",
+        profile_args={"schema": "silver"},
     ),
 )
 
