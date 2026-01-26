@@ -1,23 +1,30 @@
 FROM apache/airflow:3.1.6
 
+USER root
+
+# Install UV
+RUN curl -LsSf https://astral.sh/uv/install.sh | sh
+ENV PATH="/root/.cargo/bin:$PATH"
+
 USER airflow
 
-# Set the Airflow version and install additional packages
-RUN pip install --no-cache-dir "apache-airflow==${AIRFLOW_VERSION}" \
-    'apache-airflow[otel]' \
-    lxml \
-    seaborn \
-    openpyxl \
-    toml \ 
-    s3fs \
-    pandas \
-    polars \
-    duckdb \ 
-    connectorx \
-    adbc_driver_postgresql \
-    psycopg2-binary \
-    clickhouse-connect \ 
-    astronomer-cosmos
+RUN uv pip install --no-cache "apache-airflow==${AIRFLOW_VERSION}" \
+  dbt-core \
+  dbt-postgres \
+  astronomer-cosmos \
+  'apache-airflow[otel]' \
+  lxml \
+  seaborn \
+  openpyxl \
+  toml \ 
+  s3fs \
+  pandas \
+  polars \
+  duckdb \ 
+  connectorx \
+  adbc_driver_postgresql \
+  psycopg2-binary \
+  clickhouse-connect
 
 # Pre-install DuckDB extensions for DuckLake support to avoid runtime downloads 
 RUN python -c "import duckdb; con = duckdb.connect(); con.execute('INSTALL ducklake'); con.execute('INSTALL postgres'); con.close()"

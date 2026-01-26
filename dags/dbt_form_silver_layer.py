@@ -1,9 +1,5 @@
-from pathlib import Path
-
 from cosmos import DbtDag, ProjectConfig, ProfileConfig
 from cosmos.profiles import PostgresUserPasswordProfileMapping
-
-DBT_ROOT_PATH = Path(__file__).parent.parent.parent / "dbt"  # todo : fix
 
 profile_config = ProfileConfig(
     profile_name="backblaze",
@@ -15,7 +11,7 @@ profile_config = ProfileConfig(
 
 basic_cosmos_dag = DbtDag(
     project_config=ProjectConfig(
-        DBT_ROOT_PATH / "backblaze",
+        "/opt/airflow/dags/repo/dags/dbt/backblaze",
     ),
     profile_config=profile_config,
     operator_args={
