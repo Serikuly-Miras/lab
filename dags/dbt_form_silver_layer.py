@@ -13,6 +13,7 @@ profile_config = ProfileConfig(
 basic_cosmos_dag = DbtDag(
     project_config=ProjectConfig(
         "/opt/airflow/dags/repo/dags/dbt/backblaze",
+        install_dbt_deps=True,
     ),
     profile_config=profile_config,
     operator_args={
