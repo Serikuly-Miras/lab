@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: backblaze_datacenters
+  - name: dim_backblaze_datacenter
     description: "Normalized datacenter dimension table"
     columns:
       - name: datacenter_id
@@ -15,7 +15,7 @@ models:
           - unique
           - not_null
 
-  - name: backblaze_disk_models
+  - name: dim_backblaze_disk_model
     description: "Normalized disk model dimension table"
     columns:
       - name: model_id
@@ -37,3 +37,39 @@ models:
       - dbt_utils.expression_is_true:
           arguments:
             expression: "manufacturer != 'Other'"
+
+  - name: fact_backblaze
+    description: "Fact table for Backblaze disk data"
+    columns:
+      - name: date
+        description: "Date of the observation"
+        data_tests:
+          - not_null
+      - name: serial_number
+        description: "Unique identifier for the disk"
+        data_tests:
+          - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - date
+              - serial_number
+
+  - name: fact_backblaze_smart
+    description: "Fact table for Backblaze SMART attributes data"
+    columns:
+      - name: date
+        description: "Date of the observation"
+        data_tests:
+          - not_null
+      - name: serial_number
+        description: "Unique identifier for the disk"
+        data_tests:
+          - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - date
+              - serial_number

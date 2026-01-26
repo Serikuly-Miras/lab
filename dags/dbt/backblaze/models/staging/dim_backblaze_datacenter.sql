@@ -1,6 +1,6 @@
 {{ config(
     materialized = 'table',
-    pre_hook = "SET enable_seqscan = false;;"
+    pre_hook = "SET enable_seqscan = false;"
 ) }}
 
 SELECT
