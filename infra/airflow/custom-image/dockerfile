@@ -4,7 +4,6 @@ USER root
 
 # Install UV
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh
-ENV PATH="/root/.cargo/bin:$PATH"
 
 USER airflow
 
@@ -13,6 +12,7 @@ RUN uv pip install --no-cache "apache-airflow==${AIRFLOW_VERSION}" \
   dbt-postgres \
   astronomer-cosmos \
   'apache-airflow[otel]' \
+  apache-airflow-providers-openlineage[common.compat] \
   lxml \
   seaborn \
   openpyxl \

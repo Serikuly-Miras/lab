@@ -1,5 +1,5 @@
 defaultAirflowRepository: serikulymiras/airflow
-defaultAirflowTag: "homelabV2"
+defaultAirflowTag: "homelabV3"
 fernetKeySecretName: airflow-vault-secret
 webserverSecretKeySecretName: airflow-vault-secret
 images:
