@@ -20,6 +20,12 @@ api:
       name: "kaneo-secrets"
       key: jwt-access
     disableRegistration: false
+    extraEnv:
+      - name: BETTER_AUTH_SECRET
+        valueFrom:
+          secretKeyRef:
+            name: kaneo-secrets
+            key: better-auth-secret
 web:
   env:
     apiUrl: "https://kaneo.lab.s-miras.com"
