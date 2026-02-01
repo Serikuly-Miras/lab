@@ -17,7 +17,7 @@ spec:
       selfHeal: true
   sources:
     - repoURL: https://github.com/usekaneo/kaneo.git
-      chart: charts/kaneo
+      path: charts/kaneo
       targetRevision: v2.1.23
       helm:
         valueFiles:
