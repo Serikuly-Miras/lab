@@ -15,11 +15,15 @@ api:
     tag: 2.1.6
     pullPolicy: IfNotPresent
   env:
-    existingSecret:
-      enabled: true
-      name: "kaneo-secrets"
-      key: jwt-access
-    disableRegistration: false
+    jwtAccess: "your-secure-jwt-secret"
+  # env:
+  #   existingSecret:
+  #     enabled: true
+  #     name: "kaneo-secrets"
+  #     key: jwt-access
+  #   disableRegistration: false
 web:
   env:
     apiUrl: "https://kaneo.lab.s-miras.com"
+ingress:
+  enabled: false
