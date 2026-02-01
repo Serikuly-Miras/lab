@@ -12,7 +12,7 @@ postgresql:
 api:
   image:
     repository: ghcr.io/usekaneo/api
-    tag: 2.1.21
+    tag: 2.1.23
     pullPolicy: IfNotPresent
   env:
     existingSecret:

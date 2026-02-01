@@ -18,7 +18,7 @@ spec:
   sources:
     - repoURL: https://github.com/usekaneo/kaneo.git
       path: charts/kaneo
-      targetRevision: v2.1.21
+      targetRevision: v2.1.23
       helm:
         valueFiles:
           - $lab/infra/kaneo/values.yaml
