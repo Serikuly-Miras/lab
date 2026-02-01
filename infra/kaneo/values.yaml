@@ -1,0 +1,21 @@
+postgresql:
+  auth:
+    database: kaneo
+    username: kaneo_user
+    existingSecret: "kaneo-secrets"
+    secretKeys:
+      adminPasswordKey: postgres-password
+      userPasswordKey: password
+  persistence:
+    size: 15Gi
+    storageClass: "custom-longhorn-slower-sc"
+api:
+  env:
+    existingSecret:
+      enabled: true
+      name: "kaneo-secrets"
+      key: jwt-access
+    disableRegistration: false
+web:
+  env:
+    apiUrl: "https://kaneo.lab.s-miras.com"

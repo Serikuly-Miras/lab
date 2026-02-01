@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kaneo
+  namespace: argocd
+spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kaneo
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=false
+      - ServerSideApply=true
+    automated:
+      prune: true
+      selfHeal: true
+  sources:
+    - repoURL: https://github.com/usekaneo/kaneo.git
+      chart: charts/kaneo
+      targetRevision: v2.1.23
+      helm:
+        valueFiles:
+          - $lab/infra/kaneo/values.yaml
+    - repoURL: https://github.com/Serikuly-Miras/lab.git
+      ref: lab
+      targetRevision: HEAD
+    - repoURL: https://github.com/Serikuly-Miras/lab.git
+      path: infra/kaneo/custom-resources
+      targetRevision: HEAD
