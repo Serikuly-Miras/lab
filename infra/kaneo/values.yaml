@@ -10,6 +10,10 @@ postgresql:
     size: 15Gi
     storageClass: "custom-longhorn-slower-sc"
 api:
+  image:
+    repository: ghcr.io/usekaneo/api
+    tag: 2.1.21
+    pullPolicy: IfNotPresent
   env:
     existingSecret:
       enabled: true
