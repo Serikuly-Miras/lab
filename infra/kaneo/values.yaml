@@ -12,16 +12,17 @@ postgresql:
 api:
   image:
     repository: ghcr.io/usekaneo/api
-    tag: 2.1.6
+    tag: 2.1.23
     pullPolicy: IfNotPresent
   env:
-    jwtAccess: "your-secure-jwt-secret"
-  # env:
-  #   existingSecret:
-  #     enabled: true
-  #     name: "kaneo-secrets"
-  #     key: jwt-access
-  #   disableRegistration: false
+    existingSecret:
+      enabled: true
+      name: "kaneo-secrets"
+      key: jwt-access
+    disableRegistration: false
+    betterAuthSecret:
+      name: "kaneo-secrets"
+      key: better-auth-secret
 web:
   env:
     apiUrl: "https://kaneo.lab.s-miras.com"

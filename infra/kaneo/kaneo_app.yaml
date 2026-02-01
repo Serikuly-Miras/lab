@@ -16,9 +16,8 @@ spec:
       prune: true
       selfHeal: true
   sources:
-    - repoURL: https://github.com/usekaneo/kaneo.git
-      path: charts/kaneo
-      targetRevision: v2.1.6
+    - repoURL: https://github.com/Serikuly-Miras/lab.git
+      path: infra/kaneo/chart
       helm:
         valueFiles:
           - $lab/infra/kaneo/values.yaml
