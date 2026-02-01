@@ -12,7 +12,7 @@ postgresql:
 api:
   image:
     repository: ghcr.io/usekaneo/api
-    tag: 2.1.23
+    tag: 2.1.6
     pullPolicy: IfNotPresent
   env:
     existingSecret:
@@ -20,12 +20,6 @@ api:
       name: "kaneo-secrets"
       key: jwt-access
     disableRegistration: false
-    extraEnv:
-      - name: BETTER_AUTH_SECRET
-        valueFrom:
-          secretKeyRef:
-            name: kaneo-secrets
-            key: better-auth-secret
 web:
   env:
     apiUrl: "https://kaneo.lab.s-miras.com"
