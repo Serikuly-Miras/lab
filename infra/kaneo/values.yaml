@@ -2,6 +2,7 @@ postgresql:
   auth:
     database: kaneo
     username: kaneo_user
+    password: ""
     existingSecret: "kaneo-secrets"
     secretKeys:
       adminPasswordKey: postgres-password
