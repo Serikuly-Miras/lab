@@ -226,4 +226,4 @@ __marimo__/
 talos/_out
 talos/kubeconfig
 
-ignored
+.ignored/
