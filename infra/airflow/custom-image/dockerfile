@@ -1,4 +1,4 @@
-FROM apache/airflow:3.1.6
+FROM apache/airflow:3.1.7
 
 USER root
 
@@ -18,7 +18,7 @@ RUN uv pip install --no-cache "apache-airflow==${AIRFLOW_VERSION}" \
   openpyxl \
   toml \ 
   s3fs \
-  pandas \
+  "pandas>=3.0.0" \
   polars \
   duckdb \ 
   connectorx \
