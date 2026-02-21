@@ -225,3 +225,5 @@ __marimo__/
 # ignore talos config output for now
 talos/_out
 talos/kubeconfig
+
+ignored
