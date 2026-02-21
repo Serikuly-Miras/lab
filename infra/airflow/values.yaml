@@ -5,7 +5,7 @@ webserverSecretKeySecretName: airflow-vault-secret
 images:
   airflow:
     pullPolicy: Always
-executor: KubernetesExecutor
+executor: CeleryExecutor
 data:
   metadataSecretName: airflow-vault-secret
 dags:
@@ -34,7 +34,7 @@ workers:
   resources:
     limits:
       cpu: 1000m
-      memory: 8Gi
+      memory: 4Gi
 redis:
   persistence:
     enabled: true
