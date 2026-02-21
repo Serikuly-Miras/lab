@@ -61,7 +61,6 @@ lab/
 ├── dags/             # Airflow DAGs
 ├── docs/             # Documentation
 ├── infra/            # Helm charts, ArgoCD apps etc.
-├── notebooks/        # Jupyter notebooks
 ├── talos/            # Talos Linux configs
 └── web/              # s-miras.com website
 ```
