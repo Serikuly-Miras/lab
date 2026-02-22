@@ -1,6 +1,6 @@
 # Kubernetes Lab Environment
 
-Repo designated for managing and documenting everything I am running (s-miras.com + experiments on a homelab).
+Repo designated for managing and documenting everything I am running.
 
 ## Servers Overview
 
@@ -14,7 +14,7 @@ AMD 6600H / Proxmox VE 9.1.4 (Mini PC)
         ├── Control Plane Nodes
         │   └── 2 CPU / 8GB RAM / 100GB SSD1
         │
-        └── Worker Nodes (3x)
+        └── Worker Nodes
             ├─── 4 CPU / 16GB RAM / 350GB SSD1
             ├─── 4 CPU / 12GB RAM / 350GB SSD1
             └─── 2 CPU /  8GB RAM / 600GB SSD2
@@ -33,6 +33,8 @@ AMD CPX11 / Ubuntu 24.04.4 LTS (Hetzner VPS)
 ```
 
 ## Roadmap
+
+Tools and technologies I am currently running or plan to run in the lab environment.
 
 ### Infrastructure & Platform
 
@@ -56,6 +58,7 @@ AMD CPX11 / Ubuntu 24.04.4 LTS (Hetzner VPS)
 - [x] **SeaweedFS** - Object storage / S3
 - [x] **Apache Airflow** - Workflow orchestration
 - [x] **DuckLake** - S3 + PostgreSQL backed Lakehouse
+- [x] **DBT/Astronomer cosmos** - Data transformation and orchestration
 - [ ] **Trino** - Distributed SQL query engine
 - [ ] **OpenMetadata** - Data discovery and governance
 - [ ] **Apache Iceberg/Delta Lake** - Data lakehouse formats
@@ -68,8 +71,8 @@ AMD CPX11 / Ubuntu 24.04.4 LTS (Hetzner VPS)
 
 ```
 lab/
-├── dags/             # Airflow DAGs
+├── dags/             # Airflow DAGs / Cosmos dbt projects
 ├── docs/             # Documentation
 ├── infra/            # Helm charts, ArgoCD apps, Talos conf files, etc.
-└── web/              # s-miras.com website
+└── web/              # s-miras.com evidence website / blog
 ```
