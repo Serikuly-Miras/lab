@@ -12,11 +12,11 @@ AMD 6600H / Proxmox VE 9.1.6 (Mini PC)
     │
     └─── Talos 1.12.4 Cluster (K8s Rev: v1.35.0)
         ├── Control Plane Nodes
-        │   └── 2 CPU / 8GB RAM / 100GB SSD1
+        │   └── 2 CPU / 4GB RAM / 100GB SSD1
         │
         └── Worker Nodes
             ├─── 4 CPU / 16GB RAM / 350GB SSD1
-            ├─── 4 CPU / 12GB RAM / 350GB SSD1
+            ├─── 4 CPU / 16GB RAM / 350GB SSD1
             └─── 2 CPU /  8GB RAM / 600GB SSD2
 
 INTEL 8750H / Ubuntu 24.04.4 LTS (Old Legion Laptop)
