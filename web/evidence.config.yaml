@@ -44,7 +44,7 @@ theme:
       dark: "#fdba74"
     base:
       light: "#ffffff"
-      dark: "#09090b"
+      dark: "#000000"
     info:
       light: "#0284c7"
       dark: "#38bdf8"
