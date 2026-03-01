@@ -5,7 +5,7 @@ grafana:
     accessModes:
       - ReadWriteOnce
     size: 10Gi
-    storageClassName: longhorn
+    storageClassName: custom-longhorn-slower-sc
     finalizers:
       - kubernetes.io/pvc-protection
 prometheus:
@@ -15,7 +15,7 @@ prometheus:
     storageSpec:
       volumeClaimTemplate:
         spec:
-          storageClassName: longhorn
+          storageClassName: custom-longhorn-slower-sc
           accessModes: ["ReadWriteOnce"]
           resources:
             requests:
