@@ -11,24 +11,25 @@ from airflow.decorators import dag, task
 )
 def test_dag():
     @task
-    def pass_pandas_df_in_xcom() -> pd.DataFrame:
+    def pass_pandas_df_in_xcom() -> str:
         df = pd.DataFrame(data={"a": [i for i in range(50)]})
         print(df.describe())
-        return df
+        return df.to_parquet()
 
     @task
-    def recieve_pandas_df_xcom(data: pd.DataFrame):
+    def recieve_pandas_df_xcom(data: str):
+        data = pd.read_parquet(io.BytesIO(data))
         print(data.describe())
 
     @task
     def pass_polars_df_in_xcom() -> str:
         df = pl.DataFrame(data={"a": [i for i in range(50)]})
         print(df.describe())
-        return df.write_json()
+        return df.write_parquet()
 
     @task
-    def recieve_polars_df_xcom(data_json: str):
-        data = pl.read_json(io.StringIO(data_json))
+    def recieve_polars_df_xcom(data: str):
+        data = pl.read_parquet(io.BytesIO(data))
         print(data.describe())
 
     pd_df = pass_pandas_df_in_xcom()
