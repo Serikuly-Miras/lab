@@ -26,11 +26,11 @@ def test_dag():
     def pass_polars_df_in_xcom() -> str:
         df = pl.DataFrame(data={"a": [i for i in range(50)]})
         print(df.describe())
-        return base64.b64encode(df.write_parquet()).decode("utf-8")
+        return df.write_json()
 
     @task
     def recieve_polars_df_xcom(data: str):
-        data = pl.read_parquet(io.BytesIO(base64.b64decode(data)))
+        data = pl.read_json(io.StringIO(data))
         print(data.describe())
 
     pd_df = pass_pandas_df_in_xcom()
