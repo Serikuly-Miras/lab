@@ -34,7 +34,7 @@ workers:
   resources:
     limits:
       cpu: 1000m
-      memory: 4Gi
+      memory: 8Gi
 redis:
   persistence:
     enabled: true
