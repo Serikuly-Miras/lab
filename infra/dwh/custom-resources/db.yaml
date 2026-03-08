@@ -4,7 +4,7 @@ metadata:
   name: dwh-cnpg-db
   namespace: dwh
 spec:
-  instances: 2
+  instances: 1
   storage:
     size: 200Gi
     storageClass: custom-longhorn-faster-sc
