@@ -53,7 +53,7 @@ def test_dag():
         try:
             s3_client = s3_hook.get_conn()
             s3_client.put_bucket_lifecycle_configuration(
-                Bucket="xcoms", LifecycleConfiguration=lifecycle_policy
+                Bucket="airflow", LifecycleConfiguration=lifecycle_policy
             )
             logging.info("Applied lifecycle policy to xcoms bucket")
         except Exception as e:
