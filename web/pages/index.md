@@ -1,12 +1,12 @@
 ---
-title: s-miras
+title: blog | s-miras
 ---
 
 # Hello there!
 
 ## Who am I?
 
-I'm Serikuly Miras, software engineer from Kazakhstan.
+I'm Serikuly Miras, software engineer from Kazakhstan, Almaty.
 
 ## What is this?
 
