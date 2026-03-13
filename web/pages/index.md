@@ -1,3 +1,3 @@
 ---
-title: Initial page
+title: Home
 ---

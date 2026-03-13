@@ -1,1 +1,9 @@
-select model, count(1) from bronze.backblaze where date = '2025-09-30' group by model;
+SELECT
+    model,
+    COUNT(1)
+FROM
+    bronze.backblaze
+WHERE
+    DATE = '2025-09-30'
+GROUP BY
+    model;
