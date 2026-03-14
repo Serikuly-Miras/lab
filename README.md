@@ -19,13 +19,6 @@ AMD 6600H / Proxmox VE 9.1.6 (Mini PC)
             ├─── 4 CPU / 16GB RAM / 350GB SSD1
             └─── 2 CPU /  8GB RAM / 600GB SSD2
 
-INTEL 8750H / Ubuntu 24.04.4 LTS (Old Legion Laptop)
-    ├── 6 CPU / 12 vCPU
-    ├── 32GB DDR4 2667 RAM
-    ├── 500GB NVMe SSD
-    │
-    └─── ClickHouse 26.1.3 (Single Node)
-
 AMD CPX11 / Ubuntu 24.04.4 LTS (Hetzner VPS)
     ├── 2 vCPU
     ├── 2GB RAM
@@ -42,6 +35,9 @@ Tools and technologies I am currently running or plan to run in the lab environm
 - [x] **ArgoCD** - GitOps continuous deployment
 - [x] **Longhorn** - Distributed block storage
 - [x] **Vault + External Secrets Operator** - Secret management
+- [ ] **VPA** - Vertical Pod Autoscaler for resource optimization
+- [ ] **HPA** - Horizontal Pod Autoscaler example
+- [ ] **KEDA** - Kubernetes Event-Driven Autoscaling example
 
 ### Observability (LGTM Stack)
 
@@ -54,18 +50,21 @@ Tools and technologies I am currently running or plan to run in the lab environm
 ### Data Platform
 
 - [x] **Cloud Native PostgreSQL (CNPG)** - PostgreSQL
-- [x] **ClickHouse** - OLAP database
 - [x] **SeaweedFS** - Object storage / S3
 - [x] **Apache Airflow** - Workflow orchestration
 - [x] **DuckLake** - S3 + PostgreSQL backed Lakehouse
 - [x] **DBT/Astronomer cosmos** - Data transformation and orchestration
+- [ ] **ClickHouse** - OLAP database
 - [ ] **Trino** - Distributed SQL query engine
 - [ ] **OpenMetadata** - Data discovery and governance
 - [ ] **Apache Iceberg/Delta Lake** - Data lakehouse formats
+- [ ] **Kubeflow** - Machine learning platform on Kubernetes
 
 ### Optional/Future
 
 - [x] **Pi-Hole** - Tail'net-wide ad blocker / dns override
+- [x] **Evidence blog** - s-miras.com (VPS)
+- [ ] **Cool 3d printed case and rack** - For the mini PC and future hardware additions
 
 ## Directory Structure
 
