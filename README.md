@@ -65,6 +65,7 @@ Tools and technologies I am currently running or plan to run in the lab environm
 - [x] **Pi-Hole** - Tail'net-wide ad blocker / dns override
 - [x] **Evidence blog** - s-miras.com (VPS)
 - [ ] **Cool 3d printed case and rack** - For the mini PC and future hardware additions
+- [ ] **Offsite backup solution** - copy of local backed up data
 
 ## Directory Structure
 
