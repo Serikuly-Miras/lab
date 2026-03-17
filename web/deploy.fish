@@ -23,7 +23,7 @@ echo "Uploading files..."
 rsync -az --delete $BUILD_DIR/ $SERVER:$NEW_RELEASE/
 
 echo "Setting permissions..."
-ssh $SERVER "chown -R www-data:www-data $NEW_RELEASE && chmod -R 755 $NEW_RELEASE"
+ssh $SERVER "chown -R caddy:caddy $NEW_RELEASE && chmod -R 755 $NEW_RELEASE"
 
 echo "Atomic swap..."
 ssh $SERVER "ln -sfn $NEW_RELEASE $CURRENT_LINK"

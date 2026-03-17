@@ -1,0 +1,5 @@
+s-miras.com {
+        root * /var/www/s-miras.com
+        encode gzip zstd
+        file_server
+}
