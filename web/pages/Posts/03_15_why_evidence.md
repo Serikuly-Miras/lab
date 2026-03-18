@@ -1,5 +1,5 @@
 ---
-title: 26_03_Why_Evidence
+title: Why Evidence
 ---
 
 ## Prerequisites
@@ -23,4 +23,4 @@ It is open source and self hostable, markdown to dashboard is really cool, custo
 
 So as you could deduce, this blog is not only to hold my thoughts and experiments but also a way for me to learn Evidence.
 
-Big hopes for Evidence to stick - I'll be sharing my thoughts and opinions here later when I'll compile a proper review of it.
+Big hopes for Evidence to stick - I'll be sharing my thoughts and opinions here later when I'll compile a proper review of it.s
