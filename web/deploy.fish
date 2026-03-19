@@ -9,26 +9,43 @@ set BUILD_DIR "build"
 set TIMESTAMP (date +%Y%m%d_%H%M%S)
 set NEW_RELEASE "$DEPLOY_BASE/$TIMESTAMP"
 
-echo "Building Evidence..."
-npm run build:strict
-if test $status -ne 0
-    echo "Build failed!"
-    exit 1
+function stage_start
+    set -g stage_start_time (date +%s)
+    echo -n "$argv[1]..."
 end
 
-echo "Creating release directory..."
+function stage_end
+    set stage_end_time (date +%s)
+    set duration (math $stage_end_time - $stage_start_time)
+    if test $status -ne 0
+        echo "Failed! ($(math $duration)s)"
+        exit 1
+    end
+    echo "OK ($(math $duration)s)"
+end
+
+stage_start "Building Evidence"
+npm run build:strict > /dev/null
+stage_end
+
+stage_start "Creating release directory"
 ssh $SERVER "mkdir -p $NEW_RELEASE"
+stage_end
 
-echo "Uploading files..."
+stage_start "Uploading files"
 rsync -az --delete $BUILD_DIR/ $SERVER:$NEW_RELEASE/
+stage_end
 
-echo "Setting permissions..."
+stage_start "Setting permissions"
 ssh $SERVER "chown -R caddy:caddy $NEW_RELEASE && chmod -R 755 $NEW_RELEASE"
+stage_end
 
-echo "Atomic swap..."
+stage_start "Atomic swap"
 ssh $SERVER "ln -sfn $NEW_RELEASE $CURRENT_LINK"
+stage_end
 
-echo "Cleaning old releases (keeping last 3)..."
+stage_start "Cleaning old releases (keeping last 3)"
 ssh $SERVER "cd $DEPLOY_BASE && ls -t | tail -n +4 | xargs rm -rf"
+stage_end
 
 echo "Deployment complete."
