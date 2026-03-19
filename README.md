@@ -7,7 +7,7 @@ Repo designated for managing and documenting everything I am running.
 ```
 AMD 6600H / Proxmox VE 9.1.6 (Mini PC)
     ├── 6 CPU / 12 vCPU
-    ├── 48GB DDR5 5600 RAM
+    ├── 48GB DDR5 4800 RAM
     ├── 1TB Fast NVMe SSD (SSD1) / 1TB Slower NVMe SSD (SSD2)
     │
     └─── Talos 1.12.4 Cluster (K8s Rev: v1.35.0)
