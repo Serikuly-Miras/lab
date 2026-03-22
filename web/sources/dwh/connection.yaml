@@ -5,7 +5,7 @@ options:
   database: dwh
   host: dwh.lab.s-miras.com
   port: 5432
-  schema: bronze
+  schema: gold
 # Advanced Options, you probably don't want to change this
 buildOptions:
   batchSize: 1000000
