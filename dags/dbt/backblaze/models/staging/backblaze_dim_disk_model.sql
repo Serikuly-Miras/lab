@@ -1,8 +1,3 @@
-{{ config(
-    materialized = 'table',
-    pre_hook = "SET enable_seqscan = false;"
-) }}
-
 SELECT
     {{ dbt_utils.generate_surrogate_key(['model']) }} AS model_id,
     model,
@@ -20,10 +15,13 @@ SELECT
         WHEN model LIKE 'SSDS%' THEN 'Intel'
         WHEN model LIKE 'CT250%' THEN 'Crucial'
         ELSE 'Other'
-    END AS manufacturer,
-    CURRENT_TIMESTAMP AS updated_at
+    END AS manufacturer
 FROM
-    bronze.backblaze
+    {{ source(
+        'bronze',
+        'backblaze'
+    ) }}
+    b
 WHERE
     model IS NOT NULL
 GROUP BY

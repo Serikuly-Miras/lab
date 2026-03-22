@@ -1,11 +1,21 @@
 {{ config(
-    materialized = 'table',
-    post_hook = [ "CREATE INDEX IF NOT EXISTS idx_fact_backblaze_smart_date_serial_number_btree ON {{ this }} USING btree (date, serial_number);" ]
+    materialized = 'incremental',
+    unique_key = ['date', 'serial_number'],
+    post_hook = [ "CREATE INDEX IF NOT EXISTS idx_fact_backblaze_date_btree ON {{ this }} USING btree (date);", "CREATE INDEX IF NOT EXISTS idx_fact_backblaze_date_serial_number_btree ON {{ this }} USING btree (date, serial_number);" ]
 ) }}
 
 SELECT
     b.date,
     b.serial_number,
+    m.model_id,
+    b.capacity_bytes,
+    b.failure,
+    d.datacenter_id,
+    b.cluster_id,
+    b.vault_id,
+    b.pod_id,
+    b.pod_slot_num,
+    b.is_legacy_format,
     -- SMART Attributes
     b.smart_1_raw,
     b.smart_2_normalized,
@@ -193,4 +203,25 @@ SELECT
     b.smart_255_normalized,
     b.smart_255_raw
 FROM
-    bronze.backblaze b
+    {{ source(
+        'bronze',
+        'backblaze'
+    ) }}
+    b
+    LEFT JOIN {{ ref('backblaze_dim_datacenter') }}
+    d
+    ON b.datacenter = d.datacenter
+    LEFT JOIN {{ ref('backblaze_dim_disk_model') }}
+    m
+    ON b.model = m.model
+WHERE
+    1 = 1
+
+{% if is_incremental() %}
+AND DATE > (
+    SELECT
+        MAX(DATE)
+    FROM
+        {{ this }}
+)
+{% endif %}

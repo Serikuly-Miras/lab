@@ -1,0 +1,7 @@
+version: 2
+
+sources:
+  - name: bronze
+    tables:
+      - name: backblaze
+        description: "Bronze table containing raw data from Backblaze"
