@@ -24,6 +24,10 @@ function stage_end
     echo "OK ($(math $duration)s)"
 end
 
+stage_start "Clean previous build"
+rm -rf $BUILD_DIR
+stage_end
+
 stage_start "Building Evidence"
 npm run build:strict > /dev/null
 stage_end
@@ -46,6 +50,14 @@ stage_end
 
 stage_start "Cleaning old releases (keeping last 3)"
 ssh $SERVER "cd $DEPLOY_BASE && ls -t | tail -n +4 | xargs rm -rf"
+stage_end
+
+stage_start "Update Caddyfile"
+ssh $SERVER "sudo cp ./Caddyfile /etc/caddy/Caddyfile"
+stage_end
+
+stage_start "Restarting Caddy"
+ssh $SERVER "sudo systemctl reload caddy"
 stage_end
 
 echo "Deployment complete."
