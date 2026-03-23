@@ -1,13 +1,26 @@
+WITH datacenter AS (
+    SELECT
+        {{ dbt_utils.generate_surrogate_key(['b.datacenter']) }} AS datacenter_id,
+        b.datacenter
+    FROM
+        {{ source(
+            'bronze',
+            'backblaze'
+        ) }}
+        b
+    WHERE
+        b.datacenter IS NOT NULL
+    GROUP BY
+        b.datacenter
+)
 SELECT
-    {{ dbt_utils.generate_surrogate_key(['datacenter']) }} AS datacenter_id,
-    datacenter
+    datacenter.datacenter_id,
+    datacenter.datacenter,
+    sdc.city,
+    sdc.longitude,
+    sdc.latitude
 FROM
-    {{ source(
-        'bronze',
-        'backblaze'
-    ) }}
-    b
-WHERE
-    datacenter IS NOT NULL
-GROUP BY
     datacenter
+    LEFT JOIN {{ ref('seed_datacenters') }}
+    sdc
+    ON datacenter.datacenter = sdc.datacenter

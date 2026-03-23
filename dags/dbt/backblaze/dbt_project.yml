@@ -20,3 +20,7 @@ models:
     marts:
       +materialized: "table"
       +schema: "gold"
+
+seeds:
+  backblaze:
+    +schema: "bronze"

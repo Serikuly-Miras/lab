@@ -1,1 +1,0 @@
-SELECT * from gold.backblaze_per_model_summary;
