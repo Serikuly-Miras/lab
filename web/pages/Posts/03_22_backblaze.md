@@ -36,7 +36,8 @@ More on the setup: [lab](https://github.com/Serikuly-Miras/lab)
     city,
     longitude,
     latitude,
-    (capacity_bytes / 1024**5)::int::text as capacity_PiB
+    (capacity_bytes / 1024**5)::int::text as capacity_PiB,
+    (capacity_bytes / 1024**5)::int::text || ' PiB' as capacity_PiB_text,
   from dwh.backblaze_datacenters_capacity
 ```
 
@@ -44,7 +45,7 @@ More on the setup: [lab](https://github.com/Serikuly-Miras/lab)
     data={backblaze_datacenters_capacity} 
     lat=latitude
     long=longitude  
-    pointName=city 
+    pointName=capacity_PiB_text
     tooltipType=hover
     title="Backblaze datacenters on a map"
     value=city
