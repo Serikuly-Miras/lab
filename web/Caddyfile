@@ -1,5 +1,6 @@
 s-miras.com {
         root * /var/www/s-miras.com
         encode gzip zstd
+        try_files {path} {path}/ /index.html
         file_server
 }
