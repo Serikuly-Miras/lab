@@ -41,32 +41,42 @@ This is also pretty straightforward. The playbook aligns with the official quick
 
 On top of it, the setup installs Helm, Longhorn, the CNPG operator, and finally our cluster manifest with the same pgtune overrides.
 
-I chose Longhorn because I wanted to test its effects on performance and because I really like using it.
+I only tested local path and longhorn as csi drivers for CNPG expecting to see a slightly more overhead from longhorn.
 
 ## Results
 
-The results are not very surprising, after all we only add latency and work by running PostgreSQL with CNPG. But it is interesting to see the numbers and how they compare to regular PostgreSQL.
+The results are not very surprising, after all we only add latency and work by running PostgreSQL with CNPG. But it is interesting to see the numbers and how they compare to regular PostgreSQL. Also maybe there is something wrong with how much overhead longhorn adds, which i will be investigating in the future.
 
 ```sql benchmarks
 select
-    'Read-Only pgbench TPS' as benchmark,
+    'read-only pgbench' as benchmark,
     'PG' as system,
-    41101.864478::int as tps
+    40819.319622::int as tps
 union all
 select
-    'Read-Only pgbench TPS' as benchmark,
-    'CNPG' as system,
+    'read-write pgbench' as benchmark,
+    'PG' as system,
+    8176.927887::int as tps
+union all
+select
+    'read-only pgbench' as benchmark,
+    'CNPG + longhorn' as system,
     8562.530432::int as tps
 union all
 select
-    'Read-Write pgbench TPC-B (sort of) TPS' as benchmark,
-    'PG' as system,
-    8114.858496::int as tps
+    'read-write pgbench' as benchmark,
+    'CNPG + longhorn' as system,
+    2497.811928::int as tps
 union all
 select
-    'Read-Write pgbench TPC-B (sort of) TPS' as benchmark,
-    'CNPG' as system,
-    2671.181028::int as tps
+    'read-only pgbench' as benchmark,
+    'CNPG + local path' as system,
+    37963.010676::int as tps
+union all
+select
+    'read-write pgbench' as benchmark,
+    'CNPG + local path' as system,
+    7269.751636::int as tps
 ```
 
 <BarChart
@@ -76,10 +86,11 @@ select
     series=system
     type=grouped
     title="PG vs CNPG benchmarks"
-    yAxisTitle="Transactions per second (TPS)"
+    yAxisTitle="TPS"
     xAxisTitle="Benchmark type"
     valueSuffix=" TPS"
     labels=true
+    yFmt=num1k
 />
 
 ## Conclusion
@@ -88,7 +99,8 @@ It is too early to draw any conclusions from these results, but it is clear that
 
 For myself, I have already decided that CNPG is amazing—super simple and easy to use. But it is not a solution for every use case, and it is important to evaluate the trade-offs before choosing to run PostgreSQL in Kubernetes with CNPG. For future experiments, I will be adding:
 
-- Testing with different storage solutions (like local PVs or other CSI drivers)
+- Testing with different storage solutions
+- Investigating the overhead of longhorn and how to optimize it
 - Testing with different Kubernetes distributions (like k8s or Talos)
 - Testing with different PostgreSQL versions (like 17 or 19 when it comes out)
 - Testing with different workloads (like OLTP or OLAP)
