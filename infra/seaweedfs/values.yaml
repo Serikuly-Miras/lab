@@ -5,12 +5,12 @@ master:
   data:
     type: "persistentVolumeClaim"
     size: "5Gi"
-    storageClass: "custom-longhorn-slower-sc"
+    storageClass: "local-path"
 
   logs:
     type: "persistentVolumeClaim"
     size: "5Gi"
-    storageClass: "custom-longhorn-slower-sc"
+    storageClass: "local-path"
 
 volume:
   enabled: true
@@ -20,24 +20,25 @@ volume:
   dataDirs:
     - name: data1
       type: "persistentVolumeClaim"
-      size: "300Gi"
+      size: "150Gi"
+      storageClass: "local-path"
       maxVolumes: 0 # If set to zero, the limit will be auto configured
 
 filer:
   enabled: true
   replicas: 1
   storage: 5Gi
-  storageClass: "custom-longhorn-slower-sc"
+  storageClass: "local-path"
 
   data:
     type: "persistentVolumeClaim"
     size: "5Gi"
-    storageClass: "custom-longhorn-slower-sc"
+    storageClass: "local-path"
 
   logs:
     type: "persistentVolumeClaim"
     size: "5Gi"
-    storageClass: "custom-longhorn-slower-sc"
+    storageClass: "local-path"
 
   s3:
     enabled: true
@@ -53,4 +54,4 @@ s3:
   logs:
     type: "persistentVolumeClaim"
     size: "5Gi"
-    storageClass: "custom-longhorn-slower-sc"
+    storageClass: "local-path"
