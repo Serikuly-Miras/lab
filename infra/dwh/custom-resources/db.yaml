@@ -6,8 +6,8 @@ metadata:
 spec:
   instances: 1
   storage:
-    size: 200Gi
-    storageClass: custom-longhorn-faster-sc
+    size: 150Gi
+    storageClass: "local-path"
 
   bootstrap:
     initdb:
