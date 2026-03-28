@@ -5,19 +5,10 @@ Repo designated for managing and documenting everything I am running.
 ## Servers Overview
 
 ```
-AMD 6600H / Proxmox VE 9.1.6 (Mini PC)
+AMD Ryzen5 6600H / Talos 1.12.6 baremetal
     ├── 6 CPU / 12 vCPU
     ├── 48GB DDR5 4800 RAM
-    ├── 1TB Fast NVMe SSD (SSD1) / 1TB Slower NVMe SSD (SSD2)
-    │
-    └─── Talos 1.12.4 Cluster (K8s Rev: v1.35.0)
-        ├── Control Plane Nodes
-        │   └── 2 CPU / 4GB RAM / 100GB SSD1
-        │
-        └── Worker Nodes
-            ├─── 4 CPU / 16GB RAM / 350GB SSD1
-            ├─── 4 CPU / 16GB RAM / 350GB SSD1
-            └─── 2 CPU /  8GB RAM / 600GB SSD2
+    └── 1TB NVMe SSD (local path) / 500GB NVMe SSD (longhorn)
 
 AMD CPX11 / Ubuntu 24.04.4 LTS (Hetzner VPS)
     ├── 2 vCPU
