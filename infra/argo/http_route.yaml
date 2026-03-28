@@ -1,6 +1,8 @@
 # The API server should be run with TLS disabled.
 # Edit the argocd-server deployment to add the --insecure flag to the argocd-server command
 # or set server.insecure: "true" in the argocd-cmd-params-cm ConfigMap
+# kubectl patch configmap argocd-cmd-params-cm -n argocd --patch '{"data":{"server.insecure":"true"}}'
+# then rolloit the argocd-server deployment to apply the changes
 
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
