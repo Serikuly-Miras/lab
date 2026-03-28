@@ -12,7 +12,7 @@ spec:
     namespace: cnpg-system
   syncPolicy:
     syncOptions:
-      - CreateNamespace=false
+      - CreateNamespace=true
       - ServerSideApply=true
     automated:
       prune: true
@@ -20,4 +20,4 @@ spec:
   sources:
     - repoURL: https://cloudnative-pg.github.io/charts
       chart: cloudnative-pg
-      targetRevision: 0.27.0
+      targetRevision: 0.27.1
