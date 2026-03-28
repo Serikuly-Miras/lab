@@ -13,5 +13,4 @@ spec:
   destination:
     create: true
     name: tls-vss
-    type: kubernetes.io/tls
   refreshAfter: 30s
