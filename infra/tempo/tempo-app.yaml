@@ -35,7 +35,7 @@ spec:
             storageClassName: longhorn
             accessModes:
               - ReadWriteOnce
-            size: 10Gi
+            size: 20Gi
   ignoreDifferences:
     - group: apps
       kind: StatefulSet
