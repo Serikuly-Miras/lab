@@ -21,13 +21,6 @@ prometheus:
             requests:
               storage: 20Gi
     retention: 7d
-    additionalScrapeConfigs:
-      - job_name: "out-of-cluster-node-exporter"
-        scrape_interval: 5s
-        static_configs:
-          - targets: [
-                "192.168.10.20:9100", # pve node-exporter
-              ]
 crds:
   enabled: true
   upgradeJob:
