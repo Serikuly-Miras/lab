@@ -1,8 +1,9 @@
 customization:
     systemExtensions:
         officialExtensions:
+            - siderolabs/amd-ucode
+            - siderolabs/amdgpu
             - siderolabs/iscsi-tools
-            - siderolabs/qemu-guest-agent
             - siderolabs/util-linux-tools
 
-# 88d1f7a5c4f1d3aba7df787c448c1d3d008ed29cfb34af53fa0df4336a56040b
+# 65cf8364cd0de4cf7b851dc7067a2db83d0ba04f11d8635c6cd3334be6ffb825
