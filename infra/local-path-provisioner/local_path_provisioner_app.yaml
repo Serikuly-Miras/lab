@@ -32,7 +32,7 @@ spec:
                   "nodePathMap":[
                     {
                       "node":"DEFAULT_PATH_FOR_NON_LISTED_NODES",
-                      "paths":["/var/mnt/local-path-provisioner"]
+                      "paths":["/var/mnt/u-local-path-provisioner"]
                     }
                   ]
                 }
@@ -51,3 +51,10 @@ spec:
               path: /metadata/labels
               value:
                 pod-security.kubernetes.io/enforce: privileged
+        - target:
+            kind: StorageClass
+            name: local-path
+          patch: |-
+            - op: add
+              path: /metadata/annotations/storageclass.kubernetes.io~1is-default-class
+              value: "true"
