@@ -12,7 +12,7 @@ spec:
     namespace: ducklake-catalog
   syncPolicy:
     syncOptions:
-      - CreateNamespace=false
+      - CreateNamespace=true
       - ServerSideApply=true
     automated:
       prune: true
