@@ -4,11 +4,12 @@ global:
 
 ports:
   web:
-    redirections:
-      entryPoint:
-        to: websecure
-        scheme: https
-        permanent: true
+    http:
+      redirections:
+        entryPoint:
+          to: websecure
+          scheme: https
+          permanent: true
   postgres-dwh:
     port: 5432
     protocol: TCP
