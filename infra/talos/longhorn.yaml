@@ -13,7 +13,7 @@ machine:
     extraMounts:
       - destination: /var/lib/longhorn
         type: bind
-        source: /var/mnt/longhorn-volume
+        source: /var/mnt/u-longhorn-volume
         options:
           - bind
           - rshared
