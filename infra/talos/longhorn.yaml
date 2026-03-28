@@ -1,0 +1,20 @@
+---
+apiVersion: v1alpha1
+kind: UserVolumeConfig
+name: longhorn-volume
+provisioning:
+  diskSelector:
+    match: "!system_disk"
+  minSize: 100GB
+  grow: true
+---
+machine:
+  kubelet:
+    extraMounts:
+      - destination: /var/lib/longhorn
+        type: bind
+        source: /var/mnt/u-longhorn-volume
+        options:
+          - bind
+          - rshared
+          - rw
