@@ -12,7 +12,7 @@ spec:
     namespace: vault
   syncPolicy:
     syncOptions:
-      - CreateNamespace=false
+      - CreateNamespace=true
       - ServerSideApply=true
     automated:
       prune: true
