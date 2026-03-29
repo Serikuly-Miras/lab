@@ -28,7 +28,7 @@ spec:
             accessModes:
               - ReadWriteOnce
             size: "1Gi"
-            storageClassName: "longhorn"
+            storageClass: "longhorn"
           adminPassword: {}
           admin:
             enabled: true
