@@ -20,3 +20,4 @@ spec:
   sources:
     - repoURL: oci://ghcr.io/clickhouse/clickhouse-operator-helm
       chart: clickhouse-operator
+      targetRevision: 0.0.3
