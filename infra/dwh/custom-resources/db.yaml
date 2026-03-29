@@ -6,7 +6,7 @@ metadata:
 spec:
   instances: 1
   storage:
-    size: 150Gi
+    size: 200Gi
     storageClass: "local-path"
 
   bootstrap:
@@ -15,6 +15,22 @@ spec:
       owner: dwh
       secret:
         name: dwh-db-credentials
+
+  resources:
+    requests:
+      memory: "8Gi"
+      cpu: "4000m"
+    limits:
+      memory: "8Gi"
+      cpu: "4000m"
+
+  # DB Version: 18
+  # OS Type: linux
+  # DB Type: dw
+  # Total Memory (RAM): 8 GB
+  # CPUs num: 4
+  # Connections num: 30
+  # Data Storage: ssd
 
   postgresql:
     parameters:
