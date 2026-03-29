@@ -21,7 +21,7 @@ volume:
     - name: data1
       type: "persistentVolumeClaim"
       size: "200Gi"
-      storageClass: "longhorn"
+      storageClass: "local-path"
       maxVolumes: 0 # If set to zero, the limit will be auto configured
 
 filer:
