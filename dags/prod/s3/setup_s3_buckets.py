@@ -20,8 +20,6 @@ def test_dag():
             "data-raw",
             # ducklake
             "ducklake",
-            # longhorn backups
-            "longhorn-backups",
         ]
 
         for bucket in buckets_to_create:
