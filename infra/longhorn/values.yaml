@@ -1,5 +1,6 @@
 persistence:
   defaultClassReplicaCount: 1
+  defaultClass: false
 defaultBackupStore:
   backupTarget: "s3://ms-homelab-longhorn@us-east-1/" # url passed in secret
   backupTargetCredentialSecret: longhorn-backup-target
