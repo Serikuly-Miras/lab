@@ -49,6 +49,20 @@ def load_backblaze_q3_to_postgres():
             ddl_sql = f.read()
         pg_hook.run(sql=ddl_sql)
 
+        # read a little bit to infer and correct schema
+        df = pl.scan_csv(
+            f"s3://data-raw/{s3_objects[0]}",
+            storage_options=storage_options,
+            n_rows=1_000,
+        ).collect()
+
+        cols = [
+            pl.col(col).cast(pl.Int64)
+            for col in df.columns
+            if col.startswith("smart_")  # noqa
+        ]
+        cols.append(pl.col("date").cast(pl.Date))
+
         for i, obj in enumerate(s3_objects):
             print(f"Processing {i + 1}/{len(s3_objects)}: {obj}")
             (
@@ -57,7 +71,7 @@ def load_backblaze_q3_to_postgres():
                     storage_options=storage_options,
                 )
                 .collect()
-                .with_columns([pl.col("date").cast(pl.Date)])
+                .with_columns(cols)
                 .write_database(
                     connection=pg_uri,
                     table_name="bronze.backblaze",
