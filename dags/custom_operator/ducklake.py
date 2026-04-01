@@ -105,7 +105,7 @@ class DuckLakeHook(BaseHook):
         con.execute(
             """
             ATTACH 'ducklake:postgres:dbname={db} host={host} port={port}'
-            AS ducklake (DATA_PATH {data_path}, AUTOMATIC_MIGRATION TRUE);
+            AS ducklake (DATA_PATH {data_path});
             USE ducklake;
             """.format(
                 db=ducklake_catalog.schema,
