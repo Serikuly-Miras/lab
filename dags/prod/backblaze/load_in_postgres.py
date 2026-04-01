@@ -1,5 +1,8 @@
+import os
+
 import polars as pl
 from airflow.providers.amazon.aws.hooks.s3 import S3Hook
+from airflow.providers.postgres.hooks.postgres import PostgresHook
 from airflow.sdk import Asset, dag, task
 from airflow.sdk.bases.hook import BaseHook
 
@@ -31,6 +34,7 @@ def load_backblaze_q3_to_postgres():
     def load_files_to_postgres(s3_objects):
         s3_conn = BaseHook.get_connection("s3")
         pg_conn = BaseHook.get_connection("dwh")
+        pg_hook = PostgresHook(postgres_conn_id="PSPGSQL")
 
         pg_uri = f"postgresql://{pg_conn.login}:{pg_conn.password}@{pg_conn.host}:{pg_conn.port}/{pg_conn.schema}"  # noqa
 
@@ -40,20 +44,12 @@ def load_backblaze_q3_to_postgres():
             "aws_secret_access_key": s3_conn.password,
         }
 
-        # read a little bit to infer and correct schema
-        df = pl.scan_csv(
-            f"s3://data-raw/{s3_objects[0]}",
-            storage_options=storage_options,
-            n_rows=1_000,
-        ).collect()
+        ddl_file = os.path.join(os.path.dirname(__file__), "pg_ddl.sql")
+        with open(ddl_file, "r") as f:
+            ddl_sql = f.read()
+        pg_hook.run(sql=ddl_sql)
 
-        cols = [
-            pl.col(col).cast(pl.Int64)
-            for col in df.columns
-            if col.startswith("smart_")  # noqa
-        ]
-        cols.append(pl.col("date").cast(pl.Date))
-
+        pg_hook.run("ALTER TABLE bronze.backblaze SET UNLOGGED;")
         for i, obj in enumerate(s3_objects):
             print(f"Processing {i + 1}/{len(s3_objects)}: {obj}")
             (
@@ -61,15 +57,15 @@ def load_backblaze_q3_to_postgres():
                     f"s3://data-raw/{obj}",
                     storage_options=storage_options,
                 )
-                .with_columns(cols)
                 .collect()
                 .write_database(
                     connection=pg_uri,
                     table_name="bronze.backblaze",
-                    if_table_exists="replace" if i == 0 else "append",
+                    if_table_exists="append",
                     engine="adbc",
                 )
             )
+        pg_hook.run("ALTER TABLE bronze.backblaze SET LOGGED;")
 
     s3_objects = list_s3_files()
     load_files_to_postgres(s3_objects)
