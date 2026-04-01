@@ -1,0 +1,23 @@
+apiVersion: clickhouse.com/v1alpha1
+kind: KeeperCluster
+metadata:
+  name: ch-lab
+spec:
+  replicas: 1
+  dataVolumeClaimSpec:
+    resources:
+      requests:
+        storage: 25Gi
+---
+apiVersion: clickhouse.com/v1alpha1
+kind: ClickHouseCluster
+metadata:
+  name: ch-lab
+spec:
+  replicas: 1
+  dataVolumeClaimSpec:
+    resources:
+      requests:
+        storage: 150Gi
+  keeperClusterRef:
+    name: sample
