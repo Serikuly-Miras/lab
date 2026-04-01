@@ -34,7 +34,7 @@ def load_backblaze_q3_to_postgres():
     def load_files_to_postgres(s3_objects):
         s3_conn = BaseHook.get_connection("s3")
         pg_conn = BaseHook.get_connection("dwh")
-        pg_hook = PostgresHook(postgres_conn_id="PSPGSQL")
+        pg_hook = PostgresHook(postgres_conn_id="dwh")
 
         pg_uri = f"postgresql://{pg_conn.login}:{pg_conn.password}@{pg_conn.host}:{pg_conn.port}/{pg_conn.schema}"  # noqa
 
