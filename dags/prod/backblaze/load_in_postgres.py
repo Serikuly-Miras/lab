@@ -57,6 +57,7 @@ def load_backblaze_q3_to_postgres():
                     storage_options=storage_options,
                 )
                 .collect()
+                .with_columns([pl.col("date").cast(pl.Date)])
                 .write_database(
                     connection=pg_uri,
                     table_name="bronze.backblaze",
@@ -65,8 +66,19 @@ def load_backblaze_q3_to_postgres():
                 )
             )
 
+    @task
+    def index():
+        pg_hook = PostgresHook(postgres_conn_id="dwh")
+        index_sql = """
+            CREATE INDEX ON bronze.backblaze_q3_2025 ("date");
+            CREATE INDEX ON bronze.backblaze_q3_2025 (serial_number);
+            CREATE INDEX ON bronze.backblaze_q3_2025 (model);
+            CREATE INDEX ON bronze.backblaze_q3_2025 (datacenter);
+        """  # noqa
+        pg_hook.run(sql=index_sql)
+
     s3_objects = list_s3_files()
-    load_files_to_postgres(s3_objects)
+    load_files_to_postgres(s3_objects) >> index()
 
 
 load_backblaze_q3_to_postgres()
