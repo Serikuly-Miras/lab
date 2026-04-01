@@ -5,10 +5,10 @@ metadata:
 spec:
   replicas: 1
   dataVolumeClaimSpec:
+    storageClass: "longhorn"
     resources:
       requests:
         storage: 25Gi
-        storageClass: "longhorn"
 ---
 apiVersion: clickhouse.com/v1alpha1
 kind: ClickHouseCluster
@@ -17,9 +17,9 @@ metadata:
 spec:
   replicas: 1
   dataVolumeClaimSpec:
+    storageClass: "longhorn"
     resources:
       requests:
         storage: 150Gi
-        storageClass: "longhorn"
   keeperClusterRef:
     name: ch-lab
