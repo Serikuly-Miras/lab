@@ -10,4 +10,4 @@ spec:
     - match: HostSNI(`*`)
       services:
         - name: ch-lab-clickhouse-headless
-          port: 9000
+          port: 8123

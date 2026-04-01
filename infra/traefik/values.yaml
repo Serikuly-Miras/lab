@@ -26,7 +26,7 @@ ports:
     expose:
       default: true
   clickhouse:
-    port: 9000
+    port: 8123
     protocol: TCP
     expose:
       default: true
