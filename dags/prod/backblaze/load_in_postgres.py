@@ -49,7 +49,6 @@ def load_backblaze_q3_to_postgres():
             ddl_sql = f.read()
         pg_hook.run(sql=ddl_sql)
 
-        pg_hook.run("ALTER TABLE bronze.backblaze SET UNLOGGED;")
         for i, obj in enumerate(s3_objects):
             print(f"Processing {i + 1}/{len(s3_objects)}: {obj}")
             (
@@ -65,7 +64,6 @@ def load_backblaze_q3_to_postgres():
                     engine="adbc",
                 )
             )
-        pg_hook.run("ALTER TABLE bronze.backblaze SET LOGGED;")
 
     s3_objects = list_s3_files()
     load_files_to_postgres(s3_objects)
