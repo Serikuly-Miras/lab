@@ -25,6 +25,11 @@ ports:
     protocol: TCP
     expose:
       default: true
+  clickhouse:
+    port: 9000
+    protocol: TCP
+    expose:
+      default: true
 
 providers:
   kubernetesIngress:
