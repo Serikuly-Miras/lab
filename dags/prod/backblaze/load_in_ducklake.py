@@ -27,9 +27,10 @@ def load_backblaze_q3_to_ducklake():
             con.execute(
                 """
                     CREATE TABLE hard_drive_data AS SELECT *
-                    FROM read_csv('s3://data-raw/backblaze/data_Q3_2025/*.csv') WHERE 1=0;
+                    FROM read_csv('s3://data-raw/backblaze/data_Q3_2025/2025-07-01.csv') WHERE 1=0;
                 """  # noqa
             )
+            print("Created empty table 'hard_drive_data' with correct schema.")
 
             # Set partitioning on the date column
             con.execute(
@@ -37,6 +38,7 @@ def load_backblaze_q3_to_ducklake():
                     ALTER TABLE hard_drive_data SET PARTITIONED BY (date);
                 """  # noqa
             )
+            print("Set partitioning on 'date' column for 'hard_drive_data'.")
 
             # Load data
             con.execute(
