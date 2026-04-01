@@ -203,4 +203,4 @@ CREATE TABLE bronze.backblaze (
 CREATE TABLE bronze.backblaze_q3_2025 PARTITION OF bronze.backblaze FOR
 VALUES
 FROM
-    ('2025-07-01') TO ('2025-09-30');
+    ('2025-07-01') TO ('2025-10-01');
