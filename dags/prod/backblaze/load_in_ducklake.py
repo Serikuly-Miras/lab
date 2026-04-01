@@ -27,7 +27,7 @@ def load_backblaze_q3_to_ducklake():
             con.execute(
                 """
                     CREATE TABLE hard_drive_data AS SELECT *
-                    FROM read_csv('s3://data-raw/backblaze/data_Q3_2025/.csv') WHERE 1=0;
+                    FROM read_csv('s3://data-raw/backblaze/data_Q3_2025/*.csv') WHERE 1=0;
                 """  # noqa
             )
 
@@ -42,7 +42,7 @@ def load_backblaze_q3_to_ducklake():
             con.execute(
                 """
                     INSERT INTO hard_drive_data SELECT *
-                    FROM read_csv('s3://data-raw/backblaze/data_Q3_2025/.csv');
+                    FROM read_csv('s3://data-raw/backblaze/data_Q3_2025/*.csv');
                 """  # noqa
             )
 
