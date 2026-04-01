@@ -5,7 +5,7 @@ metadata:
 spec:
   replicas: 1
   dataVolumeClaimSpec:
-    storageClass: "longhorn"
+    storageClassName: "longhorn"
     resources:
       requests:
         storage: 25Gi
@@ -17,7 +17,7 @@ metadata:
 spec:
   replicas: 1
   dataVolumeClaimSpec:
-    storageClass: "longhorn"
+    storageClassName: "longhorn"
     resources:
       requests:
         storage: 150Gi
