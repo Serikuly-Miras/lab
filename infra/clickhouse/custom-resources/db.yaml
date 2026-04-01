@@ -20,4 +20,4 @@ spec:
       requests:
         storage: 150Gi
   keeperClusterRef:
-    name: sample
+    name: ch-lab
