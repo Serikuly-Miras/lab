@@ -1,0 +1,62 @@
+name: "backblaze_ducklake"
+version: "1.0.0"
+profile: "backblaze_ducklake"
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  backblaze_ducklake:
+    staging:
+      +materialized: "table"
+      +schema: silver
+    marts:
+      +materialized: "table"
+      +schema: gold
+
+seeds:
+  backblaze_ducklake:
+    +schema: bronze
+
+# example of how to set up a DuckLake profile in profiles.yml:
+# backblaze_ducklake:
+#   outputs:
+#     dev:
+#       type: duckdb
+#       path: ":memory:"
+#       threads: 4
+#       extensions:
+#         - ducklake
+#         - postgres
+#         - httpfs
+#         - parquet
+#       secrets:
+#         - type: postgres
+#           name: pg_metadata
+#           host: HOSTNAME
+#           port: PORT
+#           user: USERNAME
+#           password: PASSWORD
+#           database: DATABASE
+#         - type: s3
+#           key_id: KEY_ID
+#           secret: SECRET
+#           endpoint: ENDPOINT
+#           use_ssl: false # depends on setup
+#           url_style: path # per seaweedfs
+#       attach:
+#         - path: "ducklake:postgres:"
+#           alias: datalake
+#           options:
+#             meta_secret: pg_metadata
+#             data_path: "s3://ducklake/" # changeme
+#       database: datalake
+#   target: dev

@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: datalake
+    schema: "main"
+    tables:
+      - name: hard_drive_data
+        description: "Bronze table containing raw data from Backblaze"
