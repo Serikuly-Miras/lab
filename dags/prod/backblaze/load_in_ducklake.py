@@ -26,7 +26,7 @@ def load_backblaze_q3_to_ducklake():
             # Load Backblaze Hard Drive Data CSV files into DuckLake
             con.execute(
                 """
-                    CREATE TABLE hard_drive_data AS
+                    CREATE TABLE hard_drive_data PARTITIONED BY (date) AS
                     SELECT * FROM read_csv('s3://data-raw/backblaze/data_Q3_2025/*.csv');
                 """  # noqa
             )
