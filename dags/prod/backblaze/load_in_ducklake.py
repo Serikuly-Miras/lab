@@ -23,28 +23,11 @@ def load_backblaze_q3_to_ducklake():
         con = ducklake.get_connection()
 
         try:
-            # Create empty table with correct schema in DuckLake
+            # Create patitioned table (duckdb >= 1.5)
             con.execute(
                 """
-                    CREATE TABLE hard_drive_data AS SELECT *
-                    FROM read_csv('s3://data-raw/backblaze/data_Q3_2025/2025-07-01.csv') WHERE 1=0;
-                """  # noqa
-            )
-            print("Created empty table 'hard_drive_data' with correct schema.")
-
-            # Set partitioning on the date column
-            con.execute(
-                """
-                    ALTER TABLE hard_drive_data SET PARTITIONED BY (date);
-                """  # noqa
-            )
-            print("Set partitioning on 'date' column for 'hard_drive_data'.")
-
-            # Load data
-            con.execute(
-                """
-                    INSERT INTO hard_drive_data SELECT *
-                    FROM read_csv('s3://data-raw/backblaze/data_Q3_2025/*.csv');
+                    CREATE TABLE hard_drive_data PARTITIONED BY (date) AS
+                    SELECT * FROM read_csv('s3://data-raw/backblaze/data_Q3_2025/*.csv');
                 """  # noqa
             )
 
