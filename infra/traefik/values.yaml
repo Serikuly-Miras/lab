@@ -30,6 +30,11 @@ ports:
     protocol: TCP
     expose:
       default: true
+  seaweedfs-s3:
+    port: 8333
+    protocol: TCP
+    expose:
+      default: true
 
 providers:
   kubernetesIngress:
