@@ -25,7 +25,7 @@ spec:
     name: ch-lab
   settings:
     defaultUserPassword:
-      passwordType: password_sha256_hex
+      passwordType: password
       secret:
         name: ch-lab-credentials
         key: password
