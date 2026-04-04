@@ -23,3 +23,9 @@ spec:
         storage: 150Gi
   keeperClusterRef:
     name: ch-lab
+  settings:
+    defaultUserPassword:
+      passwordType: sha256_password
+      secret:
+        name: ch-lab-credentials
+        key: password
