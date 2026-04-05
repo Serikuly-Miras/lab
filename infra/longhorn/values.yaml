@@ -5,3 +5,5 @@ defaultBackupStore:
   backupTarget: "s3://ms-homelab-longhorn@us-east-1/" # url passed in secret
   backupTargetCredentialSecret: longhorn-backup-target
   pollInterval: 300
+defaultSettings:
+  defaultDataPath: "/var/mnt/longhorn"

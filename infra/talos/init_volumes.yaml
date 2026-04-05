@@ -13,6 +13,6 @@ name: EPHEMERAL
 provisioning:
   diskSelector:
     match: system_disk
+  minSize: 200GB
+  maxSize: 200GB
   grow: false
-  minSize: 100GB
-  maxSize: 100GB

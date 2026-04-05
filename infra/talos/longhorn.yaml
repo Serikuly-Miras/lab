@@ -1,7 +1,7 @@
 ---
 apiVersion: v1alpha1
 kind: UserVolumeConfig
-name: longhorn-volume
+name: longhorn
 provisioning:
   diskSelector:
     match: "!system_disk"
@@ -11,9 +11,9 @@ provisioning:
 machine:
   kubelet:
     extraMounts:
-      - destination: /var/lib/longhorn
+      - destination: /var/mnt/longhorn
         type: bind
-        source: /var/mnt/u-longhorn-volume
+        source: /var/mnt/longhorn
         options:
           - bind
           - rshared
