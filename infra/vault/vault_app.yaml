@@ -21,6 +21,16 @@ spec:
     - repoURL: https://helm.releases.hashicorp.com
       chart: vault
       targetRevision: 0.31.0
+      helm:
+        values: |
+          injector:
+            logLevel: "debug"
+          server:
+            logLevel: "debug"
+          csi:
+            agent:
+              logLevel: "debug"
+            logLevel: "debug"
     - repoURL: https://github.com/Serikuly-Miras/lab.git
       targetRevision: HEAD
       path: infra/vault/custom-resources
