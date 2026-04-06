@@ -14,13 +14,13 @@ def test_dag():
 
         con.execute(
             """
-                DROP TABLE IF EXISTS nl_train_stations;
+                DROP TABLE IF EXISTS bronze.nl_train_stations;
             """
         ).fetchall()
 
         con.execute(
             """
-                CREATE TABLE nl_train_stations AS
+                CREATE TABLE bronze.nl_train_stations AS
                 FROM 'https://blobs.duckdb.org/nl_stations.csv';
             """
         ).fetchall()
@@ -28,7 +28,7 @@ def test_dag():
         count = con.execute(
             """
             SELECT count(*)
-            FROM nl_train_stations
+            FROM bronze.nl_train_stations
             """
         ).fetchall()
         print(count)
