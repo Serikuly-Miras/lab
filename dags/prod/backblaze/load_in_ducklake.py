@@ -24,24 +24,24 @@ def load_backblaze_q3_to_ducklake():
         con = ducklake.get_connection()
 
         try:
-            con.execute("DROP TABLE IF EXISTS hard_drive_data;")
+            con.execute("DROP TABLE IF EXISTS bronze.backblaze;")
 
             # Create empty table with correct schema in DuckLake
             con.execute(
                 """
-                    CREATE TABLE hard_drive_data AS SELECT *
+                    CREATE TABLE bronze.backblaze AS SELECT *
                     FROM read_csv('s3://data-raw/backblaze/data_Q3_2025/2025-07-01.csv') WHERE 1=0;
                 """  # noqa
             )
-            print("Created empty table 'hard_drive_data' with correct schema.")
+            print("Created empty table 'bronze.backblaze' with correct schema")
 
             # Set partitioning on the date column
             con.execute(
                 """
-                    ALTER TABLE hard_drive_data SET PARTITIONED BY (date);
+                    ALTER TABLE bronze.backblaze SET PARTITIONED BY (date);
                 """  # noqa
             )
-            print("Set partitioning on 'date' column for 'hard_drive_data'.")
+            print("Set partitioning on 'date' column for 'bronze.backblaze'")
         finally:
             con.close()
 
@@ -62,7 +62,7 @@ def load_backblaze_q3_to_ducklake():
                     print(f"Inserting file {raw_file} ...")
                     con.execute(
                         """
-                        INSERT INTO hard_drive_data SELECT * FROM read_csv(?);
+                        INSERT INTO bronze.backblaze SELECT * FROM read_csv(?);
                         """,
                         [f"s3://data-raw/{raw_file}"],
                     )
@@ -71,7 +71,7 @@ def load_backblaze_q3_to_ducklake():
             result = con.execute(
                 """
                     SELECT count(*)
-                    FROM hard_drive_data;
+                    FROM bronze.backblaze;
                 """
             ).fetchall()
             print(f"Total records loaded into DuckLake: {result}")
