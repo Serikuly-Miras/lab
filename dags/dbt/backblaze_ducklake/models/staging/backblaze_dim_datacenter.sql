@@ -5,7 +5,7 @@ WITH datacenter AS (
     FROM
         {{ source(
             'datalake',
-            'hard_drive_data'
+            'backblaze'
         ) }}
         b
     WHERE

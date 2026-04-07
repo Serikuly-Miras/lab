@@ -2,7 +2,7 @@ version: 2
 
 sources:
   - name: datalake
-    schema: "main"
+    schema: "bronze"
     tables:
-      - name: hard_drive_data
+      - name: backblaze
         description: "Bronze table containing raw data from Backblaze"

@@ -199,7 +199,7 @@ SELECT
 FROM
     {{ source(
         'datalake',
-        'hard_drive_data'
+        'backblaze'
     ) }}
     b
     LEFT JOIN {{ ref('backblaze_dim_datacenter') }}

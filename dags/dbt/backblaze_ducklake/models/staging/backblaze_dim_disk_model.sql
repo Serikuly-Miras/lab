@@ -19,7 +19,7 @@ SELECT
 FROM
     {{ source(
         'datalake',
-        'hard_drive_data'
+        'backblaze'
     ) }}
     b
 WHERE
