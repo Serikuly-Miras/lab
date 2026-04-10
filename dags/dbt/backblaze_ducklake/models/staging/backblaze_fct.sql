@@ -1,3 +1,8 @@
+{{ config(
+    materialized = 'incremental',
+    unique_key = ['date', 'serial_number'],
+) }}
+
 SELECT
     b.date,
     b.serial_number,
