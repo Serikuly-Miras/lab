@@ -1,3 +1,21 @@
+apiVersion: barmancloud.cnpg.io/v1
+kind: ObjectStore
+metadata:
+  name: hetzner-object-store
+spec:
+  configuration:
+    destinationPath: s3://ms-homelab-cnpg-backups/
+    endpointURL: https://nbg1.your-objectstorage.com
+    s3Credentials:
+      accessKeyId:
+        name: hetzner-object-store-secret
+        key: ACCESS_KEY_ID
+      secretAccessKey:
+        name: hetzner-object-store-secret
+        key: ACCESS_SECRET_KEY
+    wal:
+      compression: gzip
+---
 apiVersion: secrets.hashicorp.com/v1beta1
 kind: VaultStaticSecret
 metadata:
