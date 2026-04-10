@@ -18,7 +18,8 @@ spec:
 
   imagePullPolicy: Always
   plugins:
-    - name: barman-cloud.cloudnative-pg.io
+    - enabled: true
       isWALArchiver: true
+      name: barman-cloud.cloudnative-pg.io
       parameters:
         barmanObjectName: hetzner-object-store
