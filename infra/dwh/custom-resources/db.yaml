@@ -78,3 +78,11 @@ spec:
           - readwrite
         passwordSecret:
           name: dwh-db-etl-credentials
+
+  imagePullPolicy: Always
+  plugins:
+    - enabled: true
+      name: barman-cloud.cloudnative-pg.io
+      isWALArchiver: true
+      parameters:
+        barmanObjectName: hetzner-object-store
