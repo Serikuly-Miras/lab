@@ -15,3 +15,10 @@ spec:
       owner: ducklake-catalog
       secret:
         name: ducklake-catalog-db-credentials
+
+  imagePullPolicy: Always
+  plugins:
+    - name: barman-cloud.cloudnative-pg.io
+      isWALArchiver: true
+      parameters:
+        barmanObjectName: hetzner-object-store
