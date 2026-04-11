@@ -25,6 +25,11 @@ ports:
     protocol: TCP
     expose:
       default: true
+  postgres-iceberg-catalog:
+    port: 5435
+    protocol: TCP
+    expose:
+      default: true
   clickhouse:
     port: 8123
     protocol: TCP

@@ -1,0 +1,25 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: iceberg-catalog-cnpg-db
+  namespace: iceberg-catalog
+spec:
+  instances: 1
+  storage:
+    size: 50Gi
+    storageClass: longhorn
+
+  bootstrap:
+    initdb:
+      database: iceberg-catalog
+      owner: iceberg-catalog
+      secret:
+        name: iceberg-catalog-db-credentials
+
+  imagePullPolicy: Always
+  plugins:
+    - enabled: true
+      isWALArchiver: true
+      name: barman-cloud.cloudnative-pg.io
+      parameters:
+        barmanObjectName: hetzner-object-store
