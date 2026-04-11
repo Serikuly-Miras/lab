@@ -30,6 +30,10 @@ spec:
                 secret:
                   secretName: vault-storage-config
                   defaultMode: 420
+            volumeMounts:
+              - name: userconfig-vault-storage-config
+                mountPath: /vault/userconfig/vault-storage-config
+                readOnly: true
     - repoURL: https://github.com/Serikuly-Miras/lab.git
       targetRevision: HEAD
       path: infra/vault/custom-resources
