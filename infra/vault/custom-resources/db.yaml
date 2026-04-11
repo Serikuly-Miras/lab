@@ -14,7 +14,7 @@ spec:
       owner: vault
       secret:
         name: vault-db-credentials
-      postInitSQL:
+      postInitApplicationSQL:
         - |
           CREATE TABLE vault_kv_store (
           parent_path TEXT COLLATE "C" NOT NULL,
@@ -24,4 +24,5 @@ spec:
             CONSTRAINT pkey PRIMARY KEY (path, key)
           );
         - CREATE INDEX parent_path_idx ON vault_kv_store (parent_path);
+        - ALTER TABLE vault_kv_store OWNER TO vault;
   imagePullPolicy: Always
