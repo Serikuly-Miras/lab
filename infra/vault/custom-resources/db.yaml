@@ -26,3 +26,27 @@ spec:
         - CREATE INDEX parent_path_idx ON vault_kv_store (parent_path);
         - ALTER TABLE vault_kv_store OWNER TO vault;
   imagePullPolicy: Always
+  plugins:
+    - enabled: true
+      name: barman-cloud.cloudnative-pg.io
+      isWALArchiver: true
+      parameters:
+        barmanObjectName: hetzner-object-store
+---
+apiVersion: barmancloud.cnpg.io/v1
+kind: ObjectStore
+metadata:
+  name: hetzner-object-store
+spec:
+  configuration:
+    destinationPath: s3://ms-homelab-cnpg-backups/
+    endpointURL: https://nbg1.your-objectstorage.com
+    s3Credentials:
+      accessKeyId:
+        name: hetzner-object-store-secret
+        key: ACCESS_KEY_ID
+      secretAccessKey:
+        name: hetzner-object-store-secret
+        key: ACCESS_SECRET_KEY
+    wal:
+      compression: gzip

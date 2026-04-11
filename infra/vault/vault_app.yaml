@@ -50,3 +50,4 @@ spec:
 # }
 # kubectl create secret generic vault-db-credentials --from-literal=username=vault --from-literal=password=secret123! -n vault
 # kubectl create secret generic vault-storage-config --from-file=config.hcl -n vault
+# kubectl create secret generic hetzner-object-store-secret --from-literal=ACCESS_KEY_ID=your_access_key_id --from-literal=ACCESS_SECRET_KEY=your_secret_access_key -n vault
