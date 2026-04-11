@@ -1,0 +1,33 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: vault-cnpg-db
+spec:
+  instances: 1
+  storage:
+    size: 10Gi
+    storageClass: "local-path"
+
+  bootstrap:
+    initdb:
+      database: vault
+      owner: vault
+      secret:
+        name: vault-db-credentials
+      postInitSQL:
+        - |
+          CREATE TABLE vault_kv_store (
+          parent_path TEXT COLLATE "C" NOT NULL,
+            path        TEXT COLLATE "C",
+            key         TEXT COLLATE "C",
+            value       BYTEA,
+            CONSTRAINT pkey PRIMARY KEY (path, key)
+          );
+        - CREATE INDEX parent_path_idx ON vault_kv_store (parent_path);
+  imagePullPolicy: Always
+  plugins:
+    - enabled: true
+      name: barman-cloud.cloudnative-pg.io
+      isWALArchiver: true
+      parameters:
+        barmanObjectName: hetzner-object-store

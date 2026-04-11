@@ -12,7 +12,7 @@ spec:
     namespace: vault
   syncPolicy:
     syncOptions:
-      - CreateNamespace=true
+      - CreateNamespace=false # create ns and seed creds beforehand
       - ServerSideApply=true
     automated:
       prune: true
@@ -23,14 +23,8 @@ spec:
       targetRevision: 0.32.0
       helm:
         values: |
-          injector:
-            logLevel: "debug"
           server:
-            logLevel: "debug"
-          csi:
-            agent:
-              logLevel: "debug"
-            logLevel: "debug"
+            extraArgs: "-config=/vault/userconfig/vault-storage-config/config.hcl"
     - repoURL: https://github.com/Serikuly-Miras/lab.git
       targetRevision: HEAD
       path: infra/vault/custom-resources
@@ -39,3 +33,11 @@ spec:
       kind: StatefulSet
       jsonPointers:
         - /spec/volumeClaimTemplates
+
+# dont forget to seed db creds and vault config
+# config.hcl <<
+# storage "postgresql" {
+#     connection_url = "postgres://vault:secret123!@vault-cnpg-db-rw.vault:5432/vault"
+# }
+# kubectl create secret generic vault-db-credentials --from-literal=username=vault --from-literal=password=secret123! -n vault
+# kubectl create secret generic vault-storage-config --from-file=config.hcl -n vault
