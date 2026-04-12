@@ -25,5 +25,7 @@ spec:
         values: |
           server:
             workers: 1
+          additionalConfigProperties:
+            - http-server.process-forwarded=true
     - repoURL: https://github.com/Serikuly-Miras/lab.git
       path: infra/trino/custom-resources
