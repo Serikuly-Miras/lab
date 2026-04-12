@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: trino
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: trino
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
+    automated:
+      prune: true
+      selfHeal: true
+  sources:
+    - chart: trino
+      repoURL: https://trinodb.github.io/charts
+      targetRevision: 1.42.1
+    - repoURL: https://github.com/Serikuly-Miras/lab.git
+      path: infra/trino/custom-resources
