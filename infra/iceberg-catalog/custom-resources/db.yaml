@@ -23,27 +23,3 @@ spec:
       name: barman-cloud.cloudnative-pg.io
       parameters:
         barmanObjectName: hetzner-object-store
----
-apiVersion: postgresql.cnpg.io/v1
-kind: Cluster
-metadata:
-  name: iceberg-catalog-cnpg-db-backup-test
-  namespace: iceberg-catalog
-spec:
-  instances: 1
-  storage:
-    size: 50Gi
-    storageClass: longhorn
-
-  bootstrap:
-    recovery:
-      source: origin
-
-  imagePullPolicy: Always
-  externalClusters:
-    - name: origin
-      plugin:
-        name: barman-cloud.cloudnative-pg.io
-        parameters:
-          barmanObjectName: hetzner-object-store
-          serverName: iceberg-catalog-cnpg-db
