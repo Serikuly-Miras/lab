@@ -19,5 +19,7 @@ spec:
           text: '{{- get .Secrets "username" -}}'
         POSTGRESQL_DWH_PASSWORD:
           text: '{{- get .Secrets "password" -}}'
+      excludes:
+        - .*
       excludeRaw: true
   refreshAfter: 30s
