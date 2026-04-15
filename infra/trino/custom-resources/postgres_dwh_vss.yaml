@@ -16,9 +16,8 @@ spec:
     transformation:
       templates:
         POSTGRESQL_DWH_USERNAME:
-          text: '{{- get .Secrets "username" | b64dec -}}'
+          text: '{{- get .Secrets "username" -}}'
         POSTGRESQL_DWH_PASSWORD:
-          text: '{{- get .Secrets "password" | b64dec -}}'
-      excludes:
-        - .*
+          text: '{{- get .Secrets "password" -}}'
+      excludeRaw: true
   refreshAfter: 30s
