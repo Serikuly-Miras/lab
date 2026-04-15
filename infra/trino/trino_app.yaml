@@ -65,5 +65,8 @@ spec:
               connection-url=jdbc:clickhouse://ch-lab-clickhouse-headless.clickhouse:8123/
               connection-user=${ENV:CLICKHOUSE_USERNAME}
               connection-password=${ENV:CLICKHOUSE_PASSWORD}
+            ducklake: |
+              connector.name=duckdb
+              connection-url=jdbc:duckdb:ducklake:postgres:postgresql://${ENV:DUCKLAKE_USERNAME}:${ENV:DUCKLAKE_PASSWORD}@ducklake-catalog-cnpg-db-rw.ducklake-catalog:5432/ducklake-catalog
     - repoURL: https://github.com/Serikuly-Miras/lab.git
       path: infra/trino/custom-resources

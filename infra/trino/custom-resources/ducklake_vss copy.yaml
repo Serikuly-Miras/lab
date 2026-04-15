@@ -1,0 +1,25 @@
+apiVersion: secrets.hashicorp.com/v1beta1
+kind: VaultStaticSecret
+metadata:
+  name: ducklake-vss
+  namespace: trino
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+spec:
+  vaultAuthRef: vault-auth
+  mount: kvv2
+  type: kv-v2
+  path: ducklake-catalog
+  destination:
+    create: true
+    name: ducklake-credentials
+    transformation:
+      templates:
+        DUCKLAKE_USERNAME:
+          text: '{{- get .Secrets "username" -}}'
+        DUCKLAKE_PASSWORD:
+          text: '{{- get .Secrets "password" -}}'
+      excludes:
+        - .*
+      excludeRaw: true
+  refreshAfter: 30s
