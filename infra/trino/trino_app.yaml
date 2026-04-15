@@ -38,6 +38,8 @@ spec:
                 name: postgres-dwh-credentials
             - secretRef:
                 name: clickhouse-credentials
+            - secretRef:
+                name: ducklake-credentials
           catalogs:
             iceberg: |
               connector.name=iceberg
