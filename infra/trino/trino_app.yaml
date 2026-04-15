@@ -34,6 +34,8 @@ spec:
                 name: iceberg-s3-credentials
             - secretRef:
                 name: postgres-dwh-credentials
+            - secretRef:
+                name: clickhouse-credentials
           catalogs:
             iceberg: |
               connector.name=iceberg
