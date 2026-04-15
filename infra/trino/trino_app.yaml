@@ -56,5 +56,10 @@ spec:
               connection-url=jdbc:postgresql://dwh-cnpg-db-rw.dwh:5432/dwh
               connection-user=${ENV:POSTGRESQL_DWH_USERNAME}
               connection-password=${ENV:POSTGRESQL_DWH_PASSWORD}
+            clickhouse: |
+              connector.name=clickhouse
+              connection-url=jdbc:clickhouse://ch-lab-clickhouse-headless.clickhouse:8123/
+              connection-user=${ENV:CLICKHOUSE_USERNAME}
+              connection-password=${ENV:CLICKHOUSE_PASSWORD}
     - repoURL: https://github.com/Serikuly-Miras/lab.git
       path: infra/trino/custom-resources
