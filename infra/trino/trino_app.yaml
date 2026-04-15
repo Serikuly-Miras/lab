@@ -29,7 +29,9 @@ spec:
             - http-server.process-forwarded=true
           envFrom:
             - secretRef:
-                name: trino-env
+                name: iceberg-catalog-credentials
+            - secretRef:
+                name: iceberg-s3-credentials
             - secretRef:
                 name: postgres-dwh-credentials
           catalogs:
@@ -39,7 +41,7 @@ spec:
               iceberg.jdbc-catalog.catalog-name=iceberg-catalog
               iceberg.jdbc-catalog.driver-class=org.postgresql.Driver
               iceberg.jdbc-catalog.connection-url=jdbc:postgresql://iceberg-catalog-cnpg-db-rw.iceberg-catalog:5432/iceberg-catalog
-              iceberg.jdbc-catalog.connection-user=iceberg-catalog
+              iceberg.jdbc-catalog.connection-user=${ENV:ICEBERG_CATALOG_USERNAME}
               iceberg.jdbc-catalog.connection-password=${ENV:ICEBERG_CATALOG_PASSWORD}
               iceberg.jdbc-catalog.default-warehouse-dir=s3://iceberg
               fs.hadoop.enabled=false
