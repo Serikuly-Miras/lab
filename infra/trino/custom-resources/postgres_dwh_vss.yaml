@@ -1,0 +1,23 @@
+apiVersion: secrets.hashicorp.com/v1beta1
+kind: VaultStaticSecret
+metadata:
+  name: postgres-dwh-vss
+  namespace: trino
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+spec:
+  vaultAuthRef: vault-auth
+  mount: kvv2
+  type: kv-v2
+  path: dwh-db-etl-credentials
+  destination:
+    create: true
+    name: postgres-dwh-credentials
+    transformation:
+      templateSpecs:
+        POSTGRESQL_DWH_USERNAME:
+          text: '{{- get .Secrets "username" | b64dec -}}'
+        POSTGRESQL_DWH_PASSWORD:
+          text: '{{- get .Secrets "password" | b64dec -}}'
+      excludeRaw: true
+  refreshAfter: 30s
