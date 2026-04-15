@@ -25,6 +25,8 @@ spec:
         values: |
           server:
             workers: 1
+          image:
+            tag: 480
           additionalConfigProperties:
             - http-server.process-forwarded=true
           envFrom:
