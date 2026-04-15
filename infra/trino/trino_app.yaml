@@ -30,6 +30,8 @@ spec:
           envFrom:
             - secretRef:
                 name: trino-env
+            - secretRef:
+                name: postgres-dwh-credentials
           catalogs:
             iceberg: |
               connector.name=iceberg
@@ -50,7 +52,7 @@ spec:
             postgresql-dwh: |
               connector.name=postgresql
               connection-url=jdbc:postgresql://dwh-cnpg-db-rw.dwh:5432/dwh
-              connection-user=etl_user
+              connection-user=${ENV:POSTGRESQL_DWH_USERNAME}
               connection-password=${ENV:POSTGRESQL_DWH_PASSWORD}
     - repoURL: https://github.com/Serikuly-Miras/lab.git
       path: infra/trino/custom-resources
