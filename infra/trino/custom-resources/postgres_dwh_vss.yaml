@@ -14,10 +14,11 @@ spec:
     create: true
     name: postgres-dwh-credentials
     transformation:
-      templateSpecs:
+      templates:
         POSTGRESQL_DWH_USERNAME:
           text: '{{- get .Secrets "username" | b64dec -}}'
         POSTGRESQL_DWH_PASSWORD:
           text: '{{- get .Secrets "password" | b64dec -}}'
-      excludeRaw: true
+      excludes:
+        - .*
   refreshAfter: 30s
