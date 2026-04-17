@@ -9,6 +9,10 @@ spec:
     resources:
       requests:
         storage: 25Gi
+  containerTemplate:
+    image:
+      repository: docker.io/clickhouse/clickhouse
+      tag: 25.8.21
 ---
 apiVersion: clickhouse.com/v1alpha1
 kind: ClickHouseCluster
@@ -29,3 +33,7 @@ spec:
       secret:
         name: ch-lab-credentials
         key: password
+  containerTemplate:
+    image:
+      repository: docker.io/clickhouse/clickhouse
+      tag: 25.8.21
