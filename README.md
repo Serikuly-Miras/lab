@@ -8,7 +8,7 @@ Repo designated for managing and documenting everything I am running.
 AMD Ryzen5 6600H / Talos 1.12.6 baremetal
     ├── 6 CPU / 12 vCPU
     ├── 48GB DDR5 4800 RAM
-    ├── 1TB NVMe SSD (100GB EPHEMERAL, 900GB local path provisioner)
+    ├── 1TB NVMe SSD (200GB EPHEMERAL, 800GB local path provisioner)
     └── 500GB NVMe SSD (longhorn provisioner)
 
 AMD CPX11 / Ubuntu 24.04.4 LTS (Hetzner VPS)
@@ -47,11 +47,10 @@ Tools and technologies I am currently running or plan to run in the lab environm
 - [x] **DuckLake** - SeaweedFS S3 + PostgreSQL backed Lakehouse
 - [x] **Apache Airflow** - Workflow orchestration
 - [x] **DBT/Astronomer cosmos** - Data transformation and orchestration
-- [ ] **ClickHouse** - OLAP database
-- [ ] **Trino** - Distributed SQL query engine
+- [x] **ClickHouse** - OLAP database
+- [x] **Trino** - Distributed SQL query engine
+- [x] **Apache Iceberg/Delta Lake** - Alternative lakehouse
 - [ ] **OpenMetadata** - Data discovery and governance
-- [ ] **Apache Iceberg/Delta Lake** - Alternative lakehouse
-- [ ] **Kubeflow** - Machine learning platform on Kubernetes
 
 ### Optional/Future
 
