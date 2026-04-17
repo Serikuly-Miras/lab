@@ -20,7 +20,7 @@ RUN uv pip install --no-cache "apache-airflow==${AIRFLOW_VERSION}" \
   s3fs \
   "pandas>=3.0.0" \
   polars \
-  "duckdb>=1.5" \ 
+  "duckdb>=1.5.2" \ 
   connectorx \
   adbc_driver_postgresql \
   psycopg2-binary \
