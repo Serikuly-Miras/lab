@@ -1,7 +1,7 @@
 apiVersion: starrocks.com/v1
 kind: StarRocksCluster
 metadata:
-  name: starrockscluster-sample
+  name: starrock-db-scluster
   namespace: starrocks-db
 spec:
   starRocksFeSpec:

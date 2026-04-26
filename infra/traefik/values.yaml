@@ -40,6 +40,16 @@ ports:
     protocol: TCP
     expose:
       default: true
+  starrocks-db-query-entrypoint:
+    port: 9030
+    protocol: TCP
+    expose:
+      default: true
+  postgres-pg-cdc-source-db:
+    port: 5436
+    protocol: TCP
+    expose:
+      default: true
 
 providers:
   kubernetesIngress:
