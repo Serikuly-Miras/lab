@@ -19,3 +19,5 @@ spec:
       owner: pg-cdc
       secret:
         name: pg-cdc-source-db-credentials
+      postInitSQL:
+        - ALTER ROLE "pg-cdc" REPLICATION LOGIN;
