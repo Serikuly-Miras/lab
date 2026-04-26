@@ -6,3 +6,6 @@ RUN curl -fsSL \
   && curl -fsSL \
     https://repo1.maven.org/maven2/com/starrocks/flink-connector-starrocks/1.2.14_flink-1.20/flink-connector-starrocks-1.2.14_flink-1.20.jar \
     -o /opt/flink/lib/flink-connector-starrocks-1.2.14_flink-1.20.jar
+
+RUN mkdir -p /opt/flink/plugins/s3-fs-hadoop \
+  && cp /opt/flink/opt/flink-s3-fs-hadoop-*.jar /opt/flink/plugins/s3-fs-hadoop/

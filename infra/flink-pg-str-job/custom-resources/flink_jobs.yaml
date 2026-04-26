@@ -33,7 +33,7 @@ kind: FlinkDeployment
 metadata:
   name: pg-cdc-session
 spec:
-  image: serikulymiras/flink:1.20.pg.str
+  image: serikulymiras/flink:1.20.pg.str.s3
   flinkVersion: v1_20
   flinkConfiguration:
     taskmanager.numberOfTaskSlots: "2"
