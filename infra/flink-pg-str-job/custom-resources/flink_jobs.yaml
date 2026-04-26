@@ -10,7 +10,7 @@ metadata:
   name: flink
 rules:
   - apiGroups: [""]
-    resources: ["pods", "configmaps"]
+    resources: ["pods", "configmaps", "services", "endpoints"]
     verbs: ["get", "watch", "list", "create", "update", "delete"]
   - apiGroups: ["apps"]
     resources: ["deployments"]
