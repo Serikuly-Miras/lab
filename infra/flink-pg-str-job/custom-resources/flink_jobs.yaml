@@ -40,7 +40,7 @@ spec:
     execution.checkpointing.interval: "30s"
     state.backend: hashmap
     state.checkpoints.dir: s3://flink/checkpoints/pg-cdc-to-starrocks
-    fs.s3a.endpoint: ${AWS_ENDPOINTS}
+    fs.s3a.endpoint: http://seaweedfs-s3.seaweedfs.svc.cluster.local:8333
     fs.s3a.access.key: ${AWS_ACCESS_KEY_ID}
     fs.s3a.secret.key: ${AWS_SECRET_ACCESS_KEY}
     fs.s3a.path.style.access: "true"
@@ -53,11 +53,6 @@ spec:
             - secretRef:
                 name: s3-flink-secret
           env:
-            - name: AWS_ENDPOINTS
-              valueFrom:
-                secretKeyRef:
-                  name: s3-flink-secret
-                  key: AWS_ENDPOINTS
             - name: AWS_ACCESS_KEY_ID
               valueFrom:
                 secretKeyRef:
