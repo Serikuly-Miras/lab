@@ -9,6 +9,10 @@ spec:
     size: 50Gi
     storageClass: local-path
 
+  postgresql:
+    parameters:
+      wal_level: logical
+
   bootstrap:
     initdb:
       database: pg-cdc-source-db
