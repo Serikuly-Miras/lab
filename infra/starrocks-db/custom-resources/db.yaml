@@ -8,10 +8,10 @@ spec:
     image: starrocks/fe-ubuntu:3.5-latest
     replicas: 1
     limits:
-      cpu: 4
+      cpu: 2
       memory: 8Gi
     requests:
-      cpu: 4
+      cpu: 1
       memory: 8Gi
     storageVolumes:
       - name: fe-meta
@@ -24,10 +24,10 @@ spec:
     image: starrocks/be-ubuntu:3.5-latest
     replicas: 1
     limits:
-      cpu: 4
+      cpu: 2
       memory: 8Gi
     requests:
-      cpu: 4
+      cpu: 1
       memory: 8Gi
     storageVolumes:
       - name: be-data
