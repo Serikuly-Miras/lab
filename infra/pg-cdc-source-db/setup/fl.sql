@@ -45,7 +45,6 @@ CREATE TABLE pg_orders (
   amount DECIMAL(10,2),
   status STRING,
   created_at TIMESTAMP_LTZ(6),
-  proctime AS PROCTIME(),
   PRIMARY KEY (id) NOT ENFORCED
 ) WITH (
   'connector' = 'postgres-cdc',
@@ -158,5 +157,5 @@ SELECT
   o.status,
   o.created_at
 FROM pg_orders o
-JOIN pg_users FOR SYSTEM_TIME AS OF o.proctime u ON o.user_id = u.id
-JOIN pg_shops FOR SYSTEM_TIME AS OF o.proctime s ON o.shop_id = s.id;
+JOIN pg_users u ON o.user_id = u.id
+JOIN pg_shops s ON o.shop_id = s.id;
