@@ -1,0 +1,21 @@
+apiVersion: secrets.hashicorp.com/v1beta1
+kind: VaultStaticSecret
+metadata:
+  name: s3-flink-secret
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+spec:
+  vaultAuthRef: vault-auth
+  mount: kvv2
+  type: kv-v2
+  path: s3-flink-secret
+  destination:
+    create: true
+    name: s3-flink-secret
+    transformation:
+      excludeRaw: true
+      includes:
+        - AWS_ACCESS_KEY_ID
+        - AWS_SECRET_ACCESS_KEY
+        - AWS_ENDPOINTS
+  refreshAfter: 30s
