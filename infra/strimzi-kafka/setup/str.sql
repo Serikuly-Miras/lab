@@ -9,7 +9,7 @@ CREATE TABLE users (
 ) PRIMARY KEY(id)
 DISTRIBUTED BY HASH(id)
 BUCKETS 1
-PROPERTIES ("replication_num" = "1");
+PROPERTIES ("replication_num" = "1", "fast_schema_evolution" = "true");
 
 CREATE TABLE shops (
   id INT NOT NULL,
@@ -19,7 +19,7 @@ CREATE TABLE shops (
 ) PRIMARY KEY(id)
 DISTRIBUTED BY HASH(id)
 BUCKETS 1
-PROPERTIES ("replication_num" = "1");
+PROPERTIES ("replication_num" = "1", "fast_schema_evolution" = "true");
 
 CREATE TABLE orders (
   id INT NOT NULL,
@@ -31,4 +31,4 @@ CREATE TABLE orders (
 ) PRIMARY KEY(id)
 DISTRIBUTED BY HASH(id)
 BUCKETS 1
-PROPERTIES ("replication_num" = "1");
+PROPERTIES ("replication_num" = "1",    "fast_schema_evolution" = "true");
