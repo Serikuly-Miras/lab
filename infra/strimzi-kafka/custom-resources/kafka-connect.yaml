@@ -11,12 +11,17 @@ spec:
   replicas: 1
   bootstrapServers: my-cluster-kafka-bootstrap:9092
   image: serikulymiras/kafka-connect-debezium:1.0.0-kafka-4.2.0-dbz-3.4.3
-  externalConfiguration:
-    volumes:
-      - name: pg-cdc-source-db-credentials
-        secret:
-          secretName: pg-cdc-source-db-credentials-kafka
-
+  template:
+    pod:
+      volumes:
+        - name: pg-cdc-source-db-credentials
+          secret:
+            secretName: pg-cdc-source-db-credentials-kafka
+    connectContainer:
+      volumeMounts:
+        - name: pg-cdc-source-db-credentials
+          mountPath: /opt/kafka/external-configuration/pg-cdc-source-db-credentials
+          readOnly: true
   config:
     group.id: debezium-connect-cluster
     offset.storage.topic: debezium-connect-offsets
