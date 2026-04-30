@@ -28,5 +28,15 @@ spec:
       chart: kafka-ui
       helm:
         values: |
-          yamlApplicationConfig: {}
+          yamlApplicationConfig:
+            kafka:
+              clusters:
+                - name: yaml
+                  bootstrapServers: my-cluster-kafka-bootstrap.kafka:9092
+            auth:
+              type: disabled
+            management:
+              health:
+                ldap:
+                  enabled: false
       targetRevision: 1.6.4
