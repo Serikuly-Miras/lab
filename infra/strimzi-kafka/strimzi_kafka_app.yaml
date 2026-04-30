@@ -33,6 +33,9 @@ spec:
               clusters:
                 - name: yaml
                   bootstrapServers: my-cluster-kafka-bootstrap.kafka:9092
+                  kafkaConnect:
+                    - name: debezium-connect
+                      address: http://debezium-connect-connect-api.kafka.svc.cluster.local:8083
             auth:
               type: disabled
             management:
