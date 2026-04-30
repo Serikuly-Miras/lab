@@ -5,6 +5,7 @@ metadata:
   namespace: kafka
   annotations:
     strimzi.io/use-connector-resources: "true"
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   version: 4.2.0
   replicas: 1

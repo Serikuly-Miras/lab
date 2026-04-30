@@ -3,6 +3,8 @@ kind: KafkaConnector
 metadata:
   name: pg-cdc-source
   namespace: kafka
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
   labels:
     strimzi.io/cluster: debezium-connect
 spec:
