@@ -9,7 +9,7 @@ spec:
   project: default
   destination:
     server: https://kubernetes.default.svc
-    namespace: strimzi-kafka-operator
+    namespace: kafka
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
