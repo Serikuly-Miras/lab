@@ -1,0 +1,84 @@
+---
+apiVersion: kafka.strimzi.io/v1
+kind: KafkaConnector
+metadata:
+  name: starrocks-sink-users
+  namespace: kafka
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
+  labels:
+    strimzi.io/cluster: debezium-connect
+spec:
+  class: com.starrocks.connector.kafka.StarRocksSinkConnector
+  tasksMax: 1
+  config:
+    topics: pg-cdc-source-db.public.users
+    starrocks.http.url: starrocks-db-cluster-fe-service.starrocks-db.svc.cluster.local:8030
+    starrocks.jdbc.url: jdbc:mysql://starrocks-db-cluster-fe-service.starrocks-db.svc.cluster.local:9030
+    starrocks.username: root
+    starrocks.password: ""
+    starrocks.database.name: cdc
+    starrocks.table.name: users
+    sink.properties.strip_outer_array: "true"
+    starrocks.topic2table.map: pg-cdc-source-db.public.users:users
+    transforms: addfield,unwrap
+    transforms.addfield.type: com.starrocks.connector.kafka.transforms.AddOpFieldForDebeziumRecord
+    transforms.unwrap.type: io.debezium.transforms.ExtractNewRecordState
+    transforms.unwrap.drop.tombstones: "true"
+    transforms.unwrap.delete.handling.mode: rewrite
+---
+apiVersion: kafka.strimzi.io/v1
+kind: KafkaConnector
+metadata:
+  name: starrocks-sink-shops
+  namespace: kafka
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
+  labels:
+    strimzi.io/cluster: debezium-connect
+spec:
+  class: com.starrocks.connector.kafka.StarRocksSinkConnector
+  tasksMax: 1
+  config:
+    topics: pg-cdc-source-db.public.shops
+    starrocks.http.url: starrocks-db-cluster-fe-service.starrocks-db.svc.cluster.local:8030
+    starrocks.jdbc.url: jdbc:mysql://starrocks-db-cluster-fe-service.starrocks-db.svc.cluster.local:9030
+    starrocks.username: root
+    starrocks.password: ""
+    starrocks.database.name: cdc
+    starrocks.table.name: shops
+    sink.properties.strip_outer_array: "true"
+    starrocks.topic2table.map: pg-cdc-source-db.public.shops:shops
+    transforms: addfield,unwrap
+    transforms.addfield.type: com.starrocks.connector.kafka.transforms.AddOpFieldForDebeziumRecord
+    transforms.unwrap.type: io.debezium.transforms.ExtractNewRecordState
+    transforms.unwrap.drop.tombstones: "true"
+    transforms.unwrap.delete.handling.mode: rewrite
+---
+apiVersion: kafka.strimzi.io/v1
+kind: KafkaConnector
+metadata:
+  name: starrocks-sink-orders
+  namespace: kafka
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
+  labels:
+    strimzi.io/cluster: debezium-connect
+spec:
+  class: com.starrocks.connector.kafka.StarRocksSinkConnector
+  tasksMax: 1
+  config:
+    topics: pg-cdc-source-db.public.orders
+    starrocks.http.url: starrocks-db-cluster-fe-service.starrocks-db.svc.cluster.local:8030
+    starrocks.jdbc.url: jdbc:mysql://starrocks-db-cluster-fe-service.starrocks-db.svc.cluster.local:9030
+    starrocks.username: root
+    starrocks.password: ""
+    starrocks.database.name: cdc
+    starrocks.table.name: orders
+    sink.properties.strip_outer_array: "true"
+    starrocks.topic2table.map: pg-cdc-source-db.public.orders:orders
+    transforms: addfield,unwrap
+    transforms.addfield.type: com.starrocks.connector.kafka.transforms.AddOpFieldForDebeziumRecord
+    transforms.unwrap.type: io.debezium.transforms.ExtractNewRecordState
+    transforms.unwrap.drop.tombstones: "true"
+    transforms.unwrap.delete.handling.mode: rewrite
