@@ -13,10 +13,8 @@ spec:
   config:
     database.hostname: pg-cdc-source-db-rw.pg-cdc-source-db.svc.cluster.local
     database.port: "5432"
-    database.user: "${file:/opt/kafka/external-configuration/pg-cdc-source-db-crede\
-      ntials/username}"
-    database.password: "${file:/opt/kafka/external-configuration/pg-cdc-source-db-c\
-      redentials/password}"
+    database.user: "${file:/mnt/pg-cdc-source-db-credentials/username}"
+    database.password: "${file:/mnt/pg-cdc-source-db-credentials/password}"
     database.dbname: pg-cdc-source-db
     database.server.name: pg-cdc-source-db
     plugin.name: pgoutput

@@ -20,7 +20,7 @@ spec:
     connectContainer:
       volumeMounts:
         - name: pg-cdc-source-db-credentials
-          mountPath: /opt/kafka/external-configuration/pg-cdc-source-db-credentials
+          mountPath: /mnt/pg-cdc-source-db-credentials
           readOnly: true
   groupId: debezium-connect-cluster
   offsetStorageTopic: debezium-connect-offsets
