@@ -21,3 +21,12 @@ spec:
     - repoURL: https://strimzi.io/charts
       chart: strimzi-kafka-operator
       targetRevision: 1.0.0
+    - repoURL: https://github.com/Serikuly-Miras/lab.git
+      targetRevision: HEAD
+      path: infra/strimzi-kafka/custom-resources
+    - repoURL: https://ui.charts.kafbat.io/
+      chart: kafka-ui
+      helm:
+        values: |
+          yamlApplicationConfig: {}
+      targetRevision: 1.6.4
