@@ -20,5 +20,5 @@ spec:
           kind: Service
           name: strimzi-kafka-operator-kafka-ui
           namespace: kafka
-          port: 8080
+          port: 80
           weight: 1
