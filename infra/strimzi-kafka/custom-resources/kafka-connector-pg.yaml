@@ -13,8 +13,8 @@ spec:
   config:
     database.hostname: pg-cdc-source-db-rw.pg-cdc-source-db.svc.cluster.local
     database.port: "5432"
-    database.user: "${file:/mnt/pg-cdc-source-db-credentials/username}"
-    database.password: "${file:/mnt/pg-cdc-source-db-credentials/password}"
+    database.user: "${env:PG_CDC_USERNAME}"
+    database.password: "${env:PG_CDC_PASSWORD}"
     database.dbname: pg-cdc-source-db
     database.server.name: pg-cdc-source-db
     plugin.name: pgoutput

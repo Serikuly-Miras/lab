@@ -12,16 +12,18 @@ spec:
   bootstrapServers: my-cluster-kafka-bootstrap:9092
   image: serikulymiras/kafka-connect-debezium:1.0.0-kafka-4.2.0-dbz-3.4.3
   template:
-    pod:
-      volumes:
-        - name: pg-cdc-source-db-credentials
-          secret:
-            secretName: pg-cdc-source-db-credentials-kafka
     connectContainer:
-      volumeMounts:
-        - name: pg-cdc-source-db-credentials
-          mountPath: /mnt/pg-cdc-source-db-credentials
-          readOnly: true
+      env:
+        - name: PG_CDC_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: pg-cdc-source-db-credentials-kafka
+              key: username
+        - name: PG_CDC_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: pg-cdc-source-db-credentials-kafka
+              key: password
   groupId: debezium-connect-cluster
   offsetStorageTopic: debezium-connect-offsets
   configStorageTopic: debezium-connect-configs
@@ -30,5 +32,5 @@ spec:
     config.storage.replication.factor: 1
     offset.storage.replication.factor: 1
     status.storage.replication.factor: 1
-    config.providers: file
-    config.providers.file.class: org.apache.kafka.common.config.provider.FileConfigProvider
+    config.providers: env
+    config.providers.env.class: org.apache.kafka.common.config.provider.EnvVarConfigProvider
