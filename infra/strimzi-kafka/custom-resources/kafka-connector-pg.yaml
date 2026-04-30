@@ -20,6 +20,7 @@ spec:
     plugin.name: pgoutput
     slot.name: debezium_slot
     publication.name: debezium_pub
+    publication.autocreate.mode: disabled
     snapshot.mode: initial
     schema.history.internal.kafka.bootstrap.servers: my-cluster-kafka-bootstrap.kafka.svc.cluster.local:9092
     schema.history.internal.kafka.topic: schema-history.pg-cdc-source-db

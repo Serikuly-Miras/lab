@@ -21,3 +21,4 @@ spec:
         name: pg-cdc-source-db-credentials
       postInitSQL:
         - ALTER ROLE "pg-cdc" REPLICATION LOGIN;
+        - GRANT pg_create_publication TO "pg-cdc";
