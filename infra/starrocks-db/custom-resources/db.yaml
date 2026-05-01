@@ -24,8 +24,8 @@ spec:
     image: starrocks/be-ubuntu:3.5-latest
     replicas: 1
     limits:
-      cpu: 2
-      memory: 8Gi
+      cpu: 4
+      memory: 16Gi
     requests:
       cpu: 100m
       memory: 8Gi
