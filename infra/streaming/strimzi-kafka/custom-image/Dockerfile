@@ -16,6 +16,12 @@ RUN mkdir -p /opt/kafka/plugins/debezium-postgres \
 RUN mkdir -p /opt/kafka/plugins/starrocks-kafka-connector \
   && curl -fsSL \
     https://github.com/StarRocks/starrocks-connector-for-kafka/releases/download/v1.0.6/starrocks-connector-for-kafka-1.0.6-with-dependencies.jar \
-    -o /opt/kafka/plugins/starrocks-kafka-connector/starrocks-connector-for-kafka-1.0.6-with-dependencies.jar
+    -o /opt/kafka/plugins/starrocks-kafka-connector/starrocks-connector-for-kafka-1.0.6-with-dependencies.jar \
+  && curl -fsSL \
+    https://repo1.maven.org/maven2/io/debezium/debezium-scripting/3.4.3.Final/debezium-scripting-3.4.3.Final.jar \
+    -o /opt/kafka/plugins/starrocks-kafka-connector/debezium-scripting-3.4.3.Final.jar \
+  && curl -fsSL \
+    https://repo1.maven.org/maven2/org/apache/groovy/groovy/4.0.24/groovy-4.0.24.jar \
+    -o /opt/kafka/plugins/starrocks-kafka-connector/groovy-4.0.24.jar
 
 USER 1001
