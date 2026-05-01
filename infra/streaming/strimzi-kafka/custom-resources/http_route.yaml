@@ -18,7 +18,7 @@ spec:
       backendRefs:
         - group: ""
           kind: Service
-          name: strimzi-kafka-operator-kafka-ui
+          name: kafka-setup-kafka-ui
           namespace: kafka
           port: 80
           weight: 1
