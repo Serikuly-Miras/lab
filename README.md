@@ -27,9 +27,9 @@ HETZNER S3 Object Storage (Offsite backups)
 #### Data Platform
 
 - [x] **Cloud Native PostgreSQL (CNPG) operator** - PostgreSQL
-- [x] **ClickHouse operator** - ClickHouse
-- [x] **Starrocks operator** - Starrocks
-- [x] **Apache Iceberg** - Alternative lakehouse
+- [x] **Starrocks** - Starrocks (main OLAP database)
+- [x] **Apache Iceberg** - Open table format for data lakes
+- [ ] **ClickHouse** - ClickHouse (secondary OLAP database)
 - [ ] **OpenMetadata** - Data discovery and governance
 
 #### Streaming
