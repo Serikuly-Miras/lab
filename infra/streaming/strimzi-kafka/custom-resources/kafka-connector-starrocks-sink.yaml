@@ -22,8 +22,8 @@ spec:
     sink.properties.strip_outer_array: "true"
     starrocks.topic2table.map: pg-cdc-source-db.public.users:users
     transforms: filter,unwrap,addfield
-    transforms.filter.type: io.debezium.transforms.SchemaChangeEventFilter
-    transforms.filter.schema.change.event.exclude.list: TRUNCATE
+    transforms.filter.type: io.debezium.transforms.Filter
+    transforms.filter.condition: value.op != 't'
     transforms.unwrap.type: io.debezium.transforms.ExtractNewRecordState
     transforms.unwrap.drop.tombstones: "true"
     transforms.unwrap.drop.truncates: "true"
@@ -53,8 +53,8 @@ spec:
     sink.properties.strip_outer_array: "true"
     starrocks.topic2table.map: pg-cdc-source-db.public.shops:shops
     transforms: filter,unwrap,addfield
-    transforms.filter.type: io.debezium.transforms.SchemaChangeEventFilter
-    transforms.filter.schema.change.event.exclude.list: TRUNCATE
+    transforms.filter.type: io.debezium.transforms.Filter
+    transforms.filter.condition: value.op != 't'
     transforms.unwrap.type: io.debezium.transforms.ExtractNewRecordState
     transforms.unwrap.drop.tombstones: "true"
     transforms.unwrap.drop.truncates: "true"
@@ -84,8 +84,8 @@ spec:
     sink.properties.strip_outer_array: "true"
     starrocks.topic2table.map: pg-cdc-source-db.public.orders:orders
     transforms: filter,unwrap,addfield
-    transforms.filter.type: io.debezium.transforms.SchemaChangeEventFilter
-    transforms.filter.schema.change.event.exclude.list: TRUNCATE
+    transforms.filter.type: io.debezium.transforms.Filter
+    transforms.filter.condition: value.op != 't'
     transforms.unwrap.type: io.debezium.transforms.ExtractNewRecordState
     transforms.unwrap.drop.tombstones: "true"
     transforms.unwrap.drop.truncates: "true"
