@@ -28,7 +28,7 @@ ALTER TABLE public.shops  REPLICA IDENTITY FULL;
 ALTER TABLE public.orders REPLICA IDENTITY FULL;
 
 -- Publication for Debezium (must be created by superuser)
-CREATE PUBLICATION dbz_publication FOR TABLE public.users, public.shops, public.orders;
+CREATE PUBLICATION debezium_pub FOR ALL TABLES;
 
 -- Seed users
 INSERT INTO public.users (name, email) SELECT
