@@ -21,12 +21,12 @@ spec:
     starrocks.table.name: users
     sink.properties.strip_outer_array: "true"
     starrocks.topic2table.map: pg-cdc-source-db.public.users:users
-    transforms: addfield,unwrap
-    transforms.addfield.type: com.starrocks.connector.kafka.transforms.AddOpFieldForDebeziumRecord
+    transforms: unwrap,addfield
     transforms.unwrap.type: io.debezium.transforms.ExtractNewRecordState
     transforms.unwrap.drop.tombstones: "true"
     transforms.unwrap.drop.truncates: "true"
     transforms.unwrap.delete.handling.mode: rewrite
+    transforms.addfield.type: com.starrocks.connector.kafka.transforms.AddOpFieldForDebeziumRecord
 ---
 apiVersion: kafka.strimzi.io/v1
 kind: KafkaConnector
@@ -50,12 +50,12 @@ spec:
     starrocks.table.name: shops
     sink.properties.strip_outer_array: "true"
     starrocks.topic2table.map: pg-cdc-source-db.public.shops:shops
-    transforms: addfield,unwrap
-    transforms.addfield.type: com.starrocks.connector.kafka.transforms.AddOpFieldForDebeziumRecord
+    transforms: unwrap,addfield
     transforms.unwrap.type: io.debezium.transforms.ExtractNewRecordState
     transforms.unwrap.drop.tombstones: "true"
     transforms.unwrap.drop.truncates: "true"
     transforms.unwrap.delete.handling.mode: rewrite
+    transforms.addfield.type: com.starrocks.connector.kafka.transforms.AddOpFieldForDebeziumRecord
 ---
 apiVersion: kafka.strimzi.io/v1
 kind: KafkaConnector
@@ -79,9 +79,9 @@ spec:
     starrocks.table.name: orders
     sink.properties.strip_outer_array: "true"
     starrocks.topic2table.map: pg-cdc-source-db.public.orders:orders
-    transforms: addfield,unwrap
-    transforms.addfield.type: com.starrocks.connector.kafka.transforms.AddOpFieldForDebeziumRecord
+    transforms: unwrap,addfield
     transforms.unwrap.type: io.debezium.transforms.ExtractNewRecordState
     transforms.unwrap.drop.tombstones: "true"
     transforms.unwrap.drop.truncates: "true"
     transforms.unwrap.delete.handling.mode: rewrite
+    transforms.addfield.type: com.starrocks.connector.kafka.transforms.AddOpFieldForDebeziumRecord
