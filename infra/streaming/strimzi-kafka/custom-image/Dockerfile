@@ -5,7 +5,13 @@ USER root:root
 RUN mkdir -p /opt/kafka/plugins/debezium-postgres \
   && curl -fsSL \
     https://repo1.maven.org/maven2/io/debezium/debezium-connector-postgres/3.4.3.Final/debezium-connector-postgres-3.4.3.Final-plugin.tar.gz \
-    | tar -xzf - -C /opt/kafka/plugins/debezium-postgres --strip-components=1
+    | tar -xzf - -C /opt/kafka/plugins/debezium-postgres --strip-components=1 \
+  && curl -fsSL \
+    https://repo1.maven.org/maven2/io/debezium/debezium-scripting/3.4.3.Final/debezium-scripting-3.4.3.Final.jar \
+    -o /opt/kafka/plugins/debezium-postgres/debezium-scripting-3.4.3.Final.jar \
+  && curl -fsSL \
+    https://repo1.maven.org/maven2/org/apache/groovy/groovy/4.0.24/groovy-4.0.24.jar \
+    -o /opt/kafka/plugins/debezium-postgres/groovy-4.0.24.jar
 
 RUN mkdir -p /opt/kafka/plugins/starrocks-kafka-connector \
   && curl -fsSL \
