@@ -10,6 +10,8 @@ AMD Ryzen5 6600H / Talos 1.12.6 baremetal
     ├── 48GB DDR5 4800 RAM
     ├── 1TB NVMe SSD (200GB EPHEMERAL, 800GB local path provisioner)
     └── 500GB NVMe SSD (longhorn provisioner)
+
+HETZNER S3 Object Storage (Offsite backups)
 ```
 
 ## Architecture Overview
