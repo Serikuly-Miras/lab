@@ -27,6 +27,13 @@ ALTER TABLE public.users  REPLICA IDENTITY FULL;
 ALTER TABLE public.shops  REPLICA IDENTITY FULL;
 ALTER TABLE public.orders REPLICA IDENTITY FULL;
 
+-- Debezium signals table (used to trigger ad-hoc incremental snapshots)
+CREATE TABLE IF NOT EXISTS public.debezium_signals (
+    id      VARCHAR(42) PRIMARY KEY,
+    type    VARCHAR(32) NOT NULL,
+    data    VARCHAR(2048)
+);
+
 -- Publication for Debezium (must be created by superuser)
 CREATE PUBLICATION debezium_pub FOR ALL TABLES;
 

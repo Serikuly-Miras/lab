@@ -25,6 +25,8 @@ spec:
     schema.history.internal.kafka.bootstrap.servers: my-cluster-kafka-bootstrap.kafka.svc.cluster.local:9092
     schema.history.internal.kafka.topic: schema-history.pg-cdc-source-db
     truncate.handling.mode: include
+    skipped.operations: none
+    signal.data.collection: public.debezium_signals
 
     # Topic routing: one topic per table → <server>.<schema>.<table>
     topic.prefix: pg-cdc-source-db
