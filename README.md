@@ -56,6 +56,7 @@ AMD Ryzen5 6600H / Talos 1.12.6 baremetal
 
 - [x] **Pi-Hole** - Tail'net-wide ad blocker / dns override
 - [ ] **Kubevirt** - VMs in Kubernetes
+- [ ] **Gitea** - Self-hosted Git server (mirroring GitHub)
 
 ## Directory Structure
 
