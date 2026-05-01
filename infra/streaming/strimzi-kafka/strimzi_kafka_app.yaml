@@ -20,7 +20,7 @@ spec:
   sources:
     - repoURL: https://github.com/Serikuly-Miras/lab.git
       targetRevision: HEAD
-      path: infra/strimzi-kafka/custom-resources
+      path: infra/streaming/strimzi-kafka/custom-resources
     - repoURL: https://ui.charts.kafbat.io/
       chart: kafka-ui
       helm:

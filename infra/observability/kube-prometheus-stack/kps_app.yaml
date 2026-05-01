@@ -23,12 +23,12 @@ spec:
       targetRevision: 82.4.3
       helm:
         valueFiles:
-          - $lab/infra/kube-prometheus-stack/values.yaml
+          - $lab/infra/observability/kube-prometheus-stack/values.yaml
     - repoURL: https://github.com/Serikuly-Miras/lab.git
       ref: lab
       targetRevision: HEAD
     - repoURL: https://github.com/Serikuly-Miras/lab.git
-      path: infra/kube-prometheus-stack/custom-resources
+      path: infra/observability/kube-prometheus-stack/custom-resources
       targetRevision: HEAD
   ignoreDifferences:
     - group: apps

@@ -25,4 +25,4 @@ spec:
       repoURL: https://cloudnative-pg.github.io/charts
       targetRevision: 0.5.0
     - repoURL: https://github.com/Serikuly-Miras/lab.git
-      path: infra/cnpg/custom-resources
+      path: infra/operators/cnpg/custom-resources

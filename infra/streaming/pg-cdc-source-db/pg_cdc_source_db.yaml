@@ -20,4 +20,4 @@ spec:
   sources:
     - repoURL: https://github.com/Serikuly-Miras/lab.git
       targetRevision: HEAD
-      path: infra/pg-cdc-source-db/custom-resources
+      path: infra/streaming/pg-cdc-source-db/custom-resources
