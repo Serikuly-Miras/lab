@@ -30,6 +30,12 @@ AMD Ryzen5 6600H / Talos 1.12.6 baremetal
 - [x] **Apache Iceberg** - Alternative lakehouse
 - [ ] **OpenMetadata** - Data discovery and governance
 
+#### Streaming
+
+- [x] **Strimzi Kafka operator** - Kafka and Kafka Connect
+- [x] **Postgresql CDC source** - Debezium connector for PostgreSQL
+- [x] **Starrocks sink** - Starrocks sink connector for Kafka Connect
+
 ### Orchestration & Workflow
 
 - [x] **Apache Airflow** - Workflow orchestration
