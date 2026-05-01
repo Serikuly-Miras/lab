@@ -24,12 +24,11 @@ HETZNER S3 Object Storage (Offsite backups)
 - [x] **Longhorn** - Distributed block storage
 - [x] **SeaweedFS** - Object storage / S3
 
-#### Data Platform
+#### Data Platforms
 
 - [x] **Cloud Native PostgreSQL (CNPG) operator** - PostgreSQL
 - [x] **Starrocks** - Starrocks (main OLAP database)
 - [x] **Apache Iceberg** - Open table format for data lakes
-- [ ] **ClickHouse** - ClickHouse (secondary OLAP database)
 - [ ] **OpenMetadata** - Data discovery and governance
 
 #### Streaming
@@ -42,7 +41,6 @@ HETZNER S3 Object Storage (Offsite backups)
 
 - [x] **Apache Airflow** - Workflow orchestration
 - [x] **DBT/Astronomer cosmos** - Data transformation and orchestration
-- [x] **Trino** - Distributed SQL query engine
 
 ### Must-have
 
@@ -59,6 +57,12 @@ HETZNER S3 Object Storage (Offsite backups)
 - [x] **Pi-Hole** - Tail'net-wide ad blocker / dns override
 - [ ] **Kubevirt** - VMs in Kubernetes
 - [ ] **Gitea** - Self-hosted Git server (mirroring GitHub)
+
+### Was deployed but removed for not having use rn
+
+- [ ] **ClickHouse** - ClickHouse (secondary OLAP database)
+- [ ] **Trino** - Distributed SQL query engine
+- [ ] **DuckLake** - New lakehouse platform built on top of oltp + s3
 
 ## Directory Structure
 
