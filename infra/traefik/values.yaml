@@ -50,6 +50,11 @@ ports:
     protocol: TCP
     expose:
       default: true
+  mssql-cdc-source-db:
+    port: 1433
+    protocol: TCP
+    expose:
+      default: true
 
 providers:
   kubernetesIngress:
