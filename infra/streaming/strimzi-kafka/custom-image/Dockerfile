@@ -20,6 +20,7 @@ RUN mkdir -p /opt/kafka/plugins/confluent-avro-converter \
        kafka-connect-avro-converter \
        kafka-connect-avro-data \
        kafka-avro-serializer \
+       kafka-schema-serializer \
        kafka-schema-registry-client \
        common-utils \
        common-config; do \
