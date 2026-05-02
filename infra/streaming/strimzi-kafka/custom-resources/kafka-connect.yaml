@@ -10,7 +10,7 @@ spec:
   version: 4.2.0
   replicas: 1
   bootstrapServers: my-cluster-kafka-bootstrap:9092
-  image: serikulymiras/kafka-connect-debezium:1.0.0-kafka-4.2.0-dbz-3.4.3-str
+  image: serikulymiras/kafka-connect-debezium:1.0.0-kafka-4.2.0-dbz-3.4.3-str-avro
   template:
     connectContainer:
       env:
@@ -34,3 +34,7 @@ spec:
     status.storage.replication.factor: 1
     config.providers: env
     config.providers.env.class: org.apache.kafka.common.config.provider.EnvVarConfigProvider
+    key.converter: io.confluent.connect.avro.AvroConverter
+    key.converter.schema.registry.url: http://schema-registry.kafka.svc.cluster.local:8081
+    value.converter: io.confluent.connect.avro.AvroConverter
+    value.converter.schema.registry.url: http://schema-registry.kafka.svc.cluster.local:8081
