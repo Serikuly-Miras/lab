@@ -24,3 +24,4 @@ spec:
     table.include.list: dbo.meteo_data
     database.encrypt: "true"
     database.trustServerCertificate: "true"
+    time.precision.mode: connect
