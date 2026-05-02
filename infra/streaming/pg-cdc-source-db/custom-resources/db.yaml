@@ -2,7 +2,6 @@ apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
   name: pg-cdc-source-db
-  namespace: pg-cdc-source-db
 spec:
   instances: 1
   storage:

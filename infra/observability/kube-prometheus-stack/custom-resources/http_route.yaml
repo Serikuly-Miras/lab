@@ -2,7 +2,6 @@ apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
   name: grafana-route
-  namespace: kube-prometheus-stack
 spec:
   parentRefs:
     - group: gateway.networking.k8s.io
@@ -20,7 +19,6 @@ spec:
         - group: ""
           kind: Service
           name: kube-prometheus-stack-grafana
-          namespace: kube-prometheus-stack
           port: 80
           weight: 1
 ---
@@ -28,7 +26,6 @@ apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
   name: alertmanager-route
-  namespace: kube-prometheus-stack
 spec:
   parentRefs:
     - group: gateway.networking.k8s.io
@@ -46,7 +43,6 @@ spec:
         - group: ""
           kind: Service
           name: kube-prometheus-stack-alertmanager
-          namespace: kube-prometheus-stack
           port: 9093
           weight: 1
 ---
@@ -54,7 +50,6 @@ apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
   name: prometheus-route
-  namespace: kube-prometheus-stack
 spec:
   parentRefs:
     - group: gateway.networking.k8s.io
@@ -72,6 +67,5 @@ spec:
         - group: ""
           kind: Service
           name: kube-prometheus-stack-prometheus
-          namespace: kube-prometheus-stack
           port: 9090
           weight: 1

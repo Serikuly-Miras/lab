@@ -2,7 +2,6 @@ apiVersion: monitoring.coreos.com/v1
 kind: PodMonitor
 metadata:
   name: dwh-cnpg-db
-  namespace: kube-prometheus-stack
   labels:
     release: kube-prometheus-stack
 spec:

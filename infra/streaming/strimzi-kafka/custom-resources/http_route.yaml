@@ -19,6 +19,5 @@ spec:
         - group: ""
           kind: Service
           name: kafka-setup-kafka-ui
-          namespace: kafka
           port: 80
           weight: 1

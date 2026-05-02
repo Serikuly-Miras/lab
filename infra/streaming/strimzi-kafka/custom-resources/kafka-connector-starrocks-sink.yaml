@@ -3,7 +3,6 @@ apiVersion: kafka.strimzi.io/v1
 kind: KafkaConnector
 metadata:
   name: starrocks-sink-users
-  namespace: kafka
   annotations:
     argocd.argoproj.io/sync-wave: "3"
   labels:
@@ -34,7 +33,6 @@ apiVersion: kafka.strimzi.io/v1
 kind: KafkaConnector
 metadata:
   name: starrocks-sink-shops
-  namespace: kafka
   annotations:
     argocd.argoproj.io/sync-wave: "3"
   labels:
@@ -65,7 +63,6 @@ apiVersion: kafka.strimzi.io/v1
 kind: KafkaConnector
 metadata:
   name: starrocks-sink-orders
-  namespace: kafka
   annotations:
     argocd.argoproj.io/sync-wave: "3"
   labels:

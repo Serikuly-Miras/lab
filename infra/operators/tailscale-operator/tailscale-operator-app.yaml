@@ -26,6 +26,8 @@ spec:
           apiServerProxyConfig:
             allowImpersonation: "false"
             mode: "true"
+    - repoURL: https://github.com/Serikuly-Miras/lab.git
+      path: infra/operators/tailscale-operator/custom-resources
 
 #
 # tailscale requires client_id and client_secret for oauth

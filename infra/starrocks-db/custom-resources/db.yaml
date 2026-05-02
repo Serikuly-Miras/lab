@@ -2,7 +2,6 @@ apiVersion: starrocks.com/v1
 kind: StarRocksCluster
 metadata:
   name: starrocks-db-cluster
-  namespace: starrocks-db
 spec:
   starRocksFeSpec:
     image: starrocks/fe-ubuntu:3.5-latest

@@ -2,7 +2,6 @@
 # kind: HTTPRoute
 # metadata:
 #   name: airflow-route
-#   namespace: airflow
 # spec:
 #   parentRefs:
 #     - group: gateway.networking.k8s.io

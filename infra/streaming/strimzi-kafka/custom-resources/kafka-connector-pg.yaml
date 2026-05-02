@@ -2,7 +2,6 @@ apiVersion: kafka.strimzi.io/v1
 kind: KafkaConnector
 metadata:
   name: pg-cdc-source
-  namespace: kafka
   annotations:
     argocd.argoproj.io/sync-wave: "2"
   labels:
