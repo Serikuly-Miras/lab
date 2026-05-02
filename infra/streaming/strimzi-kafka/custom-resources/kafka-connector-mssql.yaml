@@ -21,6 +21,6 @@ spec:
     schema.history.internal.kafka.topic: schema-history.mssql-cdc-source-db
     include.schema.changes: "true"
     schema.name.adjustment.mode: avro
-    table.include.list: dbo.custom_numbers
+    table.include.list: dbo.meteo_data
     database.encrypt: "true"
     database.trustServerCertificate: "true"

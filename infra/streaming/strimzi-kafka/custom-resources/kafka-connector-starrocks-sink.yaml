@@ -92,7 +92,7 @@ spec:
 apiVersion: kafka.strimzi.io/v1
 kind: KafkaConnector
 metadata:
-  name: starrocks-sink-custom-numbers
+  name: starrocks-sink-meteo-data
   annotations:
     argocd.argoproj.io/sync-wave: "3"
   labels:
@@ -101,14 +101,14 @@ spec:
   class: com.starrocks.connector.kafka.StarRocksSinkConnector
   tasksMax: 1
   config:
-    topics: mssql-cdc-source-db.DWH.dbo.custom_numbers
+    topics: mssql-cdc-source-db.DWH.dbo.meteo_data
     starrocks.http.url: starrocks-db-cluster-fe-service.starrocks-db.svc.cluster.local:8030
     starrocks.jdbc.url: jdbc:mysql://starrocks-db-cluster-fe-service.starrocks-db.svc.cluster.local:9030
     starrocks.username: root
     starrocks.password: ""
     starrocks.database.name: cdc
-    starrocks.table.name: custom_numbers
-    starrocks.topic2table.map: mssql-cdc-source-db.DWH.dbo.custom_numbers:custom_numbers
+    starrocks.table.name: meteo_data
+    starrocks.topic2table.map: mssql-cdc-source-db.DWH.dbo.meteo_data:meteo_data
     key.converter: io.confluent.connect.avro.AvroConverter
     key.converter.schema.registry.url: http://confluent-schema-registry.kafka.svc.cluster.local:8081
     value.converter: io.confluent.connect.avro.AvroConverter
