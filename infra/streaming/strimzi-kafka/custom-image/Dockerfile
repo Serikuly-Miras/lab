@@ -13,7 +13,7 @@ RUN mkdir -p /opt/kafka/plugins/starrocks-kafka-connector \
     -o /opt/kafka/plugins/starrocks-kafka-connector/starrocks-connector-for-kafka-1.0.6-with-dependencies.jar
 
 # Confluent Avro converter (AvroConverter + schema registry client)
-ARG CONFLUENT_VERSION=7.7.1
+ARG CONFLUENT_VERSION=8.2.0
 ARG AVRO_VERSION=1.11.3
 RUN mkdir -p /opt/kafka/plugins/confluent-avro-converter \
   && for jar in \
