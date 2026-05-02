@@ -22,3 +22,5 @@ spec:
     include.schema.changes: "true"
     schema.name.adjustment.mode: avro
     table.include.list: dbo.custom_numbers
+    database.encrypt: "true"
+    database.trustServerCertificate: "true"
