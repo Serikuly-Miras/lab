@@ -27,3 +27,4 @@ spec:
     signal.data.collection: public.debezium_signals
     topic.prefix: pg-cdc-source-db
     include.schema.changes: "true"
+    schema.name.adjustment.mode: avro
