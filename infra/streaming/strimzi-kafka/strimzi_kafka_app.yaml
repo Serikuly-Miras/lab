@@ -38,6 +38,8 @@ spec:
                       address: http://debezium-connect-connect-api.kafka.svc.cluster.local:8083
                   schemaRegistry: http://confluent-schema-registry.kafka.svc.cluster.local:8081
                   schemaRegistryType: CONFLUENT
+                  defaultKeySerde: SchemaRegistry
+                  defaultValueSerde: SchemaRegistry
             auth:
               type: disabled
             management:
