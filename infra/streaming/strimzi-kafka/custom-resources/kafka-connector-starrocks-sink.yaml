@@ -113,9 +113,13 @@ spec:
     key.converter.schema.registry.url: http://confluent-schema-registry.kafka.svc.cluster.local:8081
     value.converter: io.confluent.connect.avro.AvroConverter
     value.converter.schema.registry.url: http://confluent-schema-registry.kafka.svc.cluster.local:8081
-    transforms: addfield,unwrap
+    transforms: addfield,unwrap,tsconv
     transforms.addfield.type: com.starrocks.connector.kafka.transforms.AddOpFieldForDebeziumRecord
     transforms.unwrap.type: io.debezium.transforms.ExtractNewRecordState
     transforms.unwrap.drop.tombstones: "true"
     transforms.unwrap.delete.handling.mode: rewrite
+    transforms.tsconv.type: org.apache.kafka.connect.transforms.TimestampConverter$Value
+    transforms.tsconv.field: recorded_at
+    transforms.tsconv.target.type: string
+    transforms.tsconv.format: "yyyy-MM-dd HH:mm:ss"
     sink.properties.strip_outer_array: "true"
