@@ -9,7 +9,7 @@ spec:
   version: 4.2.0
   replicas: 1
   bootstrapServers: my-cluster-kafka-bootstrap:9092
-  image: serikulymiras/kafka-connect-debezium:homelabV3
+  image: serikulymiras/kafka-connect-debezium:homelabV4
   template:
     connectContainer:
       env:
@@ -23,6 +23,11 @@ spec:
             secretKeyRef:
               name: pg-cdc-source-db-credentials-kafka
               key: password
+        - name: MSSQL_SA_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mssql-cdc-source-db-credentials-kafka
+              key: MSSQL_SA_PASSWORD
   groupId: debezium-connect-cluster
   offsetStorageTopic: debezium-connect-offsets
   configStorageTopic: debezium-connect-configs

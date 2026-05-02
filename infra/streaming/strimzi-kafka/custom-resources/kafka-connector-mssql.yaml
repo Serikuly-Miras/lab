@@ -1,0 +1,24 @@
+apiVersion: kafka.strimzi.io/v1
+kind: KafkaConnector
+metadata:
+  name: mssql-cdc-source
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+  labels:
+    strimzi.io/cluster: debezium-connect
+spec:
+  class: io.debezium.connector.sqlserver.SqlServerConnector
+  tasksMax: 1
+  config:
+    database.hostname: mssql.mssql-cdc-source-db.svc.cluster.local
+    database.port: "1433"
+    database.user: sa
+    database.password: "${env:MSSQL_SA_PASSWORD}"
+    database.names: DWH
+    topic.prefix: mssql-cdc-source-db
+    snapshot.mode: initial
+    schema.history.internal.kafka.bootstrap.servers: my-cluster-kafka-bootstrap.kafka.svc.cluster.local:9092
+    schema.history.internal.kafka.topic: schema-history.mssql-cdc-source-db
+    include.schema.changes: "true"
+    schema.name.adjustment.mode: avro
+    table.include.list: dbo.custom_numbers

@@ -14,11 +14,11 @@ WHERE servicename LIKE '%Agent%';
 
 EXECUTE sys.sp_cdc_enable_db;
 
-CREATE TABLE DWH.dbo.NewTable (id int);
+CREATE TABLE DWH.dbo.custom_numbers (id int);
 
 EXECUTE sys.sp_cdc_enable_table
     @source_schema = N'dbo',
-    @source_name = N'NewTable',
+    @source_name = N'custom_numbers',
     @role_name = N'cdc_Admin';
 
 ---
@@ -32,11 +32,11 @@ FROM cdc.change_tables;
 
 ---
 
-INSERT INTO dbo.NewTable (id) VALUES (1), (2), (3);
+INSERT INTO dbo.custom_numbers (id) VALUES (1), (2), (3);
 
-UPDATE dbo.NewTable SET id = 99 WHERE id = 1;
+UPDATE dbo.custom_numbers SET id = 99 WHERE id = 1;
 
-DELETE FROM dbo.NewTable WHERE id = 2;
+DELETE FROM dbo.custom_numbers WHERE id = 2;
 
 ---
 
@@ -44,5 +44,5 @@ SELECT
     __$operation,   -- 1=delete, 2=insert, 3=before update, 4=after update
     __$seqval,
     id
-FROM cdc.dbo_NewTable_CT
+FROM cdc.dbo_custom_numbers_CT
 ORDER BY __$seqval;
