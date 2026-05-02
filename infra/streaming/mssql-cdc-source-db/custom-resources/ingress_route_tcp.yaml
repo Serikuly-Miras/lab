@@ -8,5 +8,5 @@ spec:
   routes:
     - match: HostSNI(`*`)
       services:
-        - name: mssql-svc
+        - name: mssql
           port: 1433
