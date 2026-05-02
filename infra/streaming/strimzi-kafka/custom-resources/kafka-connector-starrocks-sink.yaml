@@ -118,3 +118,4 @@ spec:
     transforms.unwrap.type: io.debezium.transforms.ExtractNewRecordState
     transforms.unwrap.drop.tombstones: "true"
     transforms.unwrap.delete.handling.mode: rewrite
+    sink.properties.strip_outer_array: "true"

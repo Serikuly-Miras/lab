@@ -46,3 +46,12 @@ SELECT
     id
 FROM cdc.dbo_custom_numbers_CT
 ORDER BY __$seqval;
+
+---
+
+WITH n AS (
+    SELECT TOP 10000 ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) AS id
+    FROM sys.all_objects a CROSS JOIN sys.all_objects b
+)
+INSERT INTO dbo.custom_numbers (id)
+SELECT id FROM n; 
