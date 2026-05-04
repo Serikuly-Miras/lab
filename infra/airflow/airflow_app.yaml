@@ -18,15 +18,15 @@ spec:
       prune: true
       selfHeal: true
   sources:
-    # - repoURL: https://airflow.apache.org/
-    #   chart: airflow
-    #   targetRevision: 1.18.0
-    #   helm:
-    #     valueFiles:
-    #       - $lab/infra/airflow/values.yaml
-    # - repoURL: https://github.com/Serikuly-Miras/lab.git
-    #   ref: lab
-    #   targetRevision: HEAD
+    - repoURL: https://airflow.apache.org/
+      chart: airflow
+      targetRevision: 1.18.0
+      helm:
+        valueFiles:
+          - $lab/infra/airflow/values.yaml
+    - repoURL: https://github.com/Serikuly-Miras/lab.git
+      ref: lab
+      targetRevision: HEAD
     - repoURL: https://github.com/Serikuly-Miras/lab.git
       targetRevision: HEAD
       path: infra/airflow/custom-resources
