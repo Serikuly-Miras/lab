@@ -20,7 +20,7 @@ spec:
   sources:
     - repoURL: https://airflow.apache.org/
       chart: airflow
-      targetRevision: 1.18.0
+      targetRevision: 1.21.0
       helm:
         valueFiles:
           - $lab/infra/airflow/values.yaml
