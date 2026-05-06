@@ -22,6 +22,7 @@ gitea:
       NAME: gitea
       USER: gitea
     repository:
+      ENABLE_PUSH_CREATE_USER: true
       ENABLE_PUSH_CREATE_ORG: true
 
   additionalConfigFromEnvs:
