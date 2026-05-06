@@ -1,0 +1,53 @@
+persistence:
+  enabled: true
+  create: true
+  mount: true
+  claimName: gitea-shared-storage
+  size: 25Gi
+  accessModes:
+    - ReadWriteOnce
+  labels: {}
+  storageClass: longhorn
+
+gitea:
+  admin:
+    existingSecret: gitea-admin-credentials
+    email: "gitea@local.domain"
+    passwordMode: initialOnlyNoReset
+
+  config:
+    database:
+      DB_TYPE: postgres
+      HOST: gitea-cnpg-db-rw.gitea:5432
+      NAME: gitea
+      USER: gitea
+
+  additionalConfigFromEnvs:
+    - name: GITEA__database__PASSWD
+      valueFrom:
+        secretKeyRef:
+          name: gitea-db-credentials
+          key: password
+
+valkey-cluster:
+  enabled: false
+
+valkey:
+  enabled: true
+  architecture: standalone
+
+  global:
+    valkey:
+      password: changeme
+
+  master:
+    count: 1
+    service:
+      ports:
+        valkey: 6379
+
+postgresql-ha:
+  enabled: false
+
+postgresql:
+  enabled: false
