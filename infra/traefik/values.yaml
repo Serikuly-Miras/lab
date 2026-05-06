@@ -55,6 +55,11 @@ ports:
     protocol: TCP
     expose:
       default: true
+  gitea-ssh:
+    port: 2222
+    protocol: TCP
+    expose:
+      default: true
 
 providers:
   kubernetesIngress:
