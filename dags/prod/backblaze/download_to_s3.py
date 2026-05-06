@@ -15,7 +15,12 @@ from airflow.sdk import Asset, dag, task
 
 backblaze_q3_asset = Asset("s3://data-raw/backblaze/data_Q3_2025/")
 
-URL = "https://f001.backblazeb2.com/file/Backblaze-Hard-Drive-Data/data_Q3_2025.zip"  # noqa
+URLS = [
+    "https://f001.backblazeb2.com/file/Backblaze-Hard-Drive-Data/data_Q4_2025.zip",
+    "https://f001.backblazeb2.com/file/Backblaze-Hard-Drive-Data/data_Q3_2025.zip",
+    "https://f001.backblazeb2.com/file/Backblaze-Hard-Drive-Data/data_Q2_2025.zip",
+    "https://f001.backblazeb2.com/file/Backblaze-Hard-Drive-Data/data_Q1_2025.zip",
+]
 DEST_BUCKET = "data-raw"
 ROOT_FOLDER = "backblaze"
 
@@ -40,38 +45,39 @@ def download_backblaze_q3():
         logging.info("Starting download")
 
         try:
-            response = requests.get(URL, stream=True)
-            response.raise_for_status()
+            for url in URLS:
+                response = requests.get(url, stream=True)
+                response.raise_for_status()
 
-            with zipfile.ZipFile(io.BytesIO(response.content)) as zf:
-                for member in zf.infolist():
-                    if member.is_dir():
-                        continue
+                with zipfile.ZipFile(io.BytesIO(response.content)) as zf:
+                    for member in zf.infolist():
+                        if member.is_dir():
+                            continue
 
-                    fk = f"{ROOT_FOLDER}/{member.filename}"
+                        fk = f"{ROOT_FOLDER}/{member.filename}"
 
-                    # Check if file already exists in S3
-                    if s3_hook.check_for_key(fk, bucket_name=DEST_BUCKET):
-                        logging.info(f"File {fk} already exists. Skipping.")
-                        continue
+                        # Check if file already exists in S3
+                        if s3_hook.check_for_key(fk, bucket_name=DEST_BUCKET):
+                            logging.info(f"File {fk} already exists. Skipping.")
+                            continue
 
-                    try:
-                        # Extract file content and upload directly to S3
-                        file_content = zf.read(member)
-                        s3_hook.load_bytes(
-                            file_content,
-                            key=fk,
-                            bucket_name=DEST_BUCKET,
-                            replace=True,
-                        )
-                        logging.info(f"Uploaded {fk} to S3")
+                        try:
+                            # Extract file content and upload directly to S3
+                            file_content = zf.read(member)
+                            s3_hook.load_bytes(
+                                file_content,
+                                key=fk,
+                                bucket_name=DEST_BUCKET,
+                                replace=True,
+                            )
+                            logging.info(f"Uploaded {fk} to S3")
 
-                    except Exception as e:
-                        logging.error(f"Error: {member.filename}: {e}")
-                        raise
+                        except Exception as e:
+                            logging.error(f"Error: {member.filename}: {e}")
+                            raise
 
         except requests.RequestException as e:
-            logging.error(f"Failed to download from {URL}: {e}")
+            logging.error(f"Failed to download from {url}: {e}")
             raise
         except Exception as e:
             logging.error(f"Unexpected error during processing: {e}")
