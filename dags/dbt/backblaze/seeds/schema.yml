@@ -1,0 +1,10 @@
+version: 2
+
+seeds:
+  - name: seed_datacenters
+    config:
+      column_types:
+        datacenter: varchar(10)
+        city: varchar(64)
+        longitude: double
+        latitude: double
