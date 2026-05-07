@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS { DATABASE }.{ TABLE } (
+CREATE TABLE IF NOT EXISTS {database}.{table} (
     `date` DATE NOT NULL,
     serial_number VARCHAR(32) NOT NULL,
     model VARCHAR(64) NOT NULL,
