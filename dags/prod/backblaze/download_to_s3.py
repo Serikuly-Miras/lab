@@ -11,12 +11,14 @@ import zipfile
 
 import requests
 from airflow.providers.amazon.aws.hooks.s3 import S3Hook
-from airflow.sdk import Asset, dag, task
+from airflow.sdk import dag, task
 
-backblaze_q1_2025_asset = Asset("s3://data-raw/backblaze/data_Q1_2025/")
-backblaze_q2_2025_asset = Asset("s3://data-raw/backblaze/data_Q2_2025/")
-backblaze_q3_2025_asset = Asset("s3://data-raw/backblaze/data_Q3_2025/")
-backblaze_q4_2025_asset = Asset("s3://data-raw/backblaze/data_Q4_2025/")
+from prod.backblaze.assets import (
+    backblaze_q1_2025_asset,
+    backblaze_q2_2025_asset,
+    backblaze_q3_2025_asset,
+    backblaze_q4_2025_asset,
+)
 
 URLS = [
     "https://f001.backblazeb2.com/file/Backblaze-Hard-Drive-Data/data_Q4_2025.zip",

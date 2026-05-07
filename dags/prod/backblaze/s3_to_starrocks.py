@@ -9,16 +9,15 @@ import logging
 
 from airflow.providers.amazon.aws.hooks.s3 import S3Hook
 from airflow.providers.mysql.hooks.mysql import MySqlHook
-from airflow.sdk import Asset, dag, task
+from airflow.sdk import dag, task
 
-from dags.prod.backblaze.download_to_s3 import (
+from prod.backblaze.assets import (
     backblaze_q1_2025_asset,
     backblaze_q2_2025_asset,
     backblaze_q3_2025_asset,
     backblaze_q4_2025_asset,
+    backblaze_2025_starrocks_asset,
 )
-
-backblaze_2025_starrocks_asset = Asset("starrocks://bronze/backblaze_drive_stats/")
 
 
 STARROCKS_CONN_ID = "starrocks"
