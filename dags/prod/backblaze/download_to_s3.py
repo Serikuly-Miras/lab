@@ -13,7 +13,10 @@ import requests
 from airflow.providers.amazon.aws.hooks.s3 import S3Hook
 from airflow.sdk import Asset, dag, task
 
-backblaze_q3_asset = Asset("s3://data-raw/backblaze/data_Q3_2025/")
+backblaze_q1_2025_asset = Asset("s3://data-raw/backblaze/data_Q1_2025/")
+backblaze_q2_2025_asset = Asset("s3://data-raw/backblaze/data_Q2_2025/")
+backblaze_q3_2025_asset = Asset("s3://data-raw/backblaze/data_Q3_2025/")
+backblaze_q4_2025_asset = Asset("s3://data-raw/backblaze/data_Q4_2025/")
 
 URLS = [
     "https://f001.backblazeb2.com/file/Backblaze-Hard-Drive-Data/data_Q4_2025.zip",
@@ -26,10 +29,10 @@ ROOT_FOLDER = "backblaze"
 
 
 @dag(
-    dag_id="download_backblaze_q3_to_s3",
+    dag_id="download_backblaze_2025_to_s3",
     tags=["s3", "backblaze", "prod", "ingestion"],
 )
-def download_backblaze_q3():
+def download_backblaze_2025():
     """
     Data Source Attribution:
         - Provider: Backblaze, Inc.
@@ -37,9 +40,16 @@ def download_backblaze_q3():
         - Dataset: Drive Stats data
     """
 
-    @task(outlets=[backblaze_q3_asset])
-    def download_and_extract_q3_data() -> None:
-        """Download Q3 2025 data from Backblaze and upload to S3"""
+    @task(
+        outlets=[
+            backblaze_q1_2025_asset,
+            backblaze_q2_2025_asset,
+            backblaze_q3_2025_asset,
+            backblaze_q4_2025_asset,
+        ]
+    )
+    def download_and_extract_2025_data() -> None:
+        """Download 2025 data from Backblaze and upload to S3"""
         s3_hook = S3Hook(aws_conn_id="s3")
 
         logging.info("Starting download")
@@ -83,9 +93,9 @@ def download_backblaze_q3():
             logging.error(f"Unexpected error during processing: {e}")
             raise
 
-        logging.info("Q3 2025 Backblaze data successfully loaded to S3")
+        logging.info("Backblaze data successfully loaded to S3")
 
-    download_and_extract_q3_data()
+    download_and_extract_2025_data()
 
 
-download_backblaze_q3()
+download_backblaze_2025()
