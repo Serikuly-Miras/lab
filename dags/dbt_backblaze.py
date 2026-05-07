@@ -5,7 +5,7 @@ profile_config = ProfileConfig(
     profile_name="backblaze",
     target_name="dev",
     profile_mapping=PostgresUserPasswordProfileMapping(
-        conn_id="dwh",
+        conn_id="starrocks",
         profile_args={"schema": "silver"},
     ),
 )
