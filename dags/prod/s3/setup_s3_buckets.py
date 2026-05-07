@@ -18,8 +18,6 @@ def test_dag():
             "airflow",
             # raw s3 storage
             "data-raw",
-            # ducklake
-            "ducklake",
             # iceberg
             "iceberg",
         ]
