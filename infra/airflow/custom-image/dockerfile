@@ -10,6 +10,7 @@ USER airflow
 RUN uv pip install --no-cache "apache-airflow==${AIRFLOW_VERSION}" \
   dbt-core \
   dbt-postgres \
+  dbt-starrocks \
   astronomer-cosmos \
   'apache-airflow[otel]' \
   apache-airflow-providers-openlineage[common.compat] \

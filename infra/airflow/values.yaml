@@ -1,5 +1,5 @@
 defaultAirflowRepository: serikulymiras/airflow
-defaultAirflowTag: "homelabV8"
+defaultAirflowTag: "homelabV9"
 revisionHistoryLimit: 2
 fernetKeySecretName: airflow-vault-secret
 webserverSecretKeySecretName: airflow-vault-secret
