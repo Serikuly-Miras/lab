@@ -61,6 +61,7 @@ SELECT * FROM FILES(
     "csv.column_separator" = ",",
     "csv.row_delimiter" = "\\n",
     "csv.skip_header"   = "1",
+    "csv.null_value"    = "",
     "aws.s3.endpoint"   = "{s3_props["endpoint"]}",
     "aws.s3.access_key" = "{s3_props["access_key"]}",
     "aws.s3.secret_key" = "{s3_props["secret_key"]}",
