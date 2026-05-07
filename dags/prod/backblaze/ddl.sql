@@ -202,6 +202,6 @@ CREATE TABLE IF NOT EXISTS {database}.{table} (
 ) PARTITION BY DATE_TRUNC(
     'day',
     `date`
-) distributed BY HASH(serial_number) buckets 10 properties (
+) distributed BY HASH(serial_number) buckets 2 properties (
     "replication_num" = "1"
 );
