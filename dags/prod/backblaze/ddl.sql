@@ -195,7 +195,7 @@ CREATE TABLE IF NOT EXISTS {database}.{table} (
     smart_254_normalized bigint NULL,
     smart_254_raw bigint NULL,
     smart_255_normalized bigint NULL,
-    smart_255_rawBIGINT NULL
+    smart_255_raw bigint NULL
 ) engine = olap primary key(
     `date`,
     serial_number
