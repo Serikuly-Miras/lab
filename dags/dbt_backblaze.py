@@ -1,10 +1,10 @@
 from cosmos import DbtDag, ProjectConfig, ProfileConfig
-from cosmos.profiles import PostgresUserPasswordProfileMapping
+from cosmos.profiles import StarrocksUserPasswordProfileMapping
 
 profile_config = ProfileConfig(
     profile_name="backblaze",
     target_name="dev",
-    profile_mapping=PostgresUserPasswordProfileMapping(
+    profile_mapping=StarrocksUserPasswordProfileMapping(
         conn_id="starrocks",
         profile_args={"schema": "silver"},
     ),
