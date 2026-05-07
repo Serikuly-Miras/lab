@@ -61,6 +61,7 @@ pgbouncer:
 config:
   core:
     xcom_backend: airflow.providers.common.io.xcom.backend.XComObjectStorageBackend
+    test_connection: "Enabled"
   common.io:
     xcom_objectstorage_path: s3://seaweedfs@airflow/xcoms
     xcom_objectstorage_threshold: "0"
