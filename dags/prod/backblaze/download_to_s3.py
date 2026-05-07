@@ -9,6 +9,7 @@ import io
 import logging
 import zipfile
 
+import pandas as pd
 import requests
 from airflow.providers.amazon.aws.hooks.s3 import S3Hook
 from airflow.sdk import dag, task
@@ -28,6 +29,12 @@ URLS = [
 ]
 DEST_BUCKET = "data-raw"
 ROOT_FOLDER = "backblaze"
+PARQUET_FOLDER = "backblaze-parquet"
+
+
+def _quarter_from_url(url: str) -> str:
+    """Extract quarter folder name from URL, e.g. 'data_Q1_2025'."""
+    return url.split("/")[-1].replace(".zip", "")
 
 
 @dag(
@@ -58,6 +65,19 @@ def download_backblaze_2025():
 
         try:
             for url in URLS:
+                quarter = _quarter_from_url(url)
+                prefix = f"{ROOT_FOLDER}/{quarter}/"
+
+                existing = s3_hook.list_keys(bucket_name=DEST_BUCKET, prefix=prefix)
+                if existing:
+                    logging.info(
+                        "Quarter %s already in S3 (%d files). Skipping download.",
+                        quarter,
+                        len(existing),
+                    )
+                    continue
+
+                logging.info("Downloading %s", url)
                 response = requests.get(url, stream=True)
                 response.raise_for_status()
 
@@ -85,7 +105,7 @@ def download_backblaze_2025():
                             logging.info(f"Uploaded {fk} to S3")
 
                         except Exception as e:
-                            logging.error(f"Error: {member.filename}: {e}")
+                            logging.error("Error uploading %s: %s", member.filename, e)
                             raise
 
         except requests.RequestException as e:
@@ -97,7 +117,45 @@ def download_backblaze_2025():
 
         logging.info("Backblaze data successfully loaded to S3")
 
-    download_and_extract_2025_data()
+    @task()
+    def csv_to_parquet() -> None:
+        """Convert any CSV files in S3 that don't yet have a Parquet counterpart."""
+        s3_hook = S3Hook(aws_conn_id="s3")
+
+        csv_keys = (
+            s3_hook.list_keys(bucket_name=DEST_BUCKET, prefix=f"{ROOT_FOLDER}/") or []
+        )
+
+        for csv_key in csv_keys:
+            if not csv_key.endswith(".csv"):
+                continue
+
+            relative = csv_key[len(f"{ROOT_FOLDER}/") :]
+            parquet_key = f"{PARQUET_FOLDER}/{relative.replace('.csv', '.parquet')}"
+
+            if s3_hook.check_for_key(parquet_key, bucket_name=DEST_BUCKET):
+                logging.info("Parquet already exists for %s. Skipping.", csv_key)
+                continue
+
+            logging.info("Converting %s -> %s", csv_key, parquet_key)
+            csv_obj = s3_hook.get_key(csv_key, bucket_name=DEST_BUCKET)
+            df = pd.read_csv(io.BytesIO(csv_obj.get()["Body"].read()))
+
+            buf = io.BytesIO()
+            df.to_parquet(buf, index=False, engine="pyarrow")
+            buf.seek(0)
+
+            s3_hook.load_bytes(
+                buf.read(),
+                key=parquet_key,
+                bucket_name=DEST_BUCKET,
+                replace=True,
+            )
+            logging.info("Uploaded %s", parquet_key)
+
+        logging.info("Parquet conversion complete")
+
+    download_and_extract_2025_data() >> csv_to_parquet()
 
 
 download_backblaze_2025()
