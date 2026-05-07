@@ -51,8 +51,8 @@ def _get_s3_files_properties(s3_hook: S3Hook) -> dict:
     }
 
 
-def _build_insert_sql(quarter: str, s3_props: dict) -> str:
-    s3_path = f"s3://{DEST_BUCKET}/{ROOT_FOLDER}/{quarter}/*.parquet"
+def _build_insert_sql(s3_key: str, s3_props: dict) -> str:
+    s3_path = f"s3://{DEST_BUCKET}/{s3_key}"
     return f"""
 INSERT INTO {DATABASE}.{TABLE}
 SELECT * FROM FILES(
@@ -101,39 +101,47 @@ def s3_to_starrocks_backblaze_2025():
             conn.close()
 
     @task()
-    def load_quarter(quarter: str) -> None:
+    def list_parquet_files() -> list[str]:
+        s3_hook = S3Hook(aws_conn_id=S3_CONN_ID)
+        keys = []
+        for quarter in QUARTERS:
+            prefix = f"{ROOT_FOLDER}/{quarter}/"
+            quarter_keys = (
+                s3_hook.list_keys(bucket_name=DEST_BUCKET, prefix=prefix) or []
+            )
+            keys.extend(k for k in quarter_keys if k.endswith(".parquet"))
+        logging.info("Found %d parquet files to load", len(keys))
+        return keys
+
+    @task(max_active_tis_per_dag=1)
+    def load_file(s3_key: str) -> None:
         s3_hook = S3Hook(aws_conn_id=S3_CONN_ID)
         mysql_hook = MySqlHook(mysql_conn_id=STARROCKS_CONN_ID)
 
         s3_props = _get_s3_files_properties(s3_hook)
-        sql = _build_insert_sql(quarter, s3_props)
+        sql = _build_insert_sql(s3_key, s3_props)
 
-        logging.info(
-            "Loading quarter %s from S3 path: s3://%s/%s/%s/",
-            quarter,
-            DEST_BUCKET,
-            ROOT_FOLDER,
-            quarter,
-        )
+        logging.info("Loading file: s3://%s/%s", DEST_BUCKET, s3_key)
 
         conn = mysql_hook.get_conn()
         try:
             with conn.cursor() as cursor:
                 cursor.execute(sql)
             conn.commit()
-            logging.info("Loaded quarter %s successfully", quarter)
+            logging.info("Loaded %s successfully", s3_key)
         finally:
             conn.close()
 
     @task(outlets=[backblaze_2025_starrocks_asset])
     def finalize() -> None:
-        logging.info("All quarters loaded into %s.%s", DATABASE, TABLE)
+        logging.info("All files loaded into %s.%s", DATABASE, TABLE)
 
     schema = create_schema()
-    loads = [load_quarter.override(task_id=f"load_{q}")(q) for q in QUARTERS]
+    files = list_parquet_files()
+    loads = load_file.expand(s3_key=files)
     done = finalize()
 
-    schema >> loads >> done
+    schema >> files >> loads >> done
 
 
 s3_to_starrocks_backblaze_2025()
