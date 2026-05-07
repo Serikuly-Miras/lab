@@ -24,7 +24,7 @@ from prod.backblaze.assets import (
 STARROCKS_CONN_ID = "starrocks"
 S3_CONN_ID = "s3"
 DEST_BUCKET = "data-raw"
-ROOT_FOLDER = "backblaze"
+ROOT_FOLDER = "backblaze-parquet"
 DATABASE = "bronze"
 TABLE = "backblaze_drive_stats"
 
@@ -52,16 +52,12 @@ def _get_s3_files_properties(s3_hook: S3Hook) -> dict:
 
 
 def _build_insert_sql(quarter: str, s3_props: dict) -> str:
-    s3_path = f"s3://{DEST_BUCKET}/{ROOT_FOLDER}/{quarter}/*.csv"
+    s3_path = f"s3://{DEST_BUCKET}/{ROOT_FOLDER}/{quarter}/*.parquet"
     return f"""
 INSERT INTO {DATABASE}.{TABLE}
 SELECT * FROM FILES(
     "path"              = "{s3_path}",
-    "format"            = "csv",
-    "csv.column_separator" = ",",
-    "csv.row_delimiter" = "\\n",
-    "csv.skip_header"   = "1",
-    "csv.null_value"    = "",
+    "format"            = "parquet",
     "aws.s3.endpoint"   = "{s3_props["endpoint"]}",
     "aws.s3.access_key" = "{s3_props["access_key"]}",
     "aws.s3.secret_key" = "{s3_props["secret_key"]}",
@@ -76,7 +72,7 @@ SELECT * FROM FILES(
 )
 def s3_to_starrocks_backblaze_2025():
     """
-    Loads Backblaze Drive Stats CSV files from S3 into StarRocks.
+    Loads Backblaze Drive Stats Parquet files from S3 into StarRocks.
     """
 
     @task(
