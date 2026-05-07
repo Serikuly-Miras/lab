@@ -18,13 +18,9 @@ RUN uv pip install --no-cache "apache-airflow==${AIRFLOW_VERSION}" \
   openpyxl \
   toml \ 
   s3fs \
-  "pandas>=3.0.0" \
+  pandas \
   polars \
-  "duckdb>=1.5.2" \ 
   connectorx \
   adbc_driver_postgresql \
   psycopg2-binary \
-  clickhouse-connect
-
-# Pre-install DuckDB extensions for DuckLake support to avoid runtime downloads 
-RUN python -c "import duckdb; con = duckdb.connect(); con.execute('INSTALL ducklake'); con.execute('INSTALL postgres'); con.close()"
+  apache-airflow-providers-mysql
