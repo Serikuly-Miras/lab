@@ -1,12 +1,8 @@
 """
-Loads Backblaze Drive Stats CSV files from S3 into StarRocks.
-
-Triggered by upstream S3 assets produced by download_to_s3.py.
-Uses StarRocks FILES() table function to read CSVs directly from S3,
-so no intermediate staging is needed.
-
-StarRocks connection: "mysql" (MySQL-wire-compatible Airflow connection)
-S3 connection:        "s3"    (used to retrieve endpoint + credentials)
+Data Source Attribution:
+    - Provider: Backblaze, Inc.
+    - Website: https://www.backblaze.com/
+    - Dataset: Drive Stats data
 """
 
 import logging
@@ -190,8 +186,8 @@ def _get_s3_files_properties(s3_hook: S3Hook) -> dict:
     extras = conn.extra_dejson
 
     endpoint = extras.get("endpoint_url")
-    access_key = conn.login or extras.get("aws_access_key_id", "")
-    secret_key = conn.password or extras.get("aws_secret_access_key", "")
+    access_key = conn.login or extras.get("aws_access_key_id")
+    secret_key = conn.password or extras.get("aws_secret_access_key")
 
     return {
         "endpoint": endpoint,
