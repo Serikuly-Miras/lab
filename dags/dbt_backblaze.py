@@ -38,7 +38,6 @@ basic_cosmos_dag = DbtDag(
     profile_config=profile_config,
     operator_args={
         "install_deps": True,
-        "full_refresh": True,
     },
     dag_id="backblaze_cosmos_silver_layer",
 )
