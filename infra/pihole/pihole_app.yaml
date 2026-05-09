@@ -40,6 +40,6 @@ spec:
             annotations:
               tailscale.com/expose: "true"
               tailscale.com/hostname: "pihole-dns"
-    - repoURL: https://github.com/Serikuly-Miras/lab.git
+    - repoURL: http://gitea-http.gitea.svc.cluster.local:3000/miras/lab
       targetRevision: HEAD
       path: infra/pihole/custom-resources
