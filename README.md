@@ -29,6 +29,7 @@ HETZNER S3 Object Storage (Offsite backups)
 - [x] **Cloud Native PostgreSQL (CNPG) operator** - PostgreSQL
 - [x] **Starrocks** - Starrocks (main OLAP database)
 - [x] **Apache Iceberg** - Open table format for data lakes
+- [x] **ByteBase** - Database schema change management
 - [ ] **OpenMetadata** - Data discovery and governance
 - [ ] **Elementary Data** - Dbt-native data observability
 - [ ] **Great Expectations** - Data quality and validation
