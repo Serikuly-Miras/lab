@@ -22,3 +22,4 @@ spec:
           name: bytebase
           namespace: bytebase
           port: 8080
+          weight: 1
