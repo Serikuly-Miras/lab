@@ -21,7 +21,7 @@ spec:
     - repoURL: https://strimzi.io/charts
       chart: strimzi-kafka-operator
       targetRevision: 1.0.0
-    - repoURL: https://github.com/Serikuly-Miras/lab.git
+    - repoURL: http://gitea-http.gitea.svc.cluster.local:3000/miras/lab
       targetRevision: HEAD
       path: infra/streaming/strimzi-kafka/custom-resources
     - repoURL: https://ui.charts.kafbat.io/

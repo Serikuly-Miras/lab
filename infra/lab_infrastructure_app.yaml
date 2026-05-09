@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/Serikuly-Miras/lab.git
+    repoURL: http://gitea-http.gitea.svc.cluster.local:3000/miras/lab
     targetRevision: HEAD
     path: infra/apps
   destination:

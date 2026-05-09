@@ -34,7 +34,7 @@ spec:
               - name: userconfig-vault-storage-config
                 mountPath: /vault/userconfig/vault-storage-config
                 readOnly: true
-    - repoURL: https://github.com/Serikuly-Miras/lab.git
+    - repoURL: http://gitea-http.gitea.svc.cluster.local:3000/miras/lab
       targetRevision: HEAD
       path: infra/vault/custom-resources
   ignoreDifferences:

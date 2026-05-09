@@ -13,7 +13,7 @@ data:
 dags:
   gitSync:
     enabled: true
-    repo: https://github.com/Serikuly-Miras/lab.git
+    repo: http://gitea-http.gitea.svc.cluster.local:3000/miras/lab
     branch: main
     rev: HEAD
     ref: main

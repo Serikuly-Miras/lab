@@ -27,8 +27,8 @@ spec:
             jobEnabled: false
         valueFiles:
           - $lab/infra/longhorn/values.yaml
-    - repoURL: https://github.com/Serikuly-Miras/lab.git
+    - repoURL: http://gitea-http.gitea.svc.cluster.local:3000/miras/lab
       ref: lab
       targetRevision: HEAD
-    - repoURL: https://github.com/Serikuly-Miras/lab.git
+    - repoURL: http://gitea-http.gitea.svc.cluster.local:3000/miras/lab
       path: infra/longhorn/custom-resources
