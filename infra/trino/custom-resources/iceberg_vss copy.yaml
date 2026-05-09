@@ -2,7 +2,6 @@ apiVersion: secrets.hashicorp.com/v1beta1
 kind: VaultStaticSecret
 metadata:
   name: iceberg-catalog-vss
-  namespace: trino
   annotations:
     argocd.argoproj.io/sync-wave: "-1"
 spec:
@@ -28,7 +27,6 @@ apiVersion: secrets.hashicorp.com/v1beta1
 kind: VaultStaticSecret
 metadata:
   name: iceberg-s3-vss
-  namespace: trino
   annotations:
     argocd.argoproj.io/sync-wave: "-1"
 spec:
