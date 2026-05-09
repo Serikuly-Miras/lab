@@ -1,0 +1,51 @@
+apiVersion: secrets.hashicorp.com/v1beta1
+kind: VaultStaticSecret
+metadata:
+  name: iceberg-catalog-vss
+  namespace: trino
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+spec:
+  vaultAuthRef: vault-auth
+  mount: kvv2
+  type: kv-v2
+  path: iceberg-catalog
+  destination:
+    create: true
+    name: iceberg-catalog-credentials
+    transformation:
+      templates:
+        ICEBERG_CATALOG_USERNAME:
+          text: '{{- get .Secrets "username" -}}'
+        ICEBERG_CATALOG_PASSWORD:
+          text: '{{- get .Secrets "password" -}}'
+      excludes:
+        - .*
+      excludeRaw: true
+  refreshAfter: 30s
+---
+apiVersion: secrets.hashicorp.com/v1beta1
+kind: VaultStaticSecret
+metadata:
+  name: iceberg-s3-vss
+  namespace: trino
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+spec:
+  vaultAuthRef: vault-auth
+  mount: kvv2
+  type: kv-v2
+  path: iceberg-s3
+  destination:
+    create: true
+    name: iceberg-s3-credentials
+    transformation:
+      templates:
+        S3_AWS_ACCESS_KEY:
+          text: '{{- get .Secrets "ACCESS_KEY_ID" -}}'
+        S3_AWS_SECRET_KEY:
+          text: '{{- get .Secrets "ACCESS_SECRET_KEY" -}}'
+      excludes:
+        - .*
+      excludeRaw: true
+  refreshAfter: 30s
