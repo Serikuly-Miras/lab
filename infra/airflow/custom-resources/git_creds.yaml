@@ -14,4 +14,9 @@ spec:
       includes:
         - GITSYNC_USERNAME
         - GITSYNC_PASSWORD
+      templates:
+        GIT_SYNC_USERNAME:
+          text: '{{- get .Secrets "GITSYNC_USERNAME" -}}'
+        GIT_SYNC_PASSWORD:
+          text: '{{- get .Secrets "GITSYNC_PASSWORD" -}}'
     name: airflow-git-credentials-secret
