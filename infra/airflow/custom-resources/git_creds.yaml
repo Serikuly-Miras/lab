@@ -12,6 +12,6 @@ spec:
     transformation:
       excludeRaw: true
       includes:
-        - GIT_SYNC_USERNAME
-        - GIT_SYNC_PASSWORD
+        - GITSYNC_USERNAME
+        - GITSYNC_PASSWORD
     name: airflow-git-credentials-secret

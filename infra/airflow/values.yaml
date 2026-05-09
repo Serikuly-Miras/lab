@@ -14,7 +14,7 @@ dags:
   gitSync:
     enabled: true
     repo: http://gitea-http.gitea.svc.cluster.local:3000/miras/lab
-    credentialsSecret: airflow-git-credentials-secret # GIT_SYNC_USERNAME and GIT_SYNC_PASSWORD
+    credentialsSecret: airflow-git-credentials-secret # GITSYNC_USERNAME and GITSYNC_PASSWORD
     branch: main
     rev: HEAD
     ref: main
