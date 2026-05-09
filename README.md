@@ -38,6 +38,7 @@ HETZNER S3 Object Storage (Offsite backups)
 - [x] **Strimzi Kafka operator** - Kafka and Kafka Connect
 - [x] **Postgresql CDC source** - Debezium connector for PostgreSQL
 - [x] **Starrocks sink** - Starrocks sink connector for Kafka Connect
+- [x] **Trino** - Distributed SQL query engine
 
 ### Orchestration & Workflow
 
@@ -58,15 +59,14 @@ HETZNER S3 Object Storage (Offsite backups)
 ### Nice-to-have
 
 - [x] **Pi-Hole** - Tail'net-wide ad blocker / dns override
+- [x] **Gitea** - Self-hosted Git server (mirroring GitHub)
 - [ ] **Kubevirt** - VMs in Kubernetes
-- [ ] **Gitea** - Self-hosted Git server (mirroring GitHub)
-- [ ] **Trivy** - Vulnerability scanner
 - [ ] **Harbor** - Container registry
+- [ ] **Trivy** - Vulnerability scanner
 
-### Was deployed but removed for not having use rn
+### Was deployed but removed for not having any use rn
 
 - [ ] **ClickHouse** - ClickHouse (secondary OLAP database)
-- [ ] **Trino** - Distributed SQL query engine
 - [ ] **DuckLake** - New lakehouse platform built from duckdb team
 
 ## Directory Structure
