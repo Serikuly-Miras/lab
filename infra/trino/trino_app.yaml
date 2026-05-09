@@ -25,6 +25,14 @@ spec:
         values: |
           server:
             workers: 1
+          worker:
+            resources:
+              requests:
+                cpu: 1
+                memory: 1Gi
+              limits:
+                cpu: 2
+                memory: 4Gi
           additionalConfigProperties:
             - http-server.process-forwarded=true
           envFrom:
