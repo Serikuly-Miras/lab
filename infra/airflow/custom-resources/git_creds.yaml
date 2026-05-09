@@ -1,0 +1,17 @@
+apiVersion: secrets.hashicorp.com/v1beta1
+kind: VaultStaticSecret
+metadata:
+  name: airflow-git-credentials
+spec:
+  vaultAuthRef: vault-auth
+  mount: kvv2
+  type: kv-v2
+  path: airflow
+  destination:
+    create: true
+    transformation:
+      excludeRaw: true
+      includes:
+        - GIT_SYNC_USERNAME
+        - GIT_SYNC_PASSWORD
+    name: airflow-git-credentials-secret
