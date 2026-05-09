@@ -36,6 +36,6 @@ spec:
                 existingPgPasswordSecretKey: "password"
             persistence:
               enabled: false
-    - repoURL: https://gitea.lab.s-miras.com/miras/lab.git
+    - repoURL: http://gitea-http.gitea.svc.cluster.local:3000/miras/lab
       targetRevision: HEAD
       path: infra/bytebase/custom-resources
