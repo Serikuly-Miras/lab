@@ -44,7 +44,7 @@ spec:
             iceberg: |
               connector.name=iceberg
               iceberg.catalog.type=jdbc
-              iceberg.jdbc-catalog.catalog-name=iceberg-catalog
+              iceberg.jdbc-catalog.catalog-name=iceberg
               iceberg.jdbc-catalog.driver-class=org.postgresql.Driver
               iceberg.jdbc-catalog.connection-url=jdbc:postgresql://iceberg-catalog-cnpg-db-rw.iceberg-catalog:5432/iceberg-catalog
               iceberg.jdbc-catalog.connection-user=${ENV:ICEBERG_CATALOG_USERNAME}
