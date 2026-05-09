@@ -1,10 +1,10 @@
 CREATE TABLE IF NOT EXISTS {database}.{table} (
     `date` DATE NOT NULL,
-    serial_number STRING NOT NULL,
-    model STRING NOT NULL,
+    serial_number VARCHAR(32) NOT NULL,
+    model VARCHAR(64) NOT NULL,
     capacity_bytes bigint NULL,
     failure bigint NULL,
-    datacenter STRING NULL,
+    datacenter VARCHAR(32) NULL,
     cluster_id bigint NULL,
     vault_id bigint NULL,
     pod_id bigint NULL,

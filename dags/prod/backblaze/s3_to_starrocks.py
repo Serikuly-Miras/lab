@@ -105,7 +105,7 @@ def s3_to_starrocks_backblaze_2025():
         s3_hook = S3Hook(aws_conn_id=S3_CONN_ID)
         keys = []
         for quarter in QUARTERS:
-            prefix = f"{ROOT_FOLDER}/{quarter}/"
+            prefix = f"{ROOT_FOLDER}/{quarter}/2025-01-01.parquet"  # TODO remove after testing done
             quarter_keys = (
                 s3_hook.list_keys(bucket_name=DEST_BUCKET, prefix=prefix) or []
             )
