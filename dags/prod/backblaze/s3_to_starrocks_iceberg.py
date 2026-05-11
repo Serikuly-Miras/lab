@@ -26,7 +26,7 @@ S3_CONN_ID = "s3"
 DEST_BUCKET = "data-raw"
 ROOT_FOLDER = "backblaze-parquet"
 CATALOG = "iceberg"
-DATABASE = "backblaze"
+DATABASE = "bronze"
 TABLE = "backblaze_drive_stats"
 
 QUARTERS = [
