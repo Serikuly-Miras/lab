@@ -66,13 +66,13 @@ with DAG(
             """,
         )
 
-        # 4. Rewrite manifests
+        # 4. Optimize manifests
         manifests = SQLExecuteQueryOperator(
-            task_id=f"rewrite_manifests__{schema}__{table}",
+            task_id=f"optimize_manifests__{schema}__{table}",
             conn_id=TRINO_CONN_ID,
             sql=f"""
                 ALTER TABLE {qualified}
-                EXECUTE rewrite_manifests
+                EXECUTE optimize_manifests
             """,
         )
 
