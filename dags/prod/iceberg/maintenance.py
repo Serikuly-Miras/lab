@@ -52,7 +52,7 @@ with DAG(
             conn_id=TRINO_CONN_ID,
             sql=f"""
                 ALTER TABLE {qualified}
-                EXECUTE remove_orphan_files(retention_threshold => '1d')
+                EXECUTE remove_orphan_files(retention_threshold => '7d')
             """,
         )
 
