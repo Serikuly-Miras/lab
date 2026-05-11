@@ -56,7 +56,19 @@ def _build_insert_sql(s3_key: str, s3_props: dict) -> str:
     s3_path = f"s3://{DEST_BUCKET}/{s3_key}"
     return f"""
 INSERT INTO {CATALOG}.{DATABASE}.{TABLE}
-SELECT * FROM FILES(
+SELECT
+    model,
+    capacity_bytes,
+    failure,
+    datacenter,
+    cluster_id,
+    vault_id,
+    pod_id,
+    pod_slot_num,
+    is_legacy_format,
+    serial_number,
+    `date`
+FROM FILES(
     "path"              = "{s3_path}",
     "format"            = "parquet",
     "aws.s3.endpoint"   = "{s3_props["endpoint"]}",
