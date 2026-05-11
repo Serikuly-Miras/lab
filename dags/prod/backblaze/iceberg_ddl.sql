@@ -1,4 +1,6 @@
 CREATE TABLE IF NOT EXISTS {catalog}.{database}.{table} (
+    `date` DATE NOT NULL,
+    serial_number VARCHAR(32) NOT NULL,
     model VARCHAR(64),
     capacity_bytes BIGINT,
     failure BIGINT,
@@ -193,8 +195,6 @@ CREATE TABLE IF NOT EXISTS {catalog}.{database}.{table} (
     smart_254_normalized BIGINT,
     smart_254_raw BIGINT,
     smart_255_normalized BIGINT,
-    smart_255_raw BIGINT,
-    serial_number VARCHAR(32) NOT NULL,
-    `date` DATE NOT NULL
+    smart_255_raw BIGINT
 )
 PARTITION BY (`date`);
