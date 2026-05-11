@@ -1,0 +1,27 @@
+name: "backblaze_trino"
+version: "1.0.0"
+profile: "backblaze_trino"
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  backblaze_trino:
+    marts:
+      +materialized: table
+      +schema: gold
+    staging:
+      +materialized: table
+      +schema: silver
+
+seeds:
+  backblaze_trino:
+    +schema: "bronze"
