@@ -28,7 +28,7 @@ TABLES = _discover_tables()
 
 with DAG(
     dag_id="iceberg_maintenance",
-    schedule_interval="0 11 * * *",
+    schedule="0 11 * * *",
     start_date=datetime(2026, 1, 1),
     catchup=False,
     tags=["iceberg", "maintenance"],
