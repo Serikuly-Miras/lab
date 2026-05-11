@@ -56,19 +56,7 @@ def _build_insert_sql(s3_key: str, s3_props: dict) -> str:
     s3_path = f"s3://{DEST_BUCKET}/{s3_key}"
     return f"""
 INSERT INTO {CATALOG}.{DATABASE}.{TABLE}
-SELECT
-    model,
-    capacity_bytes,
-    failure,
-    datacenter,
-    cluster_id,
-    vault_id,
-    pod_id,
-    pod_slot_num,
-    is_legacy_format,
-    serial_number,
-    `date`
-FROM FILES(
+SELECT * FROM FILES(
     "path"              = "{s3_path}",
     "format"            = "parquet",
     "aws.s3.endpoint"   = "{s3_props["endpoint"]}",
@@ -103,7 +91,9 @@ def s3_to_iceberg_backblaze_2025():
         ddl_file = os.path.join(os.path.dirname(__file__), "iceberg_ddl.sql")
         with open(ddl_file, "r") as f:
             ddl_sql = f.read()
-        create_table_sql = ddl_sql.format(catalog=CATALOG, database=DATABASE, table=TABLE)
+        create_table_sql = ddl_sql.format(
+            catalog=CATALOG, database=DATABASE, table=TABLE
+        )
 
         try:
             with conn.cursor() as cursor:
