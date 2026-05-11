@@ -1,7 +1,7 @@
 from datetime import datetime
 from airflow import DAG
+from airflow.providers.common.sql.operators.sql import SQLExecuteQueryOperator
 from airflow.providers.trino.hooks.trino import TrinoHook
-from airflow.providers.trino.operators.trino import TrinoOperator
 
 TRINO_CONN_ID = "trino"
 CATALOG = "iceberg"
@@ -37,9 +37,9 @@ with DAG(
         qualified = f"{CATALOG}.{schema}.{table}"
 
         # 1. Expire snapshots older than 7 days
-        expire = TrinoOperator(
+        expire = SQLExecuteQueryOperator(
             task_id=f"expire_snapshots__{schema}__{table}",
-            trino_conn_id=TRINO_CONN_ID,
+            conn_id=TRINO_CONN_ID,
             sql=f"""
                 ALTER TABLE {qualified}
                 EXECUTE expire_snapshots(retention_threshold => '7d')
@@ -47,9 +47,9 @@ with DAG(
         )
 
         # 2. Remove orphan files
-        orphan = TrinoOperator(
+        orphan = SQLExecuteQueryOperator(
             task_id=f"remove_orphans__{schema}__{table}",
-            trino_conn_id=TRINO_CONN_ID,
+            conn_id=TRINO_CONN_ID,
             sql=f"""
                 ALTER TABLE {qualified}
                 EXECUTE remove_orphan_files(retention_threshold => '1d')
@@ -57,9 +57,9 @@ with DAG(
         )
 
         # 3. Compact small files
-        compact = TrinoOperator(
+        compact = SQLExecuteQueryOperator(
             task_id=f"compact_files__{schema}__{table}",
-            trino_conn_id=TRINO_CONN_ID,
+            conn_id=TRINO_CONN_ID,
             sql=f"""
                 ALTER TABLE {qualified}
                 EXECUTE optimize(file_size_threshold => '128MB')
@@ -67,9 +67,9 @@ with DAG(
         )
 
         # 4. Rewrite manifests
-        manifests = TrinoOperator(
+        manifests = SQLExecuteQueryOperator(
             task_id=f"rewrite_manifests__{schema}__{table}",
-            trino_conn_id=TRINO_CONN_ID,
+            conn_id=TRINO_CONN_ID,
             sql=f"""
                 ALTER TABLE {qualified}
                 EXECUTE rewrite_manifests
