@@ -30,6 +30,7 @@ HETZNER S3 Object Storage (Offsite backups)
 - [x] **Starrocks** - Starrocks (main OLAP database)
 - [x] **Apache Iceberg** - Open table format for data lakes
 - [x] **ByteBase** - Database schema change management
+- [x] **Trino** - Distributed SQL query engine
 - [ ] **OpenMetadata** - Data discovery and governance
 - [ ] **Elementary Data** - Dbt-native data observability
 - [ ] **Great Expectations** - Data quality and validation
@@ -39,7 +40,6 @@ HETZNER S3 Object Storage (Offsite backups)
 - [x] **Strimzi Kafka operator** - Kafka and Kafka Connect
 - [x] **Postgresql CDC source** - Debezium connector for PostgreSQL
 - [x] **Starrocks sink** - Starrocks sink connector for Kafka Connect
-- [x] **Trino** - Distributed SQL query engine
 
 ### Orchestration & Workflow
 
