@@ -53,10 +53,31 @@ def _get_s3_files_properties(s3_hook: S3Hook) -> dict:
 
 
 def _build_insert_sql(s3_key: str, s3_props: dict) -> str:
+    smart_cols = [
+        col
+        for n in range(1, 256)
+        for col in (f"smart_{n}_normalized", f"smart_{n}_raw")
+    ] ## TODO fix
+    select_cols = ", ".join(
+        [
+            "serial_number",
+            "model",
+            "capacity_bytes",
+            "failure",
+            "datacenter",
+            "cluster_id",
+            "vault_id",
+            "pod_id",
+            "pod_slot_num",
+            "is_legacy_format",
+            *smart_cols,
+            "`date`",
+        ]
+    )
     s3_path = f"s3://{DEST_BUCKET}/{s3_key}"
     return f"""
 INSERT INTO {CATALOG}.{DATABASE}.{TABLE}
-SELECT * EXCEPT (`date`), `date` FROM FILES(
+SELECT {select_cols} FROM FILES(
     "path"              = "{s3_path}",
     "format"            = "parquet",
     "aws.s3.endpoint"   = "{s3_props["endpoint"]}",
