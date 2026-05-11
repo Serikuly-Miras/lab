@@ -11,6 +11,7 @@ RUN uv pip install --no-cache "apache-airflow==${AIRFLOW_VERSION}" \
   dbt-core \
   dbt-postgres \
   dbt-starrocks \
+  dbt-trino \
   astronomer-cosmos \
   'apache-airflow[otel]' \
   apache-airflow-providers-openlineage[common.compat] \
@@ -24,4 +25,5 @@ RUN uv pip install --no-cache "apache-airflow==${AIRFLOW_VERSION}" \
   connectorx \
   adbc_driver_postgresql \
   psycopg2-binary \
-  apache-airflow-providers-mysql
+  apache-airflow-providers-mysql \
+  apache-airflow-providers-trino
