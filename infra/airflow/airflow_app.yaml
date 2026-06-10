@@ -18,7 +18,7 @@ spec:
       prune: true
       selfHeal: true
   sources:
-    - repoURL: https://airflow.apache.org/
+    {# - repoURL: https://airflow.apache.org/
       chart: airflow
       targetRevision: 1.21.0
       helm:
@@ -26,7 +26,7 @@ spec:
           - $lab/infra/airflow/values.yaml
     - repoURL: http://gitea-http.gitea.svc.cluster.local:3000/miras/lab
       ref: lab
-      targetRevision: HEAD
+      targetRevision: HEAD #}
     - repoURL: http://gitea-http.gitea.svc.cluster.local:3000/miras/lab
       targetRevision: HEAD
       path: infra/airflow/custom-resources
