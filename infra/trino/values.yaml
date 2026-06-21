@@ -31,7 +31,6 @@ catalogs:
     iceberg.rest-catalog.nested-namespace-enabled=true
     iceberg.rest-catalog.vended-credentials-enabled=true
     iceberg.unique-table-location=true
-    fs.hadoop.enabled=false
     fs.native-s3.enabled=true
     s3.path-style-access=true
     s3.endpoint=http://seaweedfs-s3.seaweedfs:8333
