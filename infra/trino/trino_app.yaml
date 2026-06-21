@@ -25,13 +25,25 @@ spec:
         values: |
           server:
             workers: 1
-          worker:
+          coordinator:
+            jvm:
+              maxHeapSize: "3584M"
             resources:
               requests:
                 cpu: 1
-                memory: 1Gi
+                memory: 4Gi
               limits:
-                cpu: 2
+                cpu: 1
+                memory: 4Gi
+          worker:
+            jvm:
+              maxHeapSize: "3584M"
+            resources:
+              requests:
+                cpu: 1
+                memory: 4Gi
+              limits:
+                cpu: 1
                 memory: 4Gi
           additionalConfigProperties:
             - http-server.process-forwarded=true
