@@ -22,52 +22,10 @@ spec:
       repoURL: https://trinodb.github.io/charts
       targetRevision: 1.42.2
       helm:
-        values: |
-          server:
-            workers: 1
-          coordinator:
-            jvm:
-              maxHeapSize: "3584M"
-            resources:
-              requests:
-                cpu: 1
-                memory: 4Gi
-              limits:
-                cpu: 1
-                memory: 4Gi
-          worker:
-            jvm:
-              maxHeapSize: "3584M"
-            resources:
-              requests:
-                cpu: 1
-                memory: 4Gi
-              limits:
-                cpu: 1
-                memory: 4Gi
-          additionalConfigProperties:
-            - http-server.process-forwarded=true
-          envFrom:
-            - secretRef:
-                name: iceberg-catalog-credentials
-            - secretRef:
-                name: iceberg-s3-credentials
-          catalogs:
-            iceberg: |
-              connector.name=iceberg
-              iceberg.catalog.type=jdbc
-              iceberg.jdbc-catalog.catalog-name=iceberg
-              iceberg.jdbc-catalog.driver-class=org.postgresql.Driver
-              iceberg.jdbc-catalog.connection-url=jdbc:postgresql://iceberg-catalog-cnpg-db-rw.iceberg-catalog:5432/iceberg-catalog
-              iceberg.jdbc-catalog.connection-user=${ENV:ICEBERG_CATALOG_USERNAME}
-              iceberg.jdbc-catalog.connection-password=${ENV:ICEBERG_CATALOG_PASSWORD}
-              iceberg.jdbc-catalog.default-warehouse-dir=s3://iceberg
-              fs.hadoop.enabled=false
-              fs.native-s3.enabled=true
-              s3.path-style-access=true
-              s3.endpoint=http://seaweedfs-s3.seaweedfs:8333
-              s3.aws-access-key=${ENV:S3_AWS_ACCESS_KEY}
-              s3.aws-secret-key=${ENV:S3_AWS_SECRET_KEY}
-              s3.region=us-east-1
+        valueFiles:
+          - $lab/infra/trino/values.yaml
+    - repoURL: http://gitea-http.gitea.svc.cluster.local:3000/miras/lab
+      ref: lab
+      targetRevision: HEAD
     - repoURL: http://gitea-http.gitea.svc.cluster.local:3000/miras/lab
       path: infra/trino/custom-resources
