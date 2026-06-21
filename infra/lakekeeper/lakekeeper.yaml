@@ -10,6 +10,12 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: lakekeeper
+  ignoreDifferences:
+    - kind: Secret
+      name: lakekeeper-postgres-encryption
+      namespace: lakekeeper
+      jsonPointers:
+        - /data
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
