@@ -27,7 +27,7 @@ envFrom:
       name: iceberg-s3-credentials
 catalogs:
   iceberg: |
-    connector.name=iceberg
+    connector.name=iceberg-local
     iceberg.catalog.type=rest
     iceberg.rest-catalog.uri=http://lakekeeper.lakekeeper.svc.cluster.local:8181
     fs.hadoop.enabled=false
