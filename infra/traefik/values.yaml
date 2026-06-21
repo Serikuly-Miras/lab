@@ -25,7 +25,7 @@ ports:
     protocol: TCP
     expose:
       default: true
-  postgres-iceberg-catalog:
+  postgres-lakekeeper-catalog:
     port: 5435
     protocol: TCP
     expose:
