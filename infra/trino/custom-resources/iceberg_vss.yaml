@@ -1,4 +1,4 @@
-apiVersion: secrets.hashicorp.com/v1beta1
+{# apiVersion: secrets.hashicorp.com/v1beta1
 kind: VaultStaticSecret
 metadata:
   name: iceberg-catalog-vss
@@ -46,4 +46,4 @@ spec:
       excludes:
         - .*
       excludeRaw: true
-  refreshAfter: 30s
+  refreshAfter: 30s #}
