@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: starrocks-db-sn
+  name: starrocks-db-se
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -9,7 +9,7 @@ spec:
   project: default
   destination:
     server: https://kubernetes.default.svc
-    namespace: starrocks-db-sn
+    namespace: starrocks-db-se
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
@@ -20,4 +20,4 @@ spec:
   sources:
     - repoURL: http://gitea-http.gitea.svc.cluster.local:3000/miras/lab
       targetRevision: HEAD
-      path: infra/starrocks-db-sn/custom-resources
+      path: infra/starrocks-db-se/custom-resources
