@@ -22,9 +22,6 @@ spec:
     configMapInfo:
       configMapName: starrockscluster-sample-fe-cm
       resolveKey: fe.conf
-    envFrom:
-      - secretRef:
-          name: starrocks-se-s3-secret
   starRocksCnSpec:
     image: starrocks/cn-ubuntu:4.1-latest
     replicas: 1
