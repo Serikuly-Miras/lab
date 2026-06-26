@@ -10,28 +10,8 @@ ports:
           to: websecure
           scheme: https
           permanent: true
-  postgres-dwh:
-    port: 5432
-    protocol: TCP
-    expose:
-      default: true
-  postgres-ducklake-catalog:
-    port: 5433
-    protocol: TCP
-    expose:
-      default: true
   postgres-airflow:
     port: 5434
-    protocol: TCP
-    expose:
-      default: true
-  postgres-lakekeeper-catalog:
-    port: 5435
-    protocol: TCP
-    expose:
-      default: true
-  clickhouse:
-    port: 8123
     protocol: TCP
     expose:
       default: true
@@ -40,18 +20,13 @@ ports:
     protocol: TCP
     expose:
       default: true
-  starrocks-db-query-entrypoint:
+  starrocks-db-sn-query-entrypoint:
     port: 9030
     protocol: TCP
     expose:
       default: true
-  postgres-pg-cdc-source-db:
-    port: 5436
-    protocol: TCP
-    expose:
-      default: true
-  mssql-cdc-source-db:
-    port: 1433
+  starrocks-db-se-query-entrypoint:
+    port: 9031
     protocol: TCP
     expose:
       default: true
