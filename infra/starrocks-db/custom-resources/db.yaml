@@ -6,12 +6,12 @@ spec:
   starRocksFeSpec:
     image: starrocks/fe-ubuntu:3.5-latest
     replicas: 1
-    limits:
-      cpu: 2
-      memory: 8Gi
+    limits: 
+      cpu: 1
+      memory: 4Gi
     requests:
       cpu: 100m
-      memory: 8Gi
+      memory: 4Gi
     storageVolumes:
       - name: fe-meta
         storageSize: 10Gi
@@ -23,11 +23,11 @@ spec:
     image: starrocks/be-ubuntu:3.5-latest
     replicas: 1
     limits:
-      cpu: 4
-      memory: 16Gi
+      cpu: 1
+      memory: 4Gi
     requests:
       cpu: 100m
-      memory: 8Gi
+      memory: 4Gi
     storageVolumes:
       - name: be-data
         storageSize: 200Gi
