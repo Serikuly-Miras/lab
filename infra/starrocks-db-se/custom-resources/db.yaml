@@ -7,8 +7,8 @@ spec:
     image: starrocks/fe-ubuntu:4.1-latest
     replicas: 1
     limits:
-      cpu: 1
-      memory: 4Gi
+      cpu: 2
+      memory: 8Gi
     requests:
       cpu: 100m
       memory: 4Gi
@@ -26,8 +26,8 @@ spec:
     image: starrocks/cn-ubuntu:4.1-latest
     replicas: 1
     limits:
-      cpu: 1
-      memory: 4Gi
+      cpu: 4
+      memory: 16Gi
     requests:
       cpu: 100m
       memory: 4Gi
