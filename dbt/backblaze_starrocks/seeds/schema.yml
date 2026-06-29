@@ -3,6 +3,8 @@ version: 2
 seeds:
   - name: seed_datacenters
     config:
+      properties:
+        replication_num: "1"
       column_types:
         datacenter: varchar(10)
         city: varchar(64)

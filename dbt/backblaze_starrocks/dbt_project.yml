@@ -1,6 +1,6 @@
-name: "backblaze_trino"
+name: "backblaze_starrocks"
 version: "1.0.0"
-profile: "backblaze_trino"
+profile: "backblaze_starrocks"
 
 model-paths: ["models"]
 analysis-paths: ["analyses"]
@@ -14,14 +14,12 @@ clean-targets:
   - "dbt_packages"
 
 models:
-  backblaze_trino:
+  backblaze_starrocks:
+    +properties:
+      replication_num: "1"
     marts:
       +materialized: table
       +schema: gold
     staging:
       +materialized: table
       +schema: silver
-
-seeds:
-  backblaze_trino:
-    +schema: "bronze"

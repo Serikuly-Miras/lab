@@ -1,7 +1,0 @@
-version: 2
-
-sources:
-  - name: bronze
-    tables:
-      - name: backblaze_drive_stats
-        description: "Bronze table containing raw data from Backblaze"
