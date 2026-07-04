@@ -1,6 +1,6 @@
-name: "backblaze_starrocks"
+name: "homelab_dbt"
 version: "1.0.0"
-profile: "backblaze_starrocks"
+profile: "homelab_dbt"
 
 model-paths: ["models"]
 analysis-paths: ["analyses"]
@@ -14,12 +14,16 @@ clean-targets:
   - "dbt_packages"
 
 models:
-  backblaze_starrocks:
+  homelab_dbt:
     +properties:
       replication_num: "1"
-    marts:
-      +materialized: table
-      +schema: gold
-    staging:
-      +materialized: table
-      +schema: silver
+    backblaze:
+      +tags: ["backblaze"]
+      gold:
+        +materialized: table
+        +schema: gold
+
+seeds:
+  +properties:
+    replication_num: "1"
+  +schema: bronze
