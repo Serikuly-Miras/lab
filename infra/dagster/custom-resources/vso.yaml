@@ -21,7 +21,7 @@ spec:
   method: kubernetes
   mount: vso
   kubernetes:
-    role: gitea-vso-role
+    role: dagstera-vso-role
     serviceAccount: vault-auth
 ---
 apiVersion: secrets.hashicorp.com/v1beta1
