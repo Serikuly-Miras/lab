@@ -1,3 +1,6 @@
+global:
+  postgresqlSecretName: dagster-db-credentials
+
 postgresql:
   enabled: false
   postgresqlHost: dagster-cnpg-db-rw.dagster
@@ -5,12 +8,9 @@ postgresql:
   postgresqlDatabase: dagster
   postgresqlParams: {}
   postgresqlScheme: ""
-  postgresqlPassword: 
-    valueFrom:
-      secretKeyRef:
-        name: dagster-db-credentials
-        key: password
+  postgresqlPassword: ""
 generatePostgresqlPasswordSecret: false
 
 telemetry:
   enabled: false
+
