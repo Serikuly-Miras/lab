@@ -21,7 +21,7 @@ spec:
   method: kubernetes
   mount: vso
   kubernetes:
-    role: dagstera-vso-role
+    role: dagster-vso-role
     serviceAccount: vault-auth
 ---
 apiVersion: secrets.hashicorp.com/v1beta1
