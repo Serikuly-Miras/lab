@@ -25,7 +25,6 @@ models:
         +schema: gold
 
 seeds:
-  +materialized: table
   +properties:
     replication_num: "1"
   +schema: bronze
