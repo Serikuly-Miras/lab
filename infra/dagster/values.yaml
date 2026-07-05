@@ -14,3 +14,5 @@ generatePostgresqlPasswordSecret: false
 telemetry:
   enabled: false
 
+dagster-user-deployments:
+  deployments: []
