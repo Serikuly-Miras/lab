@@ -28,6 +28,7 @@ seeds:
   +properties:
     replication_num: "1"
   +schema: bronze
-  backblaze:
-    +tags: ["backblaze"]
-    +group: "backblaze"
+  homelab_dbt:
+    backblaze:
+      +tags: ["backblaze"]
+      +group: "backblaze"
