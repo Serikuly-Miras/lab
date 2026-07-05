@@ -1,0 +1,24 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: dagster-cnpg-db
+spec:
+  instances: 1
+  storage:
+    size: 25Gi
+    storageClass: longhorn
+
+  bootstrap:
+    initdb:
+      database: dagster
+      owner: dagster
+      secret:
+        name: dagster-db-credentials
+
+  imagePullPolicy: Always
+  plugins:
+    - enabled: true
+      isWALArchiver: true
+      name: barman-cloud.cloudnative-pg.io
+      parameters:
+        barmanObjectName: hetzner-object-store

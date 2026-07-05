@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: dagster
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: dagster
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
+    automated:
+      prune: true
+      selfHeal: true
+  sources:
+    - repoURL: https://dagster-io.github.io/helm
+      chart: dagster
+      targetRevision: 1.13.11
+      helm:
+        valueFiles:
+          - $lab/infra/dagster/values.yaml
+    - repoURL: http://gitea-http.gitea.svc.cluster.local:3000/miras/lab
+      ref: lab
+      targetRevision: HEAD
+    - repoURL: http://gitea-http.gitea.svc.cluster.local:3000/miras/lab
+      path: infra/dagster/custom-resources
