@@ -15,15 +15,20 @@ clean-targets:
 
 models:
   homelab_dbt:
+    +materialized: table
     +properties:
       replication_num: "1"
     backblaze:
       +tags: ["backblaze"]
+      +group: "backblaze"
       gold:
-        +materialized: table
         +schema: gold
 
 seeds:
+  +materialized: table
   +properties:
     replication_num: "1"
   +schema: bronze
+  backblaze:
+    +tags: ["backblaze"]
+    +group: "backblaze"
