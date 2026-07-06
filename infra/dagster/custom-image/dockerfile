@@ -5,6 +5,8 @@ ENV PYTHONUNBUFFERED=1 \
 
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
 
+RUN apt-get update && apt-get install -y --no-install-recommends git && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /app
 
 # deps layer: cache survives code-only changes
@@ -13,5 +15,7 @@ RUN uv sync --frozen --no-dev --no-install-project
 
 COPY dgstr/src ./src
 RUN uv sync --frozen --no-dev
+
+RUN uv run --with dagster-dg-cli dg utils refresh-defs-state
 
 EXPOSE 80
