@@ -1,0 +1,13 @@
+homelab_dbt:
+  target: "{{ env_var('DBT_TARGET', 'dev') }}"
+  outputs:
+    dev:
+      type: starrocks
+      host: "{{ env_var('STARROCKS_HOST', 'starrocks-db-sn.lab.s-miras.com') }}"
+      port: "{{ env_var('STARROCKS_PORT', '9030') | int }}"
+      username: "{{ env_var('STARROCKS_USER', 'root') }}"
+      password: "{{ env_var('STARROCKS_PASSWORD', '') }}"
+      schema: bronze
+      threads: 10
+      auth_plugin: ''
+      version: ''
