@@ -5,6 +5,8 @@ version = "0.1.0"
 dependencies = [
     "dagster==1.13.12",
     "dagster-dbt>=0.29.12",
+    "dagster-postgres==0.29.12",
+    "dagster-k8s==0.29.12",
     "dbt-starrocks>=1.12.0",
 ]
 
