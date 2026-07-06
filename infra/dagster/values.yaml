@@ -27,3 +27,6 @@ dagster-user-deployments:
         - "dgstr.definitions"
       port: 3030
       envSecrets: []
+      env:
+        - name: STARROCKS_HOST
+          value: starrocks-db-sn-cluster-fe-service.starrocks-db-sn.svc.cluster.local
