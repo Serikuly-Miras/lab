@@ -15,4 +15,18 @@ telemetry:
   enabled: false
 
 dagster-user-deployments:
-  deployments: []
+  enabled: true
+  deployments:
+    - name: dgstr
+      image:
+        repository: serikulymiras/dagster
+        tag: homelab-v1
+        pullPolicy: IfNotPresent
+      dagsterApiGrpcArgs:
+        - "-m"
+        - "dgstr.definitions"
+      port: 3030
+      envSecrets: []
+      env:
+        - name: DBT_REPO_URL
+          value: http://gitea-http.gitea.svc.cluster.local:3000/miras/lab.git
