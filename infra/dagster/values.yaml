@@ -20,7 +20,7 @@ dagster-user-deployments:
     - name: dgstr
       image:
         repository: serikulymiras/dagster
-        tag: homelab-v2
+        tag: homelab-v3
         pullPolicy: IfNotPresent
       dagsterApiGrpcArgs:
         - "-m"

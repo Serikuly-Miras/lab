@@ -11,7 +11,7 @@ WORKDIR /app
 COPY dgstr/pyproject.toml dgstr/uv.lock ./
 RUN uv sync --frozen --no-dev --no-install-project
 
-COPY dgstr .
+COPY dgstr/src ./src
 RUN uv sync --frozen --no-dev
 
 EXPOSE 80
