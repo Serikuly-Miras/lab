@@ -27,6 +27,3 @@ dagster-user-deployments:
         - "dgstr.definitions"
       port: 3030
       envSecrets: []
-      env:
-        - name: DBT_REPO_URL
-          value: http://gitea-http.gitea.svc.cluster.local:3000/miras/lab.git

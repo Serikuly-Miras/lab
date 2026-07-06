@@ -1,11 +1,10 @@
 FROM python:3.13-slim
 
 ENV PYTHONUNBUFFERED=1 \
-    PATH="/app/.venv/bin:$PATH"
+    PATH="/app/.venv/bin:$PATH" \
+    DBT_PROJECT_DIR=/app/dbt
 
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
-
-RUN apt-get update && apt-get install -y --no-install-recommends git && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
@@ -16,6 +15,8 @@ RUN uv sync --frozen --no-dev --no-install-project
 COPY dgstr/src ./src
 RUN uv sync --frozen --no-dev
 
-RUN uv run --with dagster-dg-cli dg utils refresh-defs-state
+COPY dbt ./dbt
+
+ENV DBT_PROJECT_DIR=/app/dbt
 
 EXPOSE 80
