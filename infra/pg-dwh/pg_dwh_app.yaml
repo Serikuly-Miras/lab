@@ -21,4 +21,4 @@ spec:
       - PruneLast=true
   sources:
     - repoURL: https://github.com/Serikuly-Miras/lab.git
-      path: pg-dwh/custom-resources
+      path: infra/pg-dwh/custom-resources
