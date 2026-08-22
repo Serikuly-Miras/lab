@@ -1,0 +1,42 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: jellyfin
+  namespace: argo-cd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: jellyfin
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
+      - RespectIgnoreDifferences=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+  sources:
+    - repoURL: https://github.com/Serikuly-Miras/lab.git
+      ref: repo
+    - repoURL: https://github.com/Serikuly-Miras/lab.git
+      path: helm_charts/jellyfin
+      targetRevision: HEAD
+      helm:
+        valueFiles:
+          - $repo/infra/jellyfin/values.yaml
+  ignoreDifferences:
+    - group: gateway.networking.k8s.io
+      kind: HTTPRoute
+      name: jellyfin
+      namespace: jellyfin
+      jsonPointers:
+        - /spec/parentRefs
+      jqPathExpressions:
+        - .spec.rules[].backendRefs[].group
+        - .spec.rules[].backendRefs[].kind
+        - .spec.rules[].backendRefs[].weight

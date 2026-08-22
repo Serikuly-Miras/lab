@@ -19,7 +19,7 @@ persistence:
     enabled: true
     type: pvc
     accessMode: ReadWriteOnce
-    size: 100Gi
+    size: 400Gi
     storageClass: longhorn
   cache:
     enabled: true
