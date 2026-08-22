@@ -28,4 +28,4 @@ spec:
       path: helm_charts/kube-prometheus-stack
       helm:
         valueFiles:
-          - $repo/kube-prometheus-stack/values.yaml
+          - $repo/infra/kube-prometheus-stack/values.yaml
