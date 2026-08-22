@@ -20,7 +20,7 @@ spec:
       backendRefs:
         - group: ""
           kind: Service
-          name: argo-cd-server
+          name: argo-cd-argocd-server
           namespace: argo-cd
           port: 80
           weight: 1
