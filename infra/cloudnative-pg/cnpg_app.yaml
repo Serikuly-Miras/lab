@@ -24,4 +24,7 @@ spec:
     - repoURL: https://github.com/Serikuly-Miras/lab.git
       path: helm_charts/cloudnative-pg
       targetRevision: HEAD
-
+      helm:
+        values: |
+          monitoring:
+            podMonitorEnabled: true
