@@ -1,6 +1,19 @@
 grafana:
   admin:
     existingSecret: grafana-admin-credentials
+  route:
+    main:
+      enabled: true
+      parentRefs:
+        - name: traefik-gateway
+          namespace: kube-system
+          sectionName: websecure
+      hostnames:
+        - grafana.lab.s-miras.com
+  grafana.ini:
+    server:
+      domain: grafana.lab.s-miras.com
+      root_url: https://grafana.lab.s-miras.com
   persistence:
     enabled: true
     size: 10Gi

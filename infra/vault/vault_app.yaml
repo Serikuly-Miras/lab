@@ -27,6 +27,14 @@ spec:
       helm:
         values: |
           server:
+            httproute:
+              enabled: true
+              parentRefs:
+                - name: traefik-gateway
+                  namespace: kube-system
+                  sectionName: websecure
+              hostnames:
+                - vault.lab.s-miras.com
             dataStorage:
               enabled: false
             extraArgs: "-config=/vault/userconfig/vault-storage-config/config.hcl"
