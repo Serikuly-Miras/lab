@@ -31,6 +31,8 @@ spec:
               enabled: true
               parentRefs:
                 - name: traefik-gateway
+                  group: gateway.networking.k8s.io
+                  kind: Gateway
                   namespace: kube-system
                   sectionName: websecure
               hostnames:
