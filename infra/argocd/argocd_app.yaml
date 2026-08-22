@@ -29,3 +29,6 @@ spec:
           configs:
             params:
               server.insecure: true
+    - repoURL: https://github.com/Serikuly-Miras/lab.git
+      targetRevision: HEAD
+      path: infra/argocd/custom-resources

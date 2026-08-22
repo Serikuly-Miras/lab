@@ -40,7 +40,7 @@ spec:
         websecure:
           protocol: HTTPS
           port: 8443
-          hostname: "*.s-miras.com"
+          hostname: "*.lab.s-miras.com"
           mode: Terminate
           namespacePolicy:
             from: All

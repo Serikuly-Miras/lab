@@ -1,0 +1,26 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: argocd-ingress
+  namespace: argo-cd
+spec:
+  parentRefs:
+    - group: gateway.networking.k8s.io
+      kind: Gateway
+      name: traefik-gateway
+      namespace: kube-system
+      sectionName: websecure
+  hostnames:
+    - "argocd.lab.s-miras.com"
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: "/"
+      backendRefs:
+        - group: ""
+          kind: Service
+          name: argo-cd-server
+          namespace: argo-cd
+          port: 80
+          weight: 1
