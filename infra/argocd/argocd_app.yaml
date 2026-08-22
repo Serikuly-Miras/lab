@@ -22,7 +22,7 @@ spec:
       - PruneLast=true
   sources:
     - repoURL: https://github.com/Serikuly-Miras/lab.git
-      path: infra/helm-charts/argo-cd
+      path: helm-charts/argo-cd
       targetRevision: HEAD
       helm:
         values: |
