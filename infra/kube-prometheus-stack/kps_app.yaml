@@ -25,7 +25,7 @@ spec:
     - repoURL: https://github.com/Serikuly-Miras/lab.git
       path: infra/kube-prometheus-stack/custom-resources
     - repoURL: https://github.com/Serikuly-Miras/lab.git
-      path: helm-charts/kube-prometheus-stack
+      path: helm_charts/kube-prometheus-stack
       helm:
         valueFiles:
           - $repo/kube-prometheus-stack/values.yaml
