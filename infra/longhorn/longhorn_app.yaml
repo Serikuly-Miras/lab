@@ -24,7 +24,7 @@ spec:
     - repoURL: https://github.com/Serikuly-Miras/lab.git
       ref: repo
     - repoURL: https://github.com/Serikuly-Miras/lab.git
-      path: helm-charts/longhorn
+      path: helm_charts/longhorn
       targetRevision: HEAD
       helm:
         valueFiles:
