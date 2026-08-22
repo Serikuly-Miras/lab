@@ -1,0 +1,34 @@
+apiVersion: helm.cattle.io/v1
+kind: HelmChartConfig
+metadata:
+  name: traefik
+  namespace: kube-system
+spec:
+  valuesContent: |-
+    ports:
+      web:
+        http:
+          redirections:
+            entryPoint:
+              to: websecure
+              scheme: https
+              permanent: true
+    providers:
+      kubernetesGateway:
+        enabled: true
+      kubernetesCRD:
+        enabled: true
+    gateway:
+      enabled: true
+      listeners:
+        websecure:
+          protocol: HTTPS
+          port: 8443
+          hostname: "*.s-miras.com"
+          mode: Terminate
+          namespacePolicy:
+            from: All
+          certificateRefs:
+            - name: tls
+              group: ""
+              kind: Secret
