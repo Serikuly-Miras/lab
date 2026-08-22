@@ -63,7 +63,10 @@ spec:
       namespace: vault
       jsonPointers:
         - /spec/parentRefs
-        - /rules/backendRefs
+      jqPathExpressions:
+        - .spec.rules[].backendRefs[].group
+        - .spec.rules[].backendRefs[].kind
+        - .spec.rules[].backendRefs[].weight
 
 # dont forget to seed db creds and vault config
 
