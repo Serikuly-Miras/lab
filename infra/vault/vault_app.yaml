@@ -1,0 +1,59 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: vault
+  namespace: argo-cd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: vault
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
+      - RespectIgnoreDifferences=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+  sources:
+    - repoURL: https://github.com/Serikuly-Miras/lab.git
+      path: helm_charts/vault
+      targetRevision: HEAD
+      helm:
+        values: |
+          server:
+            dataStorage:
+              enabled: false
+            extraArgs: "-config=/vault/userconfig/vault-storage-config/config.hcl"
+            volumes:
+              - name: userconfig-vault-storage-config
+                secret:
+                  secretName: vault-storage-config
+                  defaultMode: 420
+            volumeMounts:
+              - name: userconfig-vault-storage-config
+                mountPath: /vault/userconfig/vault-storage-config
+                readOnly: true
+    - repoURL: https://github.com/Serikuly-Miras/lab.git
+      targetRevision: HEAD
+      path: vault/custom-resources
+  ignoreDifferences:
+    - group: apps
+      kind: StatefulSet
+      jsonPointers:
+        - /spec/volumeClaimTemplates
+
+# dont forget to seed db creds and vault config
+
+# config.hcl <<
+# storage "postgresql" {
+#     connection_url = "postgres://vault:secret123!@vault-cnpg-db-rw.vault:5432/vault"
+# }
+
+# kubectl create secret generic vault-db-credentials --from-literal=username=vault --from-literal=password=secret123! -n vault
+# kubectl create secret generic vault-storage-config --from-file=config.hcl -n vault
