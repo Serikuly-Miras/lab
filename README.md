@@ -1,80 +1,10 @@
 # Kubernetes Lab Environment
 
-Repo designated for managing and documenting everything I am running.
+Repo designated for managing and documenting everything I am running at home.
 
 ## Servers Overview
 
 ```
-AMD Ryzen5 6600H / Talos 1.12.6 baremetal
-    ├── 6 CPU / 12 vCPU
-    ├── 48GB DDR5 4800 RAM
-    ├── 1TB NVMe SSD (200GB EPHEMERAL, 800GB local path provisioner)
-    └── 500GB NVMe SSD (longhorn provisioner)
-
-HETZNER S3 Object Storage (Offsite backups)
-```
-
-## Architecture Overview
-
-### Storage
-
-#### Foundation
-
-- [x] **Local Path Provisioner** - Local storage for stateful workloads
-- [x] **Longhorn** - Distributed block storage
-- [x] **SeaweedFS** - Object storage / S3
-
-#### Data Platforms and Data observability
-
-- [x] **Cloud Native PostgreSQL (CNPG) operator** - PostgreSQL
-- [x] **Starrocks** - Starrocks (main OLAP database)
-- [x] **Apache Iceberg** - Open table format for data lakes
-- [x] **ByteBase** - Database schema change management
-- [x] **Trino** - Distributed SQL query engine
-- [ ] **OpenMetadata** - Data discovery and governance
-- [ ] **Elementary Data** - Dbt-native data observability
-- [ ] **Great Expectations** - Data quality and validation
-
-#### Streaming
-
-- [x] **Strimzi Kafka operator** - Kafka and Kafka Connect
-- [x] **Postgresql CDC source** - Debezium connector for PostgreSQL
-- [x] **Starrocks sink** - Starrocks sink connector for Kafka Connect
-
-### Orchestration & Workflow
-
-- [x] **Apache Airflow** - Workflow orchestration
-- [x] **DBT/Astronomer cosmos** - Data transformation and orchestration
-- [ ] **Airbyte** - Open-source data integration platform
-
-### Must-have
-
-- [x] **ArgoCD** - GitOps continuous deployment
-- [x] **Vault + External Secrets Operator** - Secret management
-- [x] **Prometheus** - Metrics storage and querying
-- [x] **Grafana** - Visualization and dashboards
-- [x] **Tempo** - Distributed tracing
-- [ ] **Loki** - Log aggregation
-- [ ] **Alloy** - Telemetry collection
-
-### Nice-to-have
-
-- [x] **Pi-Hole** - Tail'net-wide ad blocker / dns override
-- [x] **Gitea** - Self-hosted Git server (mirroring GitHub)
-- [ ] **Kubevirt** - VMs in Kubernetes
-- [ ] **Harbor** - Container registry
-- [ ] **Trivy** - Vulnerability scanner
-
-### Was deployed but removed for not having any use rn
-
-- [ ] **ClickHouse** - ClickHouse (secondary OLAP database)
-- [ ] **DuckLake** - New lakehouse platform built from duckdb team
-
-## Directory Structure
-
-```
-lab/
-├── dags/             # Airflow DAGs / Cosmos dbt projects
-├── docs/             # Documentation
-└── infra/            # Helm charts, ArgoCD apps, Talos conf files, etc.
+AMD Ryzen5 6600H / K3S / Ubuntu LTS 26
+    └── 6 CPU / 12 vCPU / 48GB DDR5 / 1TB NVMe
 ```
