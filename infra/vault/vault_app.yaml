@@ -57,6 +57,12 @@ spec:
       kind: StatefulSet
       jsonPointers:
         - /spec/volumeClaimTemplates
+    - group: gateway.networking.k8s.io
+      kind: HTTPRoute
+      name: vault
+      namespace: vault
+      jsonPointers:
+        - /spec/parentRefs
 
 # dont forget to seed db creds and vault config
 
