@@ -1,0 +1,41 @@
+apiVersion: starrocks.com/v1
+kind: StarRocksCluster
+metadata:
+  name: starrocks-db-sn-cluster
+spec:
+  starRocksFeSpec:
+    image: starrocks/fe-ubuntu:4.1-latest
+    replicas: 1
+    limits:
+      cpu: 2
+      memory: 8Gi
+    requests:
+      cpu: 100m
+      memory: 4Gi
+    storageVolumes:
+      - name: fe-meta
+        storageClassName: longhorn
+        storageSize: 10Gi
+        mountPath: /opt/starrocks/fe/meta
+      - name: fe-log
+        storageClassName: longhorn
+        storageSize: 5Gi
+        mountPath: /opt/starrocks/fe/log
+  starRocksBeSpec:
+    image: starrocks/be-ubuntu:4.1-latest
+    replicas: 1
+    limits:
+      cpu: 4
+      memory: 16Gi
+    requests:
+      cpu: 100m
+      memory: 4Gi
+    storageVolumes:
+      - name: be-data
+        storageClassName: longhorn
+        storageSize: 120Gi
+        mountPath: /opt/starrocks/be/storage
+      - name: be-log
+        storageClassName: longhorn
+        storageSize: 5Gi
+        mountPath: /opt/starrocks/be/log

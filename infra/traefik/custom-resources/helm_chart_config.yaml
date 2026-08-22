@@ -13,11 +13,27 @@ spec:
               to: websecure
               scheme: https
               permanent: true
+
+      starrocks-db-sn-query-entrypoint:
+        port: 9030
+        exposedPort: 9030
+        protocol: TCP
+        expose:
+          default: true
+
+      pg-db-entrypoint:
+        port: 5432
+        exposedPort: 5432
+        protocol: TCP
+        expose:
+          default: true
+
     providers:
       kubernetesGateway:
         enabled: true
       kubernetesCRD:
         enabled: true
+
     gateway:
       enabled: true
       listeners:
