@@ -41,7 +41,7 @@ spec:
                 readOnly: true
     - repoURL: https://github.com/Serikuly-Miras/lab.git
       targetRevision: HEAD
-      path: vault/custom-resources
+      path: infra/vault/custom-resources
   ignoreDifferences:
     - group: apps
       kind: StatefulSet
