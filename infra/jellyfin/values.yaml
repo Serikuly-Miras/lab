@@ -1,0 +1,36 @@
+httpRoute:
+  enabled: true
+  parentRefs:
+    - name: traefik-gateway
+      kind: Gateway
+      group: gateway.networking.k8s.io
+      namespace: kube-system
+      sectionName: websecure
+  hostnames:
+    - jellyfin.lab.s-miras.com
+
+persistence:
+  config:
+    enabled: true
+    accessMode: ReadWriteOnce
+    size: 5Gi
+    storageClass: longhorn
+  media:
+    enabled: true
+    type: pvc
+    accessMode: ReadWriteOnce
+    size: 100Gi
+    storageClass: longhorn
+  cache:
+    enabled: true
+    type: pvc
+    accessMode: ReadWriteOnce
+    size: 10Gi
+    storageClass: longhorn
+
+resources:
+  requests:
+    cpu: 200m
+    memory: 512Mi
+  limits:
+    memory: 4Gi

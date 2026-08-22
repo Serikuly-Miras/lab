@@ -1,0 +1,57 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: pg-dwh
+spec:
+  instances: 1
+  imageName: ghcr.io/cloudnative-pg/postgresql:18.4-minimal-trixie
+  storage:
+    size: 120Gi
+    storageClass: longhorn
+  imagePullPolicy: IfNotPresent
+  resources:
+    requests:
+      cpu: "1"
+      memory: 4Gi
+    limits:
+      cpu: "2"
+      memory: 8Gi
+  bootstrap:
+    initdb:
+      database: dwh
+      owner: dwh
+      secret:
+        name: dwh-pg-db-credentials
+  managed:
+    roles:
+      - name: ro
+        ensure: present
+        login: false
+        connectionLimit: -1
+        inherit: true
+      - name: rw
+        ensure: present
+        login: false
+        connectionLimit: -1
+        inherit: true
+  postgresql:
+    parameters:
+      max_connections: "40"
+      shared_buffers: 2GB
+      effective_cache_size: 6GB
+      maintenance_work_mem: 1GB
+      work_mem: 21845kB
+      autovacuum_work_mem: 2GB
+      wal_buffers: 16MB
+      min_wal_size: 2GB
+      max_wal_size: 8GB
+      checkpoint_completion_target: "0.9"
+      default_statistics_target: "500"
+      random_page_cost: "4"
+      effective_io_concurrency: "200"
+      max_worker_processes: "8"
+      max_parallel_workers_per_gather: "4"
+      max_parallel_workers: "8"
+      max_parallel_maintenance_workers: "4"
+      huge_pages: try
+      wal_compression: lz4
