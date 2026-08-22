@@ -20,11 +20,11 @@ spec:
       - PrunePropagationPolicy=foreground
       - PruneLast=true
   sources:
-    - repoURL: https://bi-gitlab.alemagro.com/crm-bi/helm.git
+    - repoURL: https://github.com/Serikuly-Miras/lab.git
       ref: repo
-    - repoURL: https://bi-gitlab.alemagro.com/crm-bi/helm.git
-      path: kube-prometheus-stack/custom-resources
-    - repoURL: https://bi-gitlab.alemagro.com/crm-bi/helm.git
+    - repoURL: https://github.com/Serikuly-Miras/lab.git
+      path: infra/kube-prometheus-stack/custom-resources
+    - repoURL: https://github.com/Serikuly-Miras/lab.git
       path: helm-charts/kube-prometheus-stack
       helm:
         valueFiles:
