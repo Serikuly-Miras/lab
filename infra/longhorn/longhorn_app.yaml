@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: longhorn
+  namespace: argo-cd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: longhorn-system
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
+      - RespectIgnoreDifferences=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+  sources:
+    - repoURL: https://github.com/Serikuly-Miras/lab.git
+      ref: repo
+    - repoURL: https://github.com/Serikuly-Miras/lab.git
+      path: helm-charts/longhorn
+      targetRevision: HEAD
+      helm:
+        valueFiles:
+          - $repo/infra/longhorn/values.yaml

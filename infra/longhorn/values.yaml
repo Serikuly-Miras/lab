@@ -1,0 +1,9 @@
+preUpgradeChecker:
+  jobEnabled: false
+
+defaultSettings:
+  defaultDataPath: /var/lib/rancher/k3s/longhorn
+  defaultReplicaCount: 1
+
+persistence:
+  defaultClassReplicaCount: 1
