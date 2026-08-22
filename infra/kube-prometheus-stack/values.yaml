@@ -1,0 +1,27 @@
+grafana:
+  admin:
+    existingSecret: grafana-admin-credentials
+  persistence:
+    enabled: true
+    size: 10Gi
+    storageClassName: longhorn
+
+prometheus:
+  enabled: true
+  prometheusSpec:
+    enableOTLPReceiver: true
+    podMonitorSelectorNilUsesHelmValues: false
+    podMonitorSelector: {}
+    podMonitorNamespaceSelector: {}
+    serviceMonitorSelectorNilUsesHelmValues: false
+    serviceMonitorSelector: {}
+    serviceMonitorNamespaceSelector: {}
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: longhorn
+          resources:
+            requests:
+              storage: 15Gi
+    retention: 30d
+    retentionSize: 14GB

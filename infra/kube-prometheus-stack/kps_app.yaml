@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kube-prometheus-stack
+  namespace: argo-cd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kube-prometheus-stack
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+  sources:
+    - repoURL: https://bi-gitlab.alemagro.com/crm-bi/helm.git
+      ref: repo
+    - repoURL: https://bi-gitlab.alemagro.com/crm-bi/helm.git
+      path: kube-prometheus-stack/custom-resources
+    - repoURL: https://bi-gitlab.alemagro.com/crm-bi/helm.git
+      path: helm-charts/kube-prometheus-stack
+      helm:
+        valueFiles:
+          - $repo/kube-prometheus-stack/values.yaml
