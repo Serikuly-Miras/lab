@@ -63,6 +63,7 @@ spec:
       namespace: vault
       jsonPointers:
         - /spec/parentRefs
+        - /spec/backendRefs
 
 # dont forget to seed db creds and vault config
 
